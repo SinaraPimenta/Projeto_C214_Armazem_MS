@@ -1,5 +1,5 @@
-from main.python.controller.webScrapping import WebScrapping 
-
+#from main.python.controller.webScrapping import WebScrapping 
+from webScrapping import WebScrapping
 import unittest
 from unittest import TestCase
 
@@ -8,7 +8,7 @@ class WebScrappingTest(TestCase):
     #def setUp(self): 
 
     def test_cotacaoCafe(self):
-        esperado = 'B/C, tipo 6, bebida dura, 20/21 (livre de impostos)'
+        esperado = 549
         obtido = WebScrapping.cotacaoCafe(self,'6','dura')  
         self.assertEqual(esperado,obtido)
 
