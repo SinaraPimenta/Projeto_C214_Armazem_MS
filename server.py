@@ -2,16 +2,16 @@ from flask import Flask,request,send_from_directory
 import os
 import hashlib
 from flask import  flash,  redirect, url_for
+from flask import render_template
 #from src.main.structure.controller import bancoDeDados
 
-def generate_hash(string_hash: str)->str:
-    hash_object = hashlib.sha1(string_hash.encode('utf-8'))
-    pbHash = hash_object.hexdigest()
-    return pbHash
-
-print(generate_hash('123456'))
+#def generate_hash(string_hash: str)->str:
+ #   hash_object = hashlib.sha1(string_hash.encode('utf-8'))
+  #  pbHash = hash_object.hexdigest()
+   # return pbHash
 
 app = Flask(__name__)
+#app = Flask(__name__, static_url_path='/src/main/view/static')
 
 #Função para substituição de valores na página html
 def substituirHTML(var,value,html):
@@ -21,13 +21,13 @@ def substituirHTML(var,value,html):
 
 @app.route('/')
 def login():
-    file = open("src/main/structure/view/login.html","r")
-    html = file.read()
+    html_file = open("templates/login.html","r")
+    html = html_file.read()
     return html
 
-@app.route('/admin', methods=['GET', 'POST'])
+@app.route('/admin')
 def admin():
-    html_file= open("src/main/structure/view/admin.html", "r") #Leitura do arquivo upload.html para exibição deste na página
+    html_file= open("templates/admin.html", "r") #Leitura do arquivo upload.html para exibição deste na página
     html = html_file.read()
     if request.method == 'POST': #Se houve uma requisição do tipo Post, verificar:
         #Verifica se a requisição veio da seleção de uma amostra da lista:sição veio do upload:
@@ -35,6 +35,19 @@ def admin():
         senha = request.form["senha"]
         hash = generate_hash('123456')
         #bancoDeDados.buscarUsuarioParaLogar(email,hash)  
+    return html    
+
+#Páginas do cafeicultor:
+@app.route('/cafeicultor')
+def cafeicultor():
+    html_file= open("src/main/structure/view/cafeicultor/cafeicultor.html", "r") 
+    html = html_file.read() 
+    return html
+
+@app.route('/cafeicultor/dados_pessoais')
+def cafeicultorDadosPessoais():
+    html_file= open("src/main/structure/view/cafeicultor/dados_pessoais.html", "r") 
+    html = html_file.read() 
     return html  
 
 '''
@@ -204,4 +217,4 @@ def send_file(path):
 '''
 
 if __name__ == '__main__':
-  app.run(debug=True)      
+  app.run(debug=True) 

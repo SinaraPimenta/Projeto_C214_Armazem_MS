@@ -1,0 +1,33 @@
+input {
+width: 350px;
+}
+
+.btn-primary {
+width: 250px;
+}
+
+.form {
+height: 320px;
+width: 400px;
+position: fixed;
+top: 50%;
+left: 50%;
+margin-right: -50%;
+transform: translate(-50%, -50%);
+}
+
+.rodape {
+position: fixed;
+top: 530px;
+left: 50%;
+margin-right: -50%;
+transform: translate(-50%, -50%)
+}
+
+#logo{
+position: relative;
+top: 50%;
+left: 50%;
+margin-right: -50%;
+transform: translate(-50%, -50%);
+}

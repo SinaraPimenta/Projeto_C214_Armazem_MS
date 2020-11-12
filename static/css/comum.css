@@ -1,0 +1,38 @@
+body {
+    background-color: #7eb17e;
+    background: url("https://s1.1zoom.me/b5050/497/Coffee_Grain_545482_1920x1080.jpg");
+    background-size: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+h3  {
+  margin-top: 10px;
+  color: #502e13;
+}
+
+input {
+  margin-top: 20px;
+  height: 44px;
+}
+
+.btn-primary {
+  background-color: #502e13 !important;
+  border-color: #502e13;
+}
+
+.btn-primary:hover {
+  background-color: #694629 !important;
+  border-color: #694629;
+}
+
+.form {
+  background-color: #f8f8f8;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5%;
+}
+
+.rodape {
+  color: white;
+}

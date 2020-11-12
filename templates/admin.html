@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Projeto de C214 - Armazem MS">
+    <meta name="author" content="Mariana e Sinara">
+    <title>Armazem MS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/static/css/stylesheet.css">
+    <style>
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md  fixed-top">
+        <button class="nav-button">
+            <i class="fas fa-home" aria-hidden="true"></i>
+            Armazem MS
+        </button>
+        <div class="nav-button space">
+            <i class="fas fa-user-circle" aria-hidden="true"></i>
+            fulano_de_tal123@hotmail.com
+        </div>
+        <button class="nav-button">
+            <i class="fas fa-sign-out-alt"></i>
+            Sair
+        </button>
+
+    </nav>
+    <!-- Conteúdo da página -->
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <div class="list-group list-group-flush">
+            <a href="#" class="list-group-item list-group-item-action ">Dashboard</a>
+            <a href="#" class="list-group-item list-group-item-action ">Shortcuts</a>
+            <a href="#" class="list-group-item list-group-item-action ">Overview</a>
+            <a href="#" class="list-group-item list-group-item-action ">Events</a>
+            <a href="#" class="list-group-item list-group-item-action ">Profile</a>
+            <a href="#" class="list-group-item list-group-item-action ">Status</a>
+            <div> </div>
+        </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+    <div class="conteudo-div">
+        <div class="search-div">
+            <i class="fas fa-search search-icon" aria-hidden="true"></i>
+            <input class="form-control search-bar" type="text" placeholder="Buscar cafeicultor ..." aria-label="Search">
+        </div>
+        <div class="conteudo">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Cafeicultor</th>
+                        <th scope="col">Telefone</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td class="nome">Nome1</td>
+                        <td>(35) 99999-9999</td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#modalVer">Ver</button></td>
+                        <td><button class="btn btn-primary">Excluir</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td class="nome">Jacob</td>
+                        <td>Thornton</td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#modalVer">Ver</button></td>
+                        <td><button class="btn btn-primary">Excluir</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td class="nome">Larry</td>
+                        <td>the Bird</td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#modalVer">Ver</button></td>
+                        <td><button class="btn btn-primary">Excluir</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td class="nome">Larry</td>
+                        <td>the Bird</td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#modalVer">Ver</button></td>
+                        <td><button class="btn btn-primary">Excluir</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td class="nome">Larry</td>
+                        <td>the Bird</td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#modalVer">Ver</button></td>
+                        <td><button class="btn btn-primary">Excluir</button></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Pagina 1 de 5</td>
+                        <td>
+                            <button class="nav-button-table ">
+                                <i class="fas fa-angle-double-left"></i>
+                            </button>
+                            <button class="nav-button-table ">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="nav-button-table ">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <button class="nav-button-table ">
+                                <i class="fas fa-angle-double-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+            <button class="btn btn-primary cadastrar">Cadastrar Cafeicultor</button>
+        </div>
+
+        <!-- Modal ACRESCENTAR: class="modal fade"-->
+        <div class="mymodal" id="modalVer" tabindex="-1" role="dialog" aria-labelledby="verModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="verModalLabel">
+                            Nome do cafeicultor - CPF</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <label>Contato:</label>
+                            <div class="form-row  ">
+
+                                <div class="form-group col-md-2  ver-div">
+                                    <i class="fas fa-phone " id="contato-icon-first"></i>
+                                    <input disabled class="form-control " id="contato-bar-first" placeholder="Telefone">
+                                </div>
+                                <div class="form-group col-md-5  ver-div">
+                                    <i class="fas fa-envelope" id="contato-icon-second"></i>
+                                    <input disabled class="form-control " id="contato-bar-second" placeholder="Email">
+                                </div>
+                            </div>
+                            <label>Endereco:</label>
+                            <div class="form-row">
+
+                                <div class="form-group col-md-6 ver-div">
+                                    <i class="fas fa-map-marked-alt" id="endereco-icon-first"></i>
+                                    <input disabled class="form-control" id="endereco-bar-first"
+                                        placeholder="Rua, numero">
+                                </div>
+                                <div class="form-group col-md-4 ver-div">
+                                    <input disabled class="form-control" id="endereco-bar-second" placeholder="Cidade">
+                                </div>
+                            </div>
+                            <label>Dados bancarios:</label>
+                            <div class="form-row">
+
+                                <div class="form-group col-md-4 ver-div">
+                                    <i class="fas fa-university" id="banco-icon-first"></i>
+                                    <input disabled class="form-control " id="banco-bar-first" placeholder="Banco">
+                                </div>
+
+                                <div class="form-group col-md-3 ver-div">
+                                    <input disabled class="form-control" id="banco-bar-second"
+                                        placeholder="Agencia Bancaria">
+                                </div>
+
+                                <div class="form-group col-md-3 ver-div">
+                                    <i class="fas fa-money-check-alt" id="banco-icon-second"></i>
+                                    <input disabled class="form-control" id="banco-bar-third"
+                                        placeholder="Numero da Conta">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="rodape">
+        <p class="text-center">&copy; Armazem-MS (Build 20201110 - 2300)</p>
+    </footer>
+
+
+</html>
