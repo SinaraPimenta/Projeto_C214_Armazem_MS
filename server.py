@@ -40,13 +40,19 @@ def admin():
 #Páginas do cafeicultor:
 @app.route('/cafeicultor')
 def cafeicultor():
-    html_file= open("src/main/structure/view/cafeicultor/cafeicultor.html", "r") 
+    html_file= open("templates/cafeicultor.html", "r") 
     html = html_file.read() 
     return html
 
 @app.route('/cafeicultor/dados_pessoais')
 def cafeicultorDadosPessoais():
-    html_file= open("src/main/structure/view/cafeicultor/dados_pessoais.html", "r") 
+    html_file= open("templates/dados_pessoais.html", "r") 
+    html = html_file.read() 
+    return html  
+
+@app.route('/cafeicultor/vender')
+def cafeicultorVender():
+    html_file= open("templates/vender.html", "r") 
     html = html_file.read() 
     return html  
 

@@ -196,101 +196,70 @@
             <div> </div>
         </div>
     </div>
-    <!-- /#sidebar-wrapper -->
-    <div class="page">
-        <div class="search-div">
-            <i class="fas fa-search search-icon" aria-hidden="true"></i>
-            <input class="form-control search-bar" type="text" placeholder="Buscar saca de cafe ..."
-                aria-label="Search">
-        </div>
-        <div class="conteudo">
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">Bebida</th>
-                        <th scope="col">Valor* [R$]</th>
-                        <th scope="col">Quantidade</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">6</th>
-                        <td>Dura</td>
-                        <td>500,78</td>
-                        <td>50</td>
-                        <td><button class="btn btn-primary">Vender</button></td>
-                        <td><button class="btn btn-primary">Editar</button></td>
-                        <td><button class="btn btn-primary">Excluir</button></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">7</th>
-                        <td>Dura</td>
-                        <td>500,78</td>
-                        <td>50</td>
-                        <td><button class="btn btn-primary">Vender</button></td>
-                        <td><button class="btn btn-primary">Editar</button></td>
-                        <td><button class="btn btn-primary">Excluir</button></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">7</th>
-                        <td>Rio</td>
-                        <td>200,55</td>
-                        <td>10</td>
-                        <td><button class="btn btn-primary">Vender</button></td>
-                        <td><button class="btn btn-primary">Editar</button></td>
-                        <td><button class="btn btn-primary">Excluir</button></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Dura</td>
-                        <td>500,78</td>
-                        <td>50</td>
-                        <td><button class="btn btn-primary">Vender</button></td>
-                        <td><button class="btn btn-primary">Editar</button></td>
-                        <td><button class="btn btn-primary">Excluir</button></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Dura</td>
-                        <td>500,78</td>
-                        <td>50</td>
-                        <td><button class="btn btn-primary">Vender</button></td>
-                        <td><button class="btn btn-primary">Editar</button></td>
-                        <td><button class="btn btn-primary">Excluir</button></td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>Pagina 1 de 5</td>
-                        <td>
-                            <button class="nav-button-table ">
-                                <i class="fas fa-angle-double-left"></i>
-                            </button>
-                            <button class="nav-button-table ">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="nav-button-table ">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                            <button class="nav-button-table ">
-                                <i class="fas fa-angle-double-right"></i>
-                            </button>
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
-            <button class="btn btn-primary cadastrar">Cadastrar Saca de Cafe</button>
+    <!-- Modal ACRESCENTAR: class="modal fade"-->
+    <div class="mymodal container-fluid " id="modalVer" tabindex="-1" role="dialog"
+        aria-labelledby="verModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="verModalLabel">
+                        Nome do cafeicultor - CPF</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <label>Contato:</label>
+                        <div class="form-row  ">
+
+                            <div class="form-group col-md-2  ver-div">
+                                <i class="fas fa-phone " id="contato-icon-first"></i>
+                                <input disabled class="form-control " id="contato-bar-first" placeholder="Telefone">
+                            </div>
+                            <div class="form-group col-md-5  ver-div">
+                                <i class="fas fa-envelope" id="contato-icon-second"></i>
+                                <input disabled class="form-control " id="contato-bar-second" placeholder="Email">
+                            </div>
+                        </div>
+                        <label>Endereco:</label>
+                        <div class="form-row">
+
+                            <div class="form-group col-md-6 ver-div">
+                                <i class="fas fa-map-marked-alt" id="endereco-icon-first"></i>
+                                <input disabled class="form-control" id="endereco-bar-first" placeholder="Rua, numero">
+                            </div>
+                            <div class="form-group col-md-4 ver-div">
+                                <input disabled class="form-control" id="endereco-bar-second" placeholder="Cidade">
+                            </div>
+                        </div>
+                        <label>Dados bancarios:</label>
+                        <div class="form-row">
+
+                            <div class="form-group col-md-4 ver-div">
+                                <i class="fas fa-university" id="banco-icon-first"></i>
+                                <input disabled class="form-control " id="banco-bar-first" placeholder="Banco">
+                            </div>
+
+                            <div class="form-group col-md-3 ver-div">
+                                <input disabled class="form-control" id="banco-bar-second"
+                                    placeholder="Agencia Bancaria">
+                            </div>
+
+                            <div class="form-group col-md-3 ver-div">
+                                <i class="fas fa-money-check-alt" id="banco-icon-second"></i>
+                                <input disabled class="form-control" id="banco-bar-third" placeholder="Numero da Conta">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-footer" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
         </div>
+    </div>
+    </div>
+    <button class="btn btn-primary cadastrar">Cadastrar Saca de Cafe</button>
+    </div>
     </div>
     <footer class="rodape">
         <p class="text-center">&copy; Armazem-MS (Build 20201110 - 2300)</p>

@@ -11,17 +11,279 @@
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link href="/static/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/jumbotron/">
+    <script src="/static/bootstrap/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/static/bootstrap/jquery-3.5.1.slim.min.js"><\/script>')</script>
+    <script src="/static/bootstrap/bootstrap.bundle.min.js"></script>
+    <link href="/static/bootstrap/jumbotron.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/static/css/stylesheet.css">
+
+    <script>$('#modalVer').modal('show');</script>
+
     <style>
+        nav {
+            background-color: #524235;
+            height: 45px;
+        }
+
+        body {
+            background-color: #7eb17e;
+            background: url("https://s1.1zoom.me/b5050/497/Coffee_Grain_545482_1920x1080.jpg");
+            background-size: 100%;
+            background-size: cover;
+        }
+
+
+        .btn-primary {
+            width: 100px;
+            background-color: #524235 !important;
+            border-color: #524235;
+            border-radius: 5px;
+        }
+
+        .btn-primary:hover {
+            background-color: #694629 !important;
+            border-color: #694629;
+            border-radius: 5px;
+        }
+
+        input {
+            width: 350px;
+            margin: 10px;
+
+        }
+
+        .table {
+            height: 400px;
+            width: 100%;
+            background-color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            top: 65%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-40%, -50%);
+            border: none
+        }
+
+        thead {
+            background-color: #524235;
+            color: white
+        }
+
+        .conteudo {
+            width: 1000px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+        }
+
+        .search-div {
+            width: 1000px;
+            margin-bottom: 50px;
+            position: fixed;
+            top: 12%;
+            left: 56%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+        }
+
+        .search-bar {
+            float: right;
+            width: 90%;
+        }
+
+        .search-icon {
+            color: white;
+            position: absolute;
+            left: 5%;
+            margin-right: 10px;
+            top: 15px;
+        }
+
+        .cadastrar {
+            width: 300px;
+            position: fixed;
+            top: 240px;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-15%, -50%)
+        }
+
+        #sidebar-wrapper {
+            width: 250px;
+            position: fixed;
+            top: 7%;
+            left: 0%;
+            height: 800px;
+            background-color: white;
+
+        }
+
+
+        .rodape {
+            color: white;
+            position: fixed;
+            top: 650px;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-15%, -50%)
+        }
+
+        .page {
+            width: 1000px;
+        }
+
+        .nome {
+            width: 500px;
+        }
+
+        .nav-link {
+            background: none;
+            border: none;
+            color: white;
+            margin-left: 20px;
+            left: 0;
+            width: 200px;
+        }
+
+        .nav-button-table {
+            background: none;
+            border: none;
+            color: #524235;
+            margin-left: 5px;
+            left: 0;
+        }
+
+        .space {
+            margin-left: 700px;
+            margin-right: 40px;
+        }
+
+        .fas {
+            margin-right: 5px;
+        }
+
+        .nav-paginas {
+            height: 50px;
+        }
+
+
+        .mymodal {
+
+            position: fixed;
+            margin-top: 0%;
+            margin-left: 15%;
+        }
+
+        .modal-content {
+            width: 1010px;
+            height: 550px;
+        }
+
+        .ver-div {
+            width: 100%;
+        }
+
+        #contato-bar-first {
+            width: 200px;
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+
+        #contato-bar-second {
+            width: 450px;
+            position: fixed;
+            left: 50%;
+            float: left;
+            margin-left: 30px;
+        }
+
+        #contato-icon-first {
+            position: absolute;
+            top: 26%;
+            float: left;
+        }
+
+        #contato-icon-second {
+            position: absolute;
+            top: 26%;
+            left: 20%;
+            float: left;
+        }
+
+        #endereco-bar-first {
+            width: 550px;
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+
+        #endereco-bar-second {
+            width: 300px;
+            position: fixed;
+            left: 50%;
+            float: left;
+            margin-left: 360px;
+        }
+
+        #endereco-icon-first {
+            position: absolute;
+            top: 41%;
+            float: left;
+        }
+
+        #banco-bar-first {
+            width: 300px;
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+
+        #banco-bar-second {
+            width: 200px;
+            position: fixed;
+            left: 50%;
+            float: left;
+            margin-left: 110px;
+        }
+
+        #banco-bar-third {
+            width: 200px;
+            position: fixed;
+            left: 50%;
+            float: left;
+            margin-left: 340px;
+        }
+
+        #banco-icon-first {
+            position: absolute;
+            top: 40%;
+            float: left;
+        }
+
+        #banco-icon-second {
+            position: absolute;
+            top: 40%;
+            float: left;
+            left: -8%;
+        }
+
+        .btn-footer {
+            margin-right: 100px;
+
+        }
     </style>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-md  fixed-top">
-        <button class="nav-button">
+        <a class="nav-link" href="/admin">
             <i class="fas fa-home" aria-hidden="true"></i>
             Armazem MS
-        </button>
+        </a>
         <div class="nav-button space">
             <i class="fas fa-user-circle" aria-hidden="true"></i>
             fulano_de_tal123@hotmail.com
@@ -132,8 +394,15 @@
         </div>
 
         <!-- Modal ACRESCENTAR: class="modal fade"-->
-        <div class="mymodal" id="modalVer" tabindex="-1" role="dialog" aria-labelledby="verModalLabel"
-            aria-hidden="true">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Launch demo modal
+        </button>
+
+
+        <!-- Modal ACRESCENTAR: class="modal fade"-->
+        <div class="modal fade mymodal container-fluid " id="modalVer" tabindex="-1" role="dialog"
+            aria-labelledby="verModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -188,7 +457,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary btn-footer" data-dismiss="modal">Fechar</button>
                     </div>
                 </div>
             </div>
