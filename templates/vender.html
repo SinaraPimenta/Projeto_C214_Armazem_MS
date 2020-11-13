@@ -51,25 +51,6 @@
 
         }
 
-        .table {
-            height: 400px;
-            width: 100%;
-            background-color: white;
-            padding: 10px;
-            text-align: center;
-            position: fixed;
-            top: 65%;
-            left: 50%;
-            margin-right: -50%;
-            transform: translate(-40%, -50%);
-            border: none
-        }
-
-        thead {
-            background-color: #524235;
-            color: white
-        }
-
         .conteudo {
             width: 1000px;
             position: fixed;
@@ -77,38 +58,6 @@
             left: 50%;
             margin-right: -50%;
             transform: translate(-50%, -50%)
-        }
-
-        .search-div {
-            width: 1000px;
-            margin-bottom: 50px;
-            position: fixed;
-            top: 12%;
-            left: 56%;
-            margin-right: -50%;
-            transform: translate(-50%, -50%)
-        }
-
-        .search-bar {
-            float: right;
-            width: 90%;
-        }
-
-        .search-icon {
-            color: white;
-            position: absolute;
-            left: 5%;
-            margin-right: 10px;
-            top: 15px;
-        }
-
-        .cadastrar {
-            width: 300px;
-            position: fixed;
-            top: 240px;
-            left: 50%;
-            margin-right: -50%;
-            transform: translate(-15%, -50%)
         }
 
         #sidebar-wrapper {
@@ -135,10 +84,6 @@
             width: 1000px;
         }
 
-        .nome {
-            width: 500px;
-        }
-
         .nav-button {
             background: none;
             border: none;
@@ -163,6 +108,18 @@
 
         .fas {
             margin-right: 5px;
+        }
+
+        .mymodal {
+
+            position: fixed;
+            margin-top: 2%;
+            margin-left: -10%;
+        }
+
+        .modal-content {
+            width: 1010px;
+            height: 550px;
         }
     </style>
 </head>
@@ -198,8 +155,8 @@
     </div>
 
     <!-- Modal ACRESCENTAR: class="modal fade"-->
-    <div class="mymodal container-fluid " id="modalVer" tabindex="-1" role="dialog"
-        aria-labelledby="verModalLabel" aria-hidden="true">
+    <div class="mymodal container-fluid " id="modalVer" tabindex="-1" role="dialog" aria-labelledby="verModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -258,7 +215,6 @@
         </div>
     </div>
     </div>
-    <button class="btn btn-primary cadastrar">Cadastrar Saca de Cafe</button>
     </div>
     </div>
     <footer class="rodape">
