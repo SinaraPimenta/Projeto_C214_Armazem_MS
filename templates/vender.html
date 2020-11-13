@@ -11,6 +11,8 @@
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    
     <style>
         nav {
             background-color: #524235;
@@ -113,13 +115,114 @@
         .mymodal {
 
             position: fixed;
-            margin-top: 2%;
+            margin-top: 5%;
             margin-left: -10%;
         }
 
         .modal-content {
             width: 1010px;
-            height: 550px;
+            height: 375px;
+        }
+
+        .ver-div {
+            width: 100%;
+        }
+
+        #tipo {
+            width: 100px;
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+
+        #bebida {
+            width: 300px;
+            position: absolute;
+            top: 35.4%;
+            left: 25%;
+            float: left;
+        }
+
+        #classificacao-icon {
+            position: absolute;
+            top: 60%;
+            float: left;
+        }
+
+        #cotacao {
+            width: 200px;
+            position: fixed;
+            left: 52%;
+            float: left;
+            margin-left: 110px;
+        }
+
+        #valor-unid-bar {
+            width: 200px;
+            position: absolute;
+            left: 50%;
+            top: 35.4%;
+            float: left;
+            margin-left: 100px;
+        }
+
+        #valor-unid-icon {
+            position: absolute;
+            top: 60%;
+            float: left;
+            margin-left: 150px;
+        }
+
+        #valor-total-bar {
+            width: 200px;
+            position: absolute;
+            left: 50%;
+            top: 35.4%;
+            float: left;
+            margin-left: 100px;
+        }
+
+        #valor-total-icon {
+            position: absolute;
+            top: 60%;
+            float: left;
+            margin-left: 150px;
+        }
+
+        #qtd {
+            margin-left: 30px;
+            margin-right: 30px;
+            height: 35px;
+        }
+
+        #qtd-icon {
+            position: absolute;
+            top: 60%;
+            float: left;
+            left: 2%;
+        }
+
+        #valor-total {
+            width: 200px;
+            position: absolute;
+            left: 52%;
+            float: left;
+            margin-left: 20px;
+        }
+
+        #valor-total-bar {
+            width: 200px;
+            position: absolute;
+            top: 35%;
+            left: 52%;
+            float: left;
+            margin-left: 17px;
+        }
+
+        #valor-total-icon {
+            position: absolute;
+            top: 60%;
+            float: left;
+            margin-left: 70px;
         }
     </style>
 </head>
@@ -161,55 +264,48 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="verModalLabel">
-                        Nome do cafeicultor - CPF</h5>
+                        Vender saca de cafe</h5>
                 </div>
                 <div class="modal-body">
                     <form>
-                        <label>Contato:</label>
-                        <div class="form-row  ">
-
-                            <div class="form-group col-md-2  ver-div">
-                                <i class="fas fa-phone " id="contato-icon-first"></i>
-                                <input disabled class="form-control " id="contato-bar-first" placeholder="Telefone">
-                            </div>
-                            <div class="form-group col-md-5  ver-div">
-                                <i class="fas fa-envelope" id="contato-icon-second"></i>
-                                <input disabled class="form-control " id="contato-bar-second" placeholder="Email">
-                            </div>
-                        </div>
-                        <label>Endereco:</label>
                         <div class="form-row">
-
-                            <div class="form-group col-md-6 ver-div">
-                                <i class="fas fa-map-marked-alt" id="endereco-icon-first"></i>
-                                <input disabled class="form-control" id="endereco-bar-first" placeholder="Rua, numero">
+                            <div class="form-group col-md-1">
+                                <label for="tipo">Classificacao</label>
+                                <i class="fas fa-mug-hot" id="classificacao-icon"></i>
+                                <input disabled class="form-control" id="tipo" placeholder="Tipo">
                             </div>
-                            <div class="form-group col-md-4 ver-div">
-                                <input disabled class="form-control" id="endereco-bar-second" placeholder="Cidade">
+                            <div class="form-group col-md-3">
+                                <label for="bebida"></label>
+                                <input disabled class="form-control" id="bebida" placeholder="Bebida">
+                            </div>
+                            <div class="form-group col-md-2 ">
+                                <label for="valor-unid-bar" id="cotacao">Cotacao</label>
+                                <i class="fas fa-dollar-sign" id="valor-unid-icon"></i>
+                                <input disabled class="form-control" id="valor-unid-bar" placeholder="Valor unitario">
                             </div>
                         </div>
-                        <label>Dados bancarios:</label>
                         <div class="form-row">
-
-                            <div class="form-group col-md-4 ver-div">
-                                <i class="fas fa-university" id="banco-icon-first"></i>
-                                <input disabled class="form-control " id="banco-bar-first" placeholder="Banco">
+                            <div class="form-group col-md-5">
+                                <label for="qtd">Selecione a quantidade</label>
+                                <i class="fas fa-sort-numeric-up" id="qtd-icon"></i>
+                                <input type="number" id="qtd" name="qtd" min="1" max="5">
                             </div>
-
-                            <div class="form-group col-md-3 ver-div">
-                                <input disabled class="form-control" id="banco-bar-second"
-                                    placeholder="Agencia Bancaria">
+                            <div class="form-group col-md-2 ">
+                                <label for="valor-total-bar" id="valor-total">Valor total</label>
+                                <i class="fas fa-dollar-sign" id="valor-total-icon"></i>
+                                <input disabled class="form-control" id="valor-total-bar" placeholder="Valor total">
                             </div>
-
-                            <div class="form-group col-md-3 ver-div">
-                                <i class="fas fa-money-check-alt" id="banco-icon-second"></i>
-                                <input disabled class="form-control" id="banco-bar-third" placeholder="Numero da Conta">
-                            </div>
-                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-footer" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary btn-footer" data-dismiss="modal">Confirmar</button>
+                    <button type="button" class="btn btn-secondary btn-footer" data-dismiss="modal"
+                    id="cancelar">Cancelar</button>
+                    <script type="text/javascript">
+                        document.getElementById("cancelar").onclick = function () {
+                            location.href = "/cafeicultor";
+                        };
+                    </script>
                 </div>
             </div>
         </div>
