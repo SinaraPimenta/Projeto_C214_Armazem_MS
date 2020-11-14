@@ -56,6 +56,12 @@ def cafeicultorVender():
     html = html_file.read() 
     return html  
 
+@app.route('/cafeicultor/editar')
+def cafeicultorEditar():
+    html_file= open("templates/editar.html", "r") 
+    html = html_file.read() 
+    return html 
+
 '''
 @app.route('/control/')
 def control():

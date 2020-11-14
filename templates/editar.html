@@ -1,0 +1,331 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Projeto de C214 - Armazem MS">
+    <meta name="author" content="Mariana e Sinara">
+    <title>Armazem MS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    
+    <style>
+        nav {
+            background-color: #524235;
+            height: 45px;
+        }
+
+        body {
+            background-color: #7eb17e;
+            background: url("https://s1.1zoom.me/b5050/497/Coffee_Grain_545482_1920x1080.jpg");
+            background-size: 100%;
+            background-size: cover;
+        }
+
+        .nav-button-table {
+            background: none;
+            border: none;
+            color: #524235;
+            margin-left: 5px;
+            left: 0;
+        }
+
+        .btn-primary {
+            width: 100px;
+            background-color: #524235 !important;
+            border-color: #524235;
+            border-radius: 5px;
+        }
+
+        .btn-primary:hover {
+            background-color: #694629 !important;
+            border-color: #694629;
+            border-radius: 5px;
+        }
+
+        input {
+            width: 350px;
+            margin: 10px;
+
+        }
+
+        .conteudo {
+            width: 1000px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+        }
+
+        #sidebar-wrapper {
+            width: 250px;
+            position: fixed;
+            top: 7%;
+            left: 0%;
+            height: 800px;
+            background-color: white;
+
+        }
+
+
+        .rodape {
+            color: white;
+            position: fixed;
+            top: 650px;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-15%, -50%)
+        }
+
+        .page {
+            width: 1000px;
+        }
+
+        .nav-button {
+            background: none;
+            border: none;
+            color: white;
+            margin-left: 20px;
+            left: 0;
+        }
+
+        .nav-link {
+            background: none;
+            border: none;
+            color: white;
+            margin-left: 20px;
+            left: 0;
+            width: 200px;
+        }
+
+        .space {
+            margin-left: 700px;
+            margin-right: 40px;
+        }
+
+        .fas {
+            margin-right: 5px;
+        }
+
+        .mymodal {
+
+            position: fixed;
+            margin-top: 5%;
+            margin-left: -10%;
+        }
+
+        .modal-content {
+            width: 1010px;
+            height: 375px;
+        }
+
+        .ver-div {
+            width: 100%;
+        }
+
+        #tipo {
+            width: 100px;
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+
+        #bebida {
+            width: 300px;
+            position: absolute;
+            top: 35.4%;
+            left: 25%;
+            float: left;
+        }
+
+        #classificacao-icon {
+            position: absolute;
+            top: 60%;
+            float: left;
+        }
+
+        #cotacao {
+            width: 200px;
+            position: fixed;
+            left: 52%;
+            float: left;
+            margin-left: 110px;
+        }
+
+        #valor-unid-bar {
+            width: 200px;
+            position: absolute;
+            left: 50%;
+            top: 35.4%;
+            float: left;
+            margin-left: 100px;
+        }
+
+        #valor-unid-icon {
+            position: absolute;
+            top: 60%;
+            float: left;
+            margin-left: 150px;
+        }
+
+        #valor-total-bar {
+            width: 200px;
+            position: absolute;
+            left: 50%;
+            top: 35.4%;
+            float: left;
+            margin-left: 100px;
+        }
+
+        #valor-total-icon {
+            position: absolute;
+            top: 60%;
+            float: left;
+            margin-left: 150px;
+        }
+
+        #qtd {
+            margin-left: 30px;
+            margin-right: 30px;
+            height: 35px;
+        }
+
+        #qtd-icon {
+            position: absolute;
+            top: 60%;
+            float: left;
+            left: 2%;
+        }
+
+        #valor-total {
+            width: 200px;
+            position: absolute;
+            left: 52%;
+            float: left;
+            margin-left: 20px;
+        }
+
+        #valor-total-bar {
+            width: 200px;
+            position: absolute;
+            top: 35%;
+            left: 52%;
+            float: left;
+            margin-left: 17px;
+        }
+
+        #valor-total-icon {
+            position: absolute;
+            top: 60%;
+            float: left;
+            margin-left: 70px;
+        }
+        #btn-cotacao{
+            width: 200px;
+            position: absolute;
+            top: 46%;
+            left: 55%;
+            float: left;
+            margin-left: 17px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md  fixed-top">
+        <a class="nav-link" href="/cafeicultor">
+            <i class="fas fa-home" aria-hidden="true"></i>
+            Armazem MS
+        </a>
+        <div class="nav-button space">
+            <i class="fas fa-user-circle" aria-hidden="true"></i>
+            fulano_de_tal123@hotmail.com
+        </div>
+        <button class="nav-button">
+            <i class="fas fa-sign-out-alt"></i>
+            Sair
+        </button>
+
+    </nav>
+    <!-- Conteúdo da página -->
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <div class="list-group list-group-flush">
+            <a href="#" class="list-group-item list-group-item-action ">Dashboard</a>
+            <a href="#" class="list-group-item list-group-item-action ">Shortcuts</a>
+            <a href="#" class="list-group-item list-group-item-action ">Overview</a>
+            <a href="#" class="list-group-item list-group-item-action ">Events</a>
+            <a href="#" class="list-group-item list-group-item-action ">Dados Pessoais</a>
+            <a href="#" class="list-group-item list-group-item-action ">Status</a>
+            <div> </div>
+        </div>
+    </div>
+
+    <!-- Modal ACRESCENTAR: class="modal fade"-->
+    <div class="mymodal container-fluid " id="modalVer" tabindex="-1" role="dialog" aria-labelledby="verModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="verModalLabel">
+                        Editar saca de cafe</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-1">
+                                <label for="tipo">Classificacao</label>
+                                <i class="fas fa-mug-hot" id="classificacao-icon"></i>
+                                <input class="form-control" id="tipo" placeholder="Tipo">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="bebida"></label>
+                                <input  class="form-control" id="bebida" placeholder="Bebida">
+                            </div>
+                            <div class="form-group col-md-2 ">
+                                <label for="valor-unid-bar" id="cotacao">Cotacao</label>
+                                <i class="fas fa-dollar-sign" id="valor-unid-icon"></i>
+                                <input disabled class="form-control" id="valor-unid-bar" placeholder="Valor unitario">
+                            </div>
+                            <div class="form-group col-md-5 ">
+                                <button type="button" class="btn btn-primary" id="btn-cotacao">Buscar nova cotacao</button>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-5">
+                                <label for="qtd">Quantidade</label>
+                                <i class="fas fa-sort-numeric-up" id="qtd-icon"></i>
+                                <input type="number" id="qtd" name="qtd" min="1" max="100">
+                            </div>
+                            <div class="form-group col-md-2 ">
+                                <label for="valor-total-bar" id="valor-total">Valor total</label>
+                                <i class="fas fa-dollar-sign" id="valor-total-icon"></i>
+                                <input disabled class="form-control" id="valor-total-bar" placeholder="Valor total">
+                            </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-footer" data-dismiss="modal">Confirmar</button>
+                    <button type="button" class="btn btn-secondary btn-footer" data-dismiss="modal"
+                    id="cancelar">Cancelar</button>
+                    <script type="text/javascript">
+                        document.getElementById("cancelar").onclick = function () {
+                            location.href = "/cafeicultor";
+                        };
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <footer class="rodape">
+        <p class="text-center">&copy; Armazem-MS (Build 20201110 - 2300)</p>
+    </footer>
+
+</html>
