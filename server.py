@@ -56,11 +56,17 @@ def cafeicultorVender():
     html = html_file.read() 
     return html  
 
-@app.route('/cafeicultor/editar')
-def cafeicultorEditar():
-    html_file= open("templates/editar.html", "r") 
+@app.route('/admin/cadastroCafeicultor')
+def cadastrarCafeicultor():
+    html_file= open("templates/cadastrar_cafeicultor.html", "r") 
     html = html_file.read() 
     return html 
+
+@app.route('/cafeicultor/cadastroCafe')
+def cadastrarCafe():
+    html_file= open("templates/cadastrar_cafe.html", "r") 
+    html = html_file.read() 
+    return html
 
 '''
 @app.route('/control/')
