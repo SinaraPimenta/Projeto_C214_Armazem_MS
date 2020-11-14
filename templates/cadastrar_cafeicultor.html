@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Projeto de C214 - Armazem MS">
+    <meta name="author" content="Mariana e Sinara">
+    <title>Armazem MS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/static/css/stylesheet.css">
+    <style>
+        .modal-content {
+            position: relative;
+            top:-7px;
+            width: 1010px;
+            height: 580px;
+        }
+        #contato-icon-first {
+            position: absolute;
+            top: 35%;
+            float: left;
+        }
+        #contato-icon-second {
+            position: absolute;
+            top: 35%;
+            left: 14%;
+            float: left;
+        }
+        #endereco-icon-first {
+            position: absolute;
+            top: 35%;
+            float: left;
+        }
+        #banco-icon-first {
+            position: absolute;
+            top: 35%;
+            float: left;
+        }
+        #banco-icon-second {
+            position: absolute;
+            top: 35%;
+            float: left;
+            left: 14%;
+        }
+    </style>
+</head>
+
+
+<body>
+    <nav class="navbar navbar-expand-md  fixed-top">
+        <button class="nav-button">
+            <i class="fas fa-home" aria-hidden="true"></i>
+            Armazem MS
+        </button>
+        <div class="nav-button space">
+            <i class="fas fa-user-circle" aria-hidden="true"></i>
+            fulano_de_tal123@hotmail.com
+        </div>
+        <button class="nav-button">
+            <i class="fas fa-sign-out-alt"></i>
+            Sair
+        </button>
+
+    </nav>
+    <!-- Conteúdo da página -->
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <div class="list-group list-group-flush">
+            <a href="#" class="list-group-item list-group-item-action ">Dashboard</a>
+            <a href="#" class="list-group-item list-group-item-action ">Shortcuts</a>
+            <a href="#" class="list-group-item list-group-item-action ">Overview</a>
+            <a href="#" class="list-group-item list-group-item-action ">Events</a>
+            <a href="#" class="list-group-item list-group-item-action ">Profile</a>
+            <a href="#" class="list-group-item list-group-item-action ">Status</a>
+            <div> </div>
+        </div>
+    </div>
+    
+
+    <!-- Modal ACRESCENTAR: class="modal fade"-->
+    <div class="mymodal" id="modalVer" tabindex="-1" role="dialog" aria-labelledby="verModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="verModalLabel">
+                        Cadastro do cafeicultor </h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <label>Nome e CPF:</label>
+                        <div class="form-row  ">
+
+                            <div class="form-group col-md-4  ver-div">
+                                <i class="fas fa-phone " id="contato-icon-first"></i>
+                                <input eneable class="form-control " id="contato-bar-first" placeholder="Nome Completo">
+                            </div>
+                            <div class="form-group col-md-4  ver-div">
+                                <input eneable class="form-control " id="contato-bar-first" placeholder="CPF">
+                            </div>
+                        </div>
+                        <label>Contato:</label>
+                        <div class="form-row  ">
+
+                            <div class="form-group col-md-2  ver-div">
+                                <i class="fas fa-phone " id="contato-icon-first"></i>
+                                <input eneable class="form-control " id="contato-bar-first" placeholder="Telefone">
+                            </div>
+                            <div class="form-group col-md-5  ver-div">
+                                <i class="fas fa-envelope" id="contato-icon-second"></i>
+                                <input eneable class="form-control " id="contato-bar-second" placeholder="Email">
+                            </div>
+                        </div>
+                        <label>Endereco:</label>
+                        <div class="form-row">
+
+                            <div class="form-group col-md-6 ver-div">
+                                <i class="fas fa-map-marked-alt" id="endereco-icon-first"></i>
+                                <input eneable class="form-control" id="endereco-bar-first"
+                                    placeholder="Rua, numero">
+                            </div>
+                            <div class="form-group col-md-4 ver-div">
+                                <input eneable class="form-control" id="endereco-bar-second" placeholder="Cidade">
+                            </div>
+                        </div>
+                        <label>Dados bancarios:</label>
+                        <div class="form-row">
+
+                            <div class="form-group col-md-4 ver-div">
+                                <i class="fas fa-university" id="banco-icon-first"></i>
+                                <input eneable class="form-control " id="banco-bar-first" placeholder="Banco">
+                            </div>
+
+                            <div class="form-group col-md-3 ver-div">
+                                <input eneable class="form-control" id="banco-bar-second"
+                                    placeholder="Agencia Bancaria">
+                            </div>
+
+                            <div class="form-group col-md-3 ver-div">
+                                <i class="fas fa-money-check-alt" id="banco-icon-second"></i>
+                                <input eneable class="form-control" id="banco-bar-third"
+                                    placeholder="Numero da Conta">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id=buttonS data-dismiss="modal">Salvar</button>
+                    <button type="button" class="btn btn-primary" id=buttonC data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="rodape">
+        <p class="text-center">&copy; Armazem-MS (Build 20201110 - 2300)</p>
+    </footer>
+
+
+</html>

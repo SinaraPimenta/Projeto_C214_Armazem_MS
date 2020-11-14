@@ -20,6 +20,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/stylesheet.css">
 
     <script>$('#modalVer').modal('show');</script>
+    <script>$('#modalExcluir').modal('show');</script>
 
     <style>
         nav {
@@ -185,6 +186,12 @@
             height: 550px;
         }
 
+        #modE {
+            width: 550px;
+            height: 250px;
+            left: 50%;
+        }
+
         .ver-div {
             width: 100%;
         }
@@ -332,7 +339,8 @@
                         <td>(35) 99999-9999</td>
                         <td><button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#modalVer">Ver</button></td>
-                        <td><button class="btn btn-primary">Excluir</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modalExcluir">Excluir</button></td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
@@ -340,7 +348,8 @@
                         <td>Thornton</td>
                         <td><button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#modalVer">Ver</button></td>
-                        <td><button class="btn btn-primary">Excluir</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modalExcluir">Excluir</button></td>
                     </tr>
                     <tr>
                         <th scope="row">3</th>
@@ -348,7 +357,8 @@
                         <td>the Bird</td>
                         <td><button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#modalVer">Ver</button></td>
-                        <td><button class="btn btn-primary">Excluir</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modalExcluir">Excluir</button></td>
                     </tr>
                     <tr>
                         <th scope="row">4</th>
@@ -356,7 +366,8 @@
                         <td>the Bird</td>
                         <td><button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#modalVer">Ver</button></td>
-                        <td><button class="btn btn-primary">Excluir</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modalExcluir">Excluir</button></td>
                     </tr>
                     <tr>
                         <th scope="row">5</th>
@@ -364,7 +375,8 @@
                         <td>the Bird</td>
                         <td><button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#modalVer">Ver</button></td>
-                        <td><button class="btn btn-primary">Excluir</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modalExcluir">Excluir</button></td>
                     </tr>
                 </tbody>
                 <tfoot>
@@ -394,17 +406,10 @@
         </div>
 
         <!-- Modal ACRESCENTAR: class="modal fade"-->
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Launch demo modal
-        </button>
-
-
-        <!-- Modal ACRESCENTAR: class="modal fade"-->
         <div class="modal fade mymodal container-fluid " id="modalVer" tabindex="-1" role="dialog"
             aria-labelledby="verModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
+                <div class="modal-content" id=modV>
                     <div class="modal-header">
                         <h5 class="modal-title" id="verModalLabel">
                             Nome do cafeicultor - CPF</h5>
@@ -462,6 +467,26 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade mymodal container-fluid " id="modalExcluir" tabindex="-1" role="dialog"
+            aria-labelledby="verModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" id=modE>
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Excluir Cafeicultor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                    <p>Voce tem certeza que deseja excluir esse cafeicultor do sistema?</p>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+          </div>
     </div>
     <footer class="rodape">
         <p class="text-center">&copy; Armazem-MS (Build 20201110 - 2300)</p>
