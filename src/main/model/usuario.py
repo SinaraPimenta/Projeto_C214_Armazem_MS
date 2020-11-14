@@ -7,3 +7,12 @@ class Usuario(object):
         self.__nome = nome
         self.__login = login
         self.__senha = senha
+    
+    def getNome(self):
+        return self.__nome
+    
+    def getLogin(self):
+        return self.__login
+    
+    def getSenha(self):
+        return self.__senha

@@ -31,6 +31,19 @@
             position: relative;
             top: -180px;
         }
+        #valor-unid-bar {
+            width: 200px;
+            position: absolute;
+            top: 35.4%;
+            float: left;
+        }
+
+        #valor-unid-icon {
+            position: absolute;
+            top: 60%;
+            float: left;
+            left:-5%;
+        }
     </style>
 </head>
 
@@ -55,13 +68,9 @@
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
         <div class="list-group list-group-flush">
-            <a href="#" class="list-group-item list-group-item-action ">Dashboard</a>
-            <a href="#" class="list-group-item list-group-item-action ">Shortcuts</a>
-            <a href="#" class="list-group-item list-group-item-action ">Overview</a>
-            <a href="#" class="list-group-item list-group-item-action ">Events</a>
-            <a href="#" class="list-group-item list-group-item-action ">Profile</a>
-            <a href="#" class="list-group-item list-group-item-action ">Status</a>
-            <div> </div>
+            <a href="#" class="list-group-item list-group-item-action ">Dados Pessoais</a>
+            <a href="#" class="list-group-item list-group-item-action ">Registro de Vendas</a>
+            <a href="http://cccmg.com.br/cotacao-do-cafe/" class="list-group-item list-group-item-action ">Cotacao do cafe</a>
         </div>
     </div>
     
@@ -77,17 +86,28 @@
                 </div>
                 <div class="modal-body">
                     <form>
-                        <label>Quantidade de sacas:</label>
-                        <div class="form-select">
-                            <select class="form-control" id="formControlQtd">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                            <label>Quantidade de sacas:</label>
+                            <i class="fas fa-sort-numeric-down" id="qtd-icon"></i>
+                            <div class="form-select">
+                                <select class="form-control" id="formControlQtd">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                </select>
+                            </div>
+                            </div>
+                            <div class="form-group col-md-4 ">
+                                <label for="valor-unid-bar" id="cotacao">Valor do seu cafe hoje:</label>
+                                <i class="fas fa-dollar-sign" id="valor-unid-icon"></i>
+                                <input disabled class="form-control" id="valor-unid-bar" placeholder="Valor unitario">
+                            </div>
                         </div>
                         <label>Tipo:</label>
+                        <i class="fas fa-mug-hot"></i>
                         <div class="form-select">
                             <select class="form-control" id="formControlTipo">
                             <option>Tipo 6</option>
@@ -95,6 +115,7 @@
                             </select>
                         </div>
                         <label>Classificacao da bebida:</label>
+                        <i class="fas fa-mug-hot"></i>
                         <div class="form-select">
                             <select class="form-control" id="formControlBebida">
                                 <option>Bebida Dura</option>
@@ -103,25 +124,14 @@
                             </select>
                             </div>
                     </form>
+                    
                 </div>
-                <table class="table .table-dark" id=tableValor>
-                    <thead>
-                      <tr>
-                        <th scope="col"></th>
-                        <th scope="col">Valor do seu cafe hoje:</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">R$</th>
-                        <td>550,00</td>
-                      </tr>
-                    </tbody>
-                </table>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id=buttonS data-dismiss="modal">Salvar</button>
-                    <button type="button" class="btn btn-primary" id=buttonC data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" id=buttonC data-dismiss="modal">Cancelar</button>
                 </div>
+               
+               
             </div>
         </div>
     </div>

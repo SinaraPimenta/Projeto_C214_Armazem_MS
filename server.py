@@ -3,12 +3,13 @@ import os
 import hashlib
 from flask import  flash,  redirect, url_for
 from flask import render_template
-#from src.main.structure.controller import bancoDeDados
+from src.main.controller import bancoDeDados
+from src.main.model.cafeicultor import Cafeicultor
 
-#def generate_hash(string_hash: str)->str:
- #   hash_object = hashlib.sha1(string_hash.encode('utf-8'))
-  #  pbHash = hash_object.hexdigest()
-   # return pbHash
+def generate_hash(string_hash: str)->str:
+    hash_object = hashlib.sha1(string_hash.encode('utf-8'))
+    pbHash = hash_object.hexdigest()
+    return pbHash
 
 app = Flask(__name__)
 #app = Flask(__name__, static_url_path='/src/main/view/static')
@@ -25,17 +26,40 @@ def login():
     html = html_file.read()
     return html
 
+#Páginas do admin
 @app.route('/admin')
 def admin():
     html_file= open("templates/admin.html", "r") #Leitura do arquivo upload.html para exibição deste na página
     html = html_file.read()
+    tabela = bancoDeDados.buscarCafeicultores()
+    html=html.replace("table_placeholder",tabela) 
+    return html   
+
+@app.route('/admin/cadastroCafeicultor', methods=['GET', 'POST'])
+def cadastrarCafeicultor():
+    flag = False
+    html_file= open("templates/cadastrar_cafeicultor.html", "r") 
+    html = html_file.read() 
     if request.method == 'POST': #Se houve uma requisição do tipo Post, verificar:
-        #Verifica se a requisição veio da seleção de uma amostra da lista:sição veio do upload:
+        nome = request.form["nome"]
+        cpf = request.form["cpf"]
+        telefone = request.form["telefone"]
         email = request.form["email"]
-        senha = request.form["senha"]
-        hash = generate_hash('123456')
-        #bancoDeDados.buscarUsuarioParaLogar(email,hash)  
-    return html    
+        endereco = request.form["endereco"]
+        cidade = request.form["cidade"]
+        banco = request.form["banco"]
+        agencia = request.form["agencia"]
+        conta = request.form["conta"]
+        senha = 'C4f31cult0R#2020'
+        senha = generate_hash(senha)
+        if nome!= '':
+            flag=True
+            if flag:
+                cafeicultor = Cafeicultor(nome,email,senha,telefone,cpf,cidade,endereco,banco,agencia,conta)
+                bancoDeDados.cadastrarCafeicultor(cafeicultor)
+                html_file= open("templates/admin.html", "r") 
+                html = html_file.read() 
+    return html 
 
 #Páginas do cafeicultor:
 @app.route('/cafeicultor')
@@ -44,25 +68,19 @@ def cafeicultor():
     html = html_file.read() 
     return html
 
-@app.route('/cafeicultor/dados_pessoais')
+@app.route('/cafeicultor/dadosPessoais')
 def cafeicultorDadosPessoais():
     html_file= open("templates/dados_pessoais.html", "r") 
     html = html_file.read() 
     return html  
 
-@app.route('/cafeicultor/vender')
+@app.route('/cafeicultor/vendaCafe')
 def cafeicultorVender():
     html_file= open("templates/vender.html", "r") 
     html = html_file.read() 
     return html  
 
-@app.route('/admin/cadastroCafeicultor')
-def cadastrarCafeicultor():
-    html_file= open("templates/cadastrar_cafeicultor.html", "r") 
-    html = html_file.read() 
-    return html 
-
-@app.route('/cafeicultor/cadastroCafe')
+@app.route('/cafeicultor/cadastroCafe', methods=['GET', 'POST'])
 def cadastrarCafe():
     html_file= open("templates/cadastrar_cafe.html", "r") 
     html = html_file.read() 

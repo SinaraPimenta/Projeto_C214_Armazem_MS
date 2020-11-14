@@ -9,6 +9,8 @@ use_plugin("python.distutils")
 use_plugin("python.requests")
 use_plugin("python.beautifulsoup4")
 use_plugin("python.flask")
+use_plugin("python.pymongo")
+use_plugin("python.dnspython")
 
 name = "Armazem_MS"
 default_task = "publish"

@@ -11,6 +11,9 @@
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <script src="/static/bootstrap/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="/static/bootstrap/bootstrap.bundle.min.js"></script>
+    <script>$('#modalExcluir').modal('show');</script>
     <style>
         nav {
             background-color: #524235;
@@ -120,7 +123,16 @@
             background-color: white;
 
         }
+        .mymodal {
+        position: fixed;
+        margin-top: 0%;
+        }
 
+        #modE {
+            width: 550px;
+            height: 250px;
+            left: 0%;
+        }
 
         .rodape {
             color: white;
@@ -221,7 +233,8 @@
                         <td>50</td>
                         <td><button class="btn btn-primary">Vender</button></td>
                         <td><button class="btn btn-primary">Editar</button></td>
-                        <td><button class="btn btn-primary">Excluir</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modalExcluir">Excluir</button></td>
                     </tr>
                     <tr>
                         <th scope="row">7</th>
@@ -230,7 +243,8 @@
                         <td>50</td>
                         <td><button class="btn btn-primary">Vender</button></td>
                         <td><button class="btn btn-primary">Editar</button></td>
-                        <td><button class="btn btn-primary">Excluir</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modalExcluir">Excluir</button></td>
                     </tr>
                     <tr>
                         <th scope="row">7</th>
@@ -239,7 +253,8 @@
                         <td>10</td>
                         <td><button class="btn btn-primary">Vender</button></td>
                         <td><button class="btn btn-primary">Editar</button></td>
-                        <td><button class="btn btn-primary">Excluir</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modalExcluir">Excluir</button></td>
                     </tr>
                     <tr>
                         <th scope="row">1</th>
@@ -248,7 +263,8 @@
                         <td>50</td>
                         <td><button class="btn btn-primary">Vender</button></td>
                         <td><button class="btn btn-primary">Editar</button></td>
-                        <td><button class="btn btn-primary">Excluir</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modalExcluir">Excluir</button></td>
                     </tr>
                     <tr>
                         <th scope="row">1</th>
@@ -257,7 +273,8 @@
                         <td>50</td>
                         <td><button class="btn btn-primary">Vender</button></td>
                         <td><button class="btn btn-primary">Editar</button></td>
-                        <td><button class="btn btn-primary">Excluir</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modalExcluir">Excluir</button></td>
                     </tr>
                 </tbody>
                 <tfoot>
@@ -285,8 +302,35 @@
                     </tr>
                 </tfoot>
             </table>
-            <button class="btn btn-primary cadastrar">Cadastrar Saca de Cafe</button>
+            <button type="button" class="btn btn-primary cadastrar" id="cadastrar">Cadastrar Saca de Cafe</button>
+            <script type="text/javascript">
+                document.getElementById("cadastrar").onclick = function () {
+                    location.href = "/cafeicultor/cadastroCafe";
+                };
+            </script>
         </div>
+        <div class="modal fade mymodal container-fluid " id="modalExcluir" tabindex="-1" role="dialog"
+            aria-labelledby="verModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" id=modE>
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Excluir Cafe</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                    <p>Voce tem certeza que deseja excluir o cafe do sistema?</p>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Confirmar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
     </div>
     <footer class="rodape">
         <p class="text-center">&copy; Armazem-MS (Build 20201110 - 2300)</p>

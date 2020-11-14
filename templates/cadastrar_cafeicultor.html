@@ -46,16 +46,28 @@
             float: left;
             left: 14%;
         }
+        .nav-link {
+            background: none;
+            border: none;
+            color: white;
+            margin-left: 20px;
+            left: 0;
+            width: 200px;
+        }
+        .space {
+            margin-left: 700px;
+            margin-right: 40px;
+        }
     </style>
 </head>
 
 
 <body>
     <nav class="navbar navbar-expand-md  fixed-top">
-        <button class="nav-button">
+        <a class="nav-link" href="/cafeicultor">
             <i class="fas fa-home" aria-hidden="true"></i>
             Armazem MS
-        </button>
+        </a>
         <div class="nav-button space">
             <i class="fas fa-user-circle" aria-hidden="true"></i>
             fulano_de_tal123@hotmail.com
@@ -91,16 +103,16 @@
                         Cadastro do cafeicultor </h5>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form method="post" enctype=multipart/form-data>
                         <label>Nome e CPF:</label>
                         <div class="form-row  ">
 
                             <div class="form-group col-md-4  ver-div">
-                                <i class="fas fa-phone " id="contato-icon-first"></i>
-                                <input eneable class="form-control " id="contato-bar-first" placeholder="Nome Completo">
+                                <i class="far fa-address-card"  id="contato-icon-first"></i>
+                                <input eneable name="nome" class="form-control " id="contato-bar-first" placeholder="Nome Completo">
                             </div>
                             <div class="form-group col-md-4  ver-div">
-                                <input eneable class="form-control " id="contato-bar-first" placeholder="CPF">
+                                <input eneable name="cpf" class="form-control " id="contato-bar-first" placeholder="CPF">
                             </div>
                         </div>
                         <label>Contato:</label>
@@ -108,11 +120,11 @@
 
                             <div class="form-group col-md-2  ver-div">
                                 <i class="fas fa-phone " id="contato-icon-first"></i>
-                                <input eneable class="form-control " id="contato-bar-first" placeholder="Telefone">
+                                <input eneable name="telefone" class="form-control " id="contato-bar-first" placeholder="Telefone">
                             </div>
                             <div class="form-group col-md-5  ver-div">
                                 <i class="fas fa-envelope" id="contato-icon-second"></i>
-                                <input eneable class="form-control " id="contato-bar-second" placeholder="Email">
+                                <input eneable name="email" class="form-control " id="contato-bar-second" placeholder="Email">
                             </div>
                         </div>
                         <label>Endereco:</label>
@@ -120,11 +132,11 @@
 
                             <div class="form-group col-md-6 ver-div">
                                 <i class="fas fa-map-marked-alt" id="endereco-icon-first"></i>
-                                <input eneable class="form-control" id="endereco-bar-first"
+                                <input eneable name="endereco" class="form-control" id="endereco-bar-first"
                                     placeholder="Rua, numero">
                             </div>
                             <div class="form-group col-md-4 ver-div">
-                                <input eneable class="form-control" id="endereco-bar-second" placeholder="Cidade">
+                                <input eneable name="cidade" class="form-control" id="endereco-bar-second" placeholder="Cidade">
                             </div>
                         </div>
                         <label>Dados bancarios:</label>
@@ -132,26 +144,33 @@
 
                             <div class="form-group col-md-4 ver-div">
                                 <i class="fas fa-university" id="banco-icon-first"></i>
-                                <input eneable class="form-control " id="banco-bar-first" placeholder="Banco">
+                                <input eneable name="banco" class="form-control " id="banco-bar-first" placeholder="Banco">
                             </div>
 
                             <div class="form-group col-md-3 ver-div">
-                                <input eneable class="form-control" id="banco-bar-second"
+                                <input eneable name="agencia" class="form-control" id="banco-bar-second"
                                     placeholder="Agencia Bancaria">
                             </div>
 
                             <div class="form-group col-md-3 ver-div">
                                 <i class="fas fa-money-check-alt" id="banco-icon-second"></i>
-                                <input eneable class="form-control" id="banco-bar-third"
+                                <input eneable name="conta" class="form-control" id="banco-bar-third"
                                     placeholder="Numero da Conta">
                             </div>
                         </div>
+                        <div class="modal-footer">
+                            <button type="submit" vale=Upload class="btn btn-primary" id=buttonS data-dismiss="modal">Salvar</button>
+                            <button type="button" class="btn btn-secondary btn-footer" data-dismiss="modal"
+                            id="cancelar">Cancelar</button>
+                            <script type="text/javascript">
+                                document.getElementById("cancelar").onclick = function () {
+                                    location.href = "/admin";
+                                };
+                            </script>
+                        </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id=buttonS data-dismiss="modal">Salvar</button>
-                    <button type="button" class="btn btn-primary" id=buttonC data-dismiss="modal">Cancelar</button>
-                </div>
+                
             </div>
         </div>
     </div>
