@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import requests
 
 class WebScrapping(object):
+    
     def cotacaoCafe(self,tipo,classificacao_bebida):
         html = requests.get("http://cccmg.com.br/cotacao-do-cafe/").content
         soup = BeautifulSoup(html, 'html.parser')

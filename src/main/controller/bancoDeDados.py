@@ -67,9 +67,9 @@ def buscarSacasDeCafe(login):
   #return Html
 
 #Função para salvar uma saca de café no BDa
-def cadastrarSacasDeCafe(qtd,tipo,classificacao_bebida,valor,data):
+def cadastrarSacasDeCafe(s,valor,data):
     collection = db["SacasDeCafe"] 
-    dados = {"qtd":qtd,"tipo": tipo, "classificacao_bebida" : classificacao_bebida,
+    dados = {"qtd":s.getSacas(),"tipo": s.getTipo(), "classificacao_bebida" : s.getCBebida(),
     "valor" : valor,"data":data}
     collection.insert_one(dados)
 
