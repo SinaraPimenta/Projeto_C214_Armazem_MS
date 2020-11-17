@@ -27,13 +27,13 @@ def login():
     return html
 
 #Páginas do admin
-@app.route('/admin')
+@app.route('/admin', methods=['GET', 'POST'])
 def admin():
-    html_file= open("templates/admin.html", "r") #Leitura do arquivo upload.html para exibição deste na página
+    html_file= open("templates/admin.html", "r") 
     html = html_file.read()
     tabela = bancoDeDados.buscarCafeicultores()
     html=html.replace("table_placeholder",tabela) 
-    return html   
+    return html  
 
 @app.route('/admin/cadastroCafeicultor', methods=['GET', 'POST'])
 def cadastrarCafeicultor():

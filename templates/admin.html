@@ -321,14 +321,15 @@
             <input class="form-control search-bar" type="text" placeholder="Buscar cafeicultor ..." aria-label="Search">
         </div>
         <div class="conteudo">
-            table_placeholder  <!-- Aqui será inserido a lista de cafeicultores-->   
+            <form method="post">
+            table_placeholder  <!-- Aqui será inserido a lista de cafeicultores-->
+            </form>
             <button  type="button" class="btn btn-primary cadastrar"  id="cadastrar">Cadastrar Cafeicultor</button>
             <script type="text/javascript">
                 document.getElementById("cadastrar").onclick = function () {
                     location.href = "/admin/cadastroCafeicultor";
                 };
             </script>
-           
         </div>
 
         <!-- Modal ACRESCENTAR: class="modal fade"-->
@@ -338,7 +339,7 @@
                 <div class="modal-content" id=modV>
                     <div class="modal-header">
                         <h5 class="modal-title" id="verModalLabel">
-                            Nome do cafeicultor - CPF</h5>
+                            </h5>
                     </div>
                     <div class="modal-body">
                         <form>
