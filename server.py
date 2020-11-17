@@ -3,8 +3,11 @@ import os
 import hashlib
 from flask import  flash,  redirect, url_for
 from flask import render_template
+from datetime import date
 from src.main.controller import bancoDeDados
 from src.main.model.cafeicultor import Cafeicultor
+from src.main.model.cadastroCafe import  CadastroCafe
+#from src.main.controller.webScrapping import cotacaoCafe
 
 def generate_hash(string_hash: str)->str:
     hash_object = hashlib.sha1(string_hash.encode('utf-8'))
@@ -82,8 +85,25 @@ def cafeicultorVender():
 
 @app.route('/cafeicultor/cadastroCafe', methods=['GET', 'POST'])
 def cadastrarCafe():
+    flag = False
     html_file= open("templates/cadastrar_cafe.html", "r") 
     html = html_file.read() 
+    if request.method == 'GET': #Se houve uma requisição do tipo Post, verificar:
+        #qtd = request.form["qtd"]
+        #tipo = request.form["tipo"]
+        #classificacao_bebida = request.form["classificacao_bebida"]
+        valor = str(586.00)
+        val = '<input disabled class="form-control" id="valor-unid-bar" placeholder="'+valor+'">'
+        html=html.replace("valor_placeholder",val) 
+        #data = date.today()
+        #print('chegou aqui')
+        #if qtd!= '':
+        #    flag=True
+        #    if flag:
+        #        cafe = CadastroCafe(qtd,tipo,classificacao_bebida)
+        #        bancoDeDados.cadastrarSacasDeCafe(cafe,valor,data)
+        #        html_file= open("templates/cafeicultor", "r") 
+        #        html = html_file.read() 
     return html
 
 '''
