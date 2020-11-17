@@ -30,12 +30,31 @@ def login():
     return html
 
 #Páginas do admin
-@app.route('/admin')
+@app.route('/admin', methods=['GET', 'POST'])
 def admin():
-    html_file= open("templates/admin.html", "r") #Leitura do arquivo upload.html para exibição deste na página
+    html_file= open("templates/admin.html", "r") 
     html = html_file.read()
     tabela = bancoDeDados.buscarCafeicultores()
     html=html.replace("table_placeholder",tabela) 
+    return html 
+
+#Páginas do admin
+@app.route('/admin/dadosCafeicultor/')
+def verCafeicultor():
+    html_file= open("templates/ver_cafeicultor.html", "r") 
+    html = html_file.read()
+    indice = str(request.args.get('id' , "" )) 
+    cafeicultor = bancoDeDados.getCafeicultor(int(indice))
+    if(cafeicultor):
+        html= substituirHTML(cafeicultor.nomeGet(),"NomeCafeicultor",html)
+        html= substituirHTML(cafeicultor.cpfGet(),"CPF",html)
+        html= substituirHTML(cafeicultor.telefoneGet(),"Telefone",html)
+        html= substituirHTML(cafeicultor.loginGet(),"Email",html)
+        html= substituirHTML(cafeicultor.enderecoGet(),"Rua, numero",html)
+        html= substituirHTML(cafeicultor.cidadeGet(),"Cidade",html)
+        html= substituirHTML(cafeicultor.bancoGet(),"Banco",html)
+        html= substituirHTML(cafeicultor.agenciaGet(),"Agencia Bancaria",html)
+        html= substituirHTML(cafeicultor.contaGet(),"Numero da Conta",html)
     return html   
 
 @app.route('/admin/cadastroCafeicultor', methods=['GET', 'POST'])

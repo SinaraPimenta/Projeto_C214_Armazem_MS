@@ -1,4 +1,7 @@
 import pymongo
+from src.main.model.cafeicultor import Cafeicultor
+
+lista = []
 
 #Conexão com o BD
 cliente = pymongo.MongoClient("mongodb+srv://admin:armazemMS@clusterc214.wv3t7.mongodb.net/ArmazemMS?retryWrites=true&w=majority")
@@ -10,6 +13,8 @@ def buscarUsuarioParaLogar(login,senha):
     resposta = collection.find_one({'login':login, 'senha':senha})
     return resposta
 
+def getCafeicultor(indice):
+    return lista[indice]
 
 #Função para retornar os cafeicultores salvos no BD
 def buscarCafeicultores():
@@ -17,13 +22,14 @@ def buscarCafeicultores():
     collection = db["Usuarios"] #nome da coleção
     resposta = collection.find({'tipo':'Cafeicultor'}) #Busca-se no BD e exibe a lista em html
     Html='<table class="table"><thead><tr><th scope="col">#</th><th scope="col">Cafeicultor</th><th scope="col">Telefone</th><th scope="col"></th><th scope="col"></th></tr></thead><tbody>'
-    for data in resposta: 
-        print(data['nome'])
+    for data in resposta:
+        cafeicultor = Cafeicultor(data['nome'],data['login'],data['senha'],data['telefone'],data['cpf'],data['cidade'],data['endereco'],data['nome_do_banco'],data['agencia_bancaria'],data['numero_da_conta'])
+        lista.append(cafeicultor)
         Html= Html + '<tr>'
         Html= Html + '<th scope="row">'+str(indice)+'</th>'
         Html = Html + '<td class="nome">' + str(data['nome']) +'</td>'
         Html = Html + '<td >' + str(data['telefone']) +'</td>'
-        Html = Html + '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalVer">Ver</button></td>'
+        Html = Html + '<td><button type="button" class="btn btn-primary" id="verCafeicultor" onclick="verCafeicultor('+str(indice)+')">Ver</button></td>'
         Html = Html +  '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExcluir">Excluir</button></td>'
         Html = Html + ' </tr>'
         indice += 1
