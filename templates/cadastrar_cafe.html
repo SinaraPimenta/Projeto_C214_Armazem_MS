@@ -90,15 +90,15 @@
                         Cadastre seu Cafe </h5>
                 </div>
                 <div class="modal-body">
-                    <form method="post" enctype=multipart/form-data>
+                    <form form method=post enctype=multipart/form-data>
                         <div class="form-row">
                             <div class="form-group col-md-4">
                             <label>Quantidade de sacas:</label>
                             <i class="fas fa-sort-numeric-down" id="qtd-icon"></i>
                             <div class="form-select">
-                                <select class="form-control" name="qtd" id="formControlQtd">
-                                    <option></option>
-                                    <option>1</option>
+                                <select class="form-control" id="formControlQtd"  name="formControlQtd">
+                                    
+                                    <option value="1">1</option>
                                     <option>2</option>
                                     <option>3</option>
                                     <option>4</option>
@@ -114,33 +114,33 @@
                         </div>
                         <label>Tipo:</label>
                         <i class="fas fa-mug-hot"></i>
-                        <div class="form-select" name="tipo">
-                            <select class="form-control" name="tipo" id="formControlTipo">
-                            <option>tipo 6</option>
-                            <option>tipo 7</option>
+                        <div class="form-select">
+                            <select class="form-control" id="formControlTipo" name="formControlTipo">
+                            <option value="tipo 6">tipo 6</option>
+                            <option value="tipo 7">tipo 7</option>
                             </select>
                         </div>
                         <label>Classificacao da bebida:</label>
                         <i class="fas fa-mug-hot"></i>
-                        <div class="form-select" name="classificacao_bebida">
-                            <select class="form-control" name="classificacao_bebida" id="formControlBebida">
-                                <option>bebida dura</option>
-                                <option>bebida riada</option>
-                                <option>bebida rio</option>
+                        <div class="form-select">
+                            <select class="form-control" id="formControlBebida" name="formControlBebida">
+                                <option value="bebida dura">bebida dura</option>
+                                <option value="bebida riada">bebida riada</option>
+                                <option value="bebida rio">bebida rio</option>
                             </select>
-                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" vale=Upload class="btn btn-primary" id=buttonS data-dismiss="modal">Salvar</button>
+                            <button type="button" class="btn btn-secondary btn-footer" data-dismiss="modal"
+                            id="cancelar">Cancelar</button>
+                            <script type="text/javascript">
+                                document.getElementById("cancelar").onclick = function () {
+                                    location.href = "/cafeicultor";
+                                };
+                            </script>
+                        </div>
                     </form>
                     
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" vale=Upload class="btn btn-primary" id=buttonS data-dismiss="modal">Salvar</button>
-                    <button type="button" class="btn btn-secondary btn-footer" data-dismiss="modal"
-                    id="cancelar">Cancelar</button>
-                    <script type="text/javascript">
-                        document.getElementById("cancelar").onclick = function () {
-                            location.href = "/cafeicultor";
-                        };
-                    </script>
                 </div>
                
                

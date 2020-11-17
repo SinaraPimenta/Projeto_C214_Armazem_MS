@@ -7,7 +7,7 @@ from datetime import date
 from src.main.controller import bancoDeDados
 from src.main.model.cafeicultor import Cafeicultor
 from src.main.model.cadastroCafe import  CadastroCafe
-#from src.main.controller.webScrapping import cotacaoCafe
+from src.main.controller.webScrapping import WebScrapping
 
 def generate_hash(string_hash: str)->str:
     hash_object = hashlib.sha1(string_hash.encode('utf-8'))
@@ -88,6 +88,8 @@ def cadastrarCafeicultor():
 def cafeicultor():
     html_file= open("templates/cafeicultor.html", "r") 
     html = html_file.read() 
+    tabela = bancoDeDados.buscarSacasDeCafe()
+    html=html.replace("table_placeholder",tabela)
     return html
 
 @app.route('/cafeicultor/dadosPessoais')
@@ -107,22 +109,24 @@ def cadastrarCafe():
     flag = False
     html_file= open("templates/cadastrar_cafe.html", "r") 
     html = html_file.read() 
-    if request.method == 'GET': #Se houve uma requisição do tipo Post, verificar:
-        #qtd = request.form["qtd"]
-        #tipo = request.form["tipo"]
-        #classificacao_bebida = request.form["classificacao_bebida"]
-        valor = str(586.00)
-        val = '<input disabled class="form-control" id="valor-unid-bar" placeholder="'+valor+'">'
-        html=html.replace("valor_placeholder",val) 
-        #data = date.today()
-        #print('chegou aqui')
-        #if qtd!= '':
-        #    flag=True
-        #    if flag:
-        #        cafe = CadastroCafe(qtd,tipo,classificacao_bebida)
-        #        bancoDeDados.cadastrarSacasDeCafe(cafe,valor,data)
-        #        html_file= open("templates/cafeicultor", "r") 
-        #        html = html_file.read() 
+    if request.method == 'POST': #Se houve uma requisição do tipo Post, verificar:
+        if "formControlQtd" in request.form:
+            qtd = request.form["formControlQtd"]
+            
+            if qtd != '':
+                flag=True
+                tipo = request.form["formControlTipo"]
+                classificacao_bebida = request.form["formControlBebida"]
+                webS = WebScrapping()
+                valor = str(webS.cotacaoCafe(tipo,classificacao_bebida))
+                val = '<input disabled class="form-control" id="valor-unid-bar" placeholder="'+valor+'">'
+                html=html.replace("valor_placeholder",val) 
+                data = str(date.today())
+                
+                cafe = CadastroCafe(qtd,tipo,classificacao_bebida)
+                bancoDeDados.cadastrarSacasDeCafe(cafe,valor,data)
+                html_file= open("templates/cafeicultor.html", "r") 
+                html = html_file.read() 
     return html
 
 '''
