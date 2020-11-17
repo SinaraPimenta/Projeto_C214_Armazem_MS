@@ -46,8 +46,8 @@ def verCafeicultor():
     indice = str(request.args.get('id' , "" )) 
     cafeicultor = bancoDeDados.getCafeicultor(int(indice))
     if(cafeicultor):
-        html= substituirHTML(cafeicultor.nomeGet(),"NomeCafeicultor",html)
-        html= substituirHTML(cafeicultor.cpfGet(),"CPF",html)
+        html = html.replace("NomeCafeilcutor",cafeicultor.nomeGet())
+        html = html.replace("CPF",cafeicultor.cpfGet())
         html= substituirHTML(cafeicultor.telefoneGet(),"Telefone",html)
         html= substituirHTML(cafeicultor.loginGet(),"Email",html)
         html= substituirHTML(cafeicultor.enderecoGet(),"Rua, numero",html)
