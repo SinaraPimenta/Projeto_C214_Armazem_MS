@@ -19,8 +19,6 @@
     <link href="/static/bootstrap/jumbotron.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/static/css/stylesheet.css">
 
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js">
-
     <script>$('#modalVer').modal('show');</script>
     <script>$('#modalExcluir').modal('show');</script>
 
@@ -180,7 +178,7 @@
 
             position: fixed;
             margin-top: 0%;
-            margin-left: 15%;
+            margin-left: 20%;
         }
 
         .modal-content {
@@ -297,11 +295,15 @@
             <i class="fas fa-user-circle" aria-hidden="true"></i>
             fulano_de_tal123@hotmail.com
         </div>
-        <button class="nav-button">
+        <button class="nav-button" id="sair">
             <i class="fas fa-sign-out-alt"></i>
             Sair
         </button>
-
+        <script type="text/javascript">
+            document.getElementById("sair").onclick = function () {
+                location.href = "/";
+            };
+        </script>
     </nav>
     <!-- Conteúdo da página -->
     <!-- Sidebar -->
@@ -318,21 +320,71 @@
     </div>
     <!-- /#sidebar-wrapper -->
     <div class="conteudo-div">
-        <div class="search-div">
-            <i class="fas fa-search search-icon" aria-hidden="true"></i>
-            <input class="form-control search-bar" type="text" placeholder="Buscar cafeicultor ..." aria-label="Search">
-        </div>
-        <div class="conteudo">
-            table_placeholder  <!-- Aqui será inserido a lista de cafeicultores-->
-            <button  type="button" class="btn btn-primary cadastrar"  id="cadastrar">Cadastrar Cafeicultor</button>
-            <script type="text/javascript">
-                document.getElementById("cadastrar").onclick = function () {
-                    location.href = "/admin/cadastroCafeicultor";
-                };
-                function verCafeicultor(id,nome) {
-                    location.href = "/admin/dadosCafeicultor/?id="+id;
-                };
-            </script>
+        <div class="mymodal container-fluid " id="modalVer" tabindex="-1" role="dialog"
+            aria-labelledby="verModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" id=modV>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="verModalLabel">
+                        NomeCafeicultor </h5>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <label>Contato:</label>
+                            <div class="form-row  ">
+
+                                <div class="form-group col-md-2  ver-div">
+                                    <i class="fas fa-phone " id="contato-icon-first"></i>
+                                    <input disabled class="form-control " id="contato-bar-first" placeholder="Telefone">
+                                </div>
+                                <div class="form-group col-md-5  ver-div">
+                                    <i class="fas fa-envelope" id="contato-icon-second"></i>
+                                    <input disabled class="form-control " id="contato-bar-second" placeholder="Email">
+                                </div>
+                            </div>
+                            <label>Endereco:</label>
+                            <div class="form-row">
+
+                                <div class="form-group col-md-6 ver-div">
+                                    <i class="fas fa-map-marked-alt" id="endereco-icon-first"></i>
+                                    <input disabled class="form-control" id="endereco-bar-first"
+                                        placeholder="Rua, numero">
+                                </div>
+                                <div class="form-group col-md-4 ver-div">
+                                    <input disabled class="form-control" id="endereco-bar-second" placeholder="Cidade">
+                                </div>
+                            </div>
+                            <label>Dados bancarios:</label>
+                            <div class="form-row">
+
+                                <div class="form-group col-md-4 ver-div">
+                                    <i class="fas fa-university" id="banco-icon-first"></i>
+                                    <input disabled class="form-control " id="banco-bar-first" placeholder="Banco">
+                                </div>
+
+                                <div class="form-group col-md-3 ver-div">
+                                    <input disabled class="form-control" id="banco-bar-second"
+                                        placeholder="Agencia Bancaria">
+                                </div>
+
+                                <div class="form-group col-md-3 ver-div">
+                                    <i class="fas fa-money-check-alt" id="banco-icon-second"></i>
+                                    <input disabled class="form-control" id="banco-bar-third"
+                                        placeholder="Numero da Conta">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-footer" data-dismiss="modal" id="voltar">Voltar</button>
+                        <script type="text/javascript">
+                        document.getElementById("voltar").onclick = function () {
+                            location.href = "/admin";
+                        };
+                    </script>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="modal fade mymodal container-fluid " id="modalExcluir" tabindex="-1" role="dialog"
             aria-labelledby="verModalLabel" aria-hidden="true">
