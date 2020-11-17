@@ -72,11 +72,15 @@
             <i class="fas fa-user-circle" aria-hidden="true"></i>
             fulano_de_tal123@hotmail.com
         </div>
-        <button class="nav-button">
+        <button class="nav-button" id="sair">
             <i class="fas fa-sign-out-alt"></i>
             Sair
         </button>
-
+        <script type="text/javascript">
+            document.getElementById("sair").onclick = function () {
+                location.href = "/";
+            };
+        </script>
     </nav>
     <!-- Conteúdo da página -->
     <!-- Sidebar -->

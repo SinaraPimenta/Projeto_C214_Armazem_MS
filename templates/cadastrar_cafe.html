@@ -58,10 +58,15 @@
             <i class="fas fa-user-circle" aria-hidden="true"></i>
             fulano_de_tal123@hotmail.com
         </div>
-        <button class="nav-button">
+        <button class="nav-button" id="sair">
             <i class="fas fa-sign-out-alt"></i>
             Sair
         </button>
+        <script type="text/javascript">
+            document.getElementById("sair").onclick = function () {
+                location.href = "/";
+            };
+        </script>
 
     </nav>
     <!-- Conteúdo da página -->
@@ -85,50 +90,57 @@
                         Cadastre seu Cafe </h5>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form method="post" enctype=multipart/form-data>
                         <div class="form-row">
                             <div class="form-group col-md-4">
                             <label>Quantidade de sacas:</label>
                             <i class="fas fa-sort-numeric-down" id="qtd-icon"></i>
                             <div class="form-select">
-                                <select class="form-control" id="formControlQtd">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <select class="form-control" name="qtd" id="formControlQtd">
+                                    <option></option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
                                 </select>
                             </div>
                             </div>
                             <div class="form-group col-md-4 ">
                                 <label for="valor-unid-bar" id="cotacao">Valor do seu cafe hoje:</label>
                                 <i class="fas fa-dollar-sign" id="valor-unid-icon"></i>
-                                <input disabled class="form-control" id="valor-unid-bar" placeholder="Valor unitario">
+                                valor_placeholder
                             </div>
                         </div>
                         <label>Tipo:</label>
                         <i class="fas fa-mug-hot"></i>
-                        <div class="form-select">
-                            <select class="form-control" id="formControlTipo">
-                            <option>Tipo 6</option>
-                            <option>Tipo 7</option>
+                        <div class="form-select" name="tipo">
+                            <select class="form-control" name="tipo" id="formControlTipo">
+                            <option>tipo 6</option>
+                            <option>tipo 7</option>
                             </select>
                         </div>
                         <label>Classificacao da bebida:</label>
                         <i class="fas fa-mug-hot"></i>
-                        <div class="form-select">
-                            <select class="form-control" id="formControlBebida">
-                                <option>Bebida Dura</option>
-                                <option>Bebida Riada</option>
-                                <option>Bebida Rio</option>
+                        <div class="form-select" name="classificacao_bebida">
+                            <select class="form-control" name="classificacao_bebida" id="formControlBebida">
+                                <option>bebida dura</option>
+                                <option>bebida riada</option>
+                                <option>bebida rio</option>
                             </select>
                             </div>
                     </form>
                     
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id=buttonS data-dismiss="modal">Salvar</button>
-                    <button type="button" class="btn btn-secondary" id=buttonC data-dismiss="modal">Cancelar</button>
+                    <button type="submit" vale=Upload class="btn btn-primary" id=buttonS data-dismiss="modal">Salvar</button>
+                    <button type="button" class="btn btn-secondary btn-footer" data-dismiss="modal"
+                    id="cancelar">Cancelar</button>
+                    <script type="text/javascript">
+                        document.getElementById("cancelar").onclick = function () {
+                            location.href = "/cafeicultor";
+                        };
+                    </script>
                 </div>
                
                
