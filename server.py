@@ -88,6 +88,8 @@ def cadastrarCafeicultor():
 def cafeicultor():
     html_file= open("templates/cafeicultor.html", "r") 
     html = html_file.read() 
+    tabela = bancoDeDados.buscarSacasDeCafe()
+    html=html.replace("table_placeholder",tabela)
     return html
 
 @app.route('/cafeicultor/dadosPessoais')
@@ -110,20 +112,13 @@ def cadastrarCafe():
     if request.method == 'POST': #Se houve uma requisição do tipo Post, verificar:
         if "formControlQtd" in request.form:
             qtd = request.form["formControlQtd"]
-            #tipo = request.form["formControlTipo"]
-            #classificacao_bebida = request.form["formControlBebida"]
-            #webS = WebScrapping()
-            #valor = str(webS.cotacaoCafe(tipo,classificacao_bebida))
-            #val = '<input disabled class="form-control" id="valor-unid-bar" placeholder="'+valor+'">'
-            #html=html.replace("valor_placeholder",val)
-            print(qtd)
+            
             if qtd != '':
                 flag=True
                 tipo = request.form["formControlTipo"]
                 classificacao_bebida = request.form["formControlBebida"]
                 webS = WebScrapping()
                 valor = str(webS.cotacaoCafe(tipo,classificacao_bebida))
-                #valor = str(590.00)
                 val = '<input disabled class="form-control" id="valor-unid-bar" placeholder="'+valor+'">'
                 html=html.replace("valor_placeholder",val) 
                 data = str(date.today())
