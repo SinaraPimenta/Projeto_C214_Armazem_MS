@@ -22,8 +22,8 @@
         #formControlQtd {
             width: 100px;
         }
-        #formControlTipo {
-            width: 200px;
+        #formControlTipo, #formControlBebida {
+            width: 250px;
         }
         #tableValor{
             width: 300px;
@@ -32,7 +32,7 @@
             top: -180px;
         }
         #valor-unid-bar {
-            width: 200px;
+            width: 100px;
             position: absolute;
             top: 35.4%;
             float: left;
@@ -43,6 +43,33 @@
             top: 60%;
             float: left;
             left:-5%;
+        }
+
+        #mensagem
+        {
+            color: rgb(76, 185, 49);
+            margin-right: 200px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        #calcular{
+            position: absolute;
+            top: 50%;
+        }
+
+        #valor-unid-input {
+            width: 200px;
+            position: absolute;
+            top: 35.4%;
+            float: left;
+            font-weight: bold;
+        }
+        .modal-footer{
+            width: 1010px;
+            position: fixed;
+            top: 80%;
+            right: -510px;
         }
     </style>
 </head>
@@ -97,8 +124,7 @@
                             <i class="fas fa-sort-numeric-down" id="qtd-icon"></i>
                             <div class="form-select">
                                 <select class="form-control" id="formControlQtd"  name="formControlQtd">
-                                    
-                                    <option value="1">1</option>
+                                    <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
                                     <option>4</option>
@@ -107,9 +133,9 @@
                             </div>
                             </div>
                             <div class="form-group col-md-4 ">
-                                <label for="valor-unid-bar" id="cotacao">Valor do seu cafe hoje:</label>
+                                <label for="valor-unid-bar" id="cotacao">Veja o valor total do seu cafe hoje:</label>
                                 <i class="fas fa-dollar-sign" id="valor-unid-icon"></i>
-                                valor_placeholder
+                                <input disabled class="form-control " id="valor-unid-input" placeholder="Valor do cafe">
                             </div>
                         </div>
                         <label>Tipo:</label>
@@ -130,20 +156,18 @@
                             </select>
                         </div>
                         <div class="modal-footer">
+                            <p style="display: none;" id="mensagem">Seu cafe foi cadastrado com sucesso!</p>
                             <button type="submit" vale=Upload class="btn btn-primary" id=buttonS data-dismiss="modal">Salvar</button>
                             <button type="button" class="btn btn-secondary btn-footer" data-dismiss="modal"
-                            id="cancelar">Cancelar</button>
+                            id="voltar">Voltar</button>
                             <script type="text/javascript">
-                                document.getElementById("cancelar").onclick = function () {
+                                document.getElementById("voltar").onclick = function () {
                                     location.href = "/cafeicultor";
                                 };
                             </script>
                         </div>
-                    </form>
-                    
+                    </form>  
                 </div>
-               
-               
             </div>
         </div>
     </div>

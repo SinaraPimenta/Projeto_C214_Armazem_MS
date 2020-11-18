@@ -17,37 +17,28 @@ def buscarUsuarioParaLogar(login,senha):
 def getCafeicultor(indice):
     return lista[indice]
 
+def removerDaLista(indice):
+    return lista.pop(indice)
+
 #Função para retornar os cafeicultores salvos no BD
 def buscarCafeicultores():
     indice = 0
     collection = db["Usuarios"] #nome da coleção
     resposta = collection.find({'tipo':'Cafeicultor'}) #Busca-se no BD e exibe a lista em html
-    Html='<table class="table"><thead><tr><th scope="col">#</th><th scope="col">Cafeicultor</th><th scope="col">Telefone</th><th scope="col"></th><th scope="col"></th></tr></thead><tbody>'
+    Html = '<table class="table" id="tabela"><thead><tr><th scope="col">#</th><th scope="col">Cafeicultor</th><th scope="col">Telefone</th><th scope="col"></th><th scope="col"></th></tr></thead><tbody>'
     for data in resposta:
         cafeicultor = Cafeicultor(data['nome'],data['login'],data['senha'],data['telefone'],data['cpf'],data['cidade'],data['endereco'],data['nome_do_banco'],data['agencia_bancaria'],data['numero_da_conta'])
-        #lista.append(cafeicultor)
+        lista.append(cafeicultor)
         Html= Html + '<tr>'
         Html= Html + '<th scope="row">'+str(indice)+'</th>'
         Html = Html + '<td class="nome">' + str(data['nome']) +'</td>'
         Html = Html + '<td >' + str(data['telefone']) +'</td>'
         Html = Html + '<td><button type="button" class="btn btn-primary" id="verCafeicultor" onclick="verCafeicultor('+str(indice)+')">Ver</button></td>'
-        Html = Html +  '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExcluir">Excluir</button></td>'
+        Html = Html +  '<td><button type="button" class="btn btn-primary" id="editarCafeicultor" onclick="editarCafeicultor('+str(indice)+')">Editar</button></td>'
         Html = Html + ' </tr>'
         indice += 1
-    Html = Html + '</tbody><tfoot><tr><td></td><td></td><td></td>'
-    Html = Html + ' <td>Pagina 1 de 5</td>'                
-    Html = Html + '<td><button class="nav-button-table "><i class="fas fa-angle-double-left"></i></button>'
-    Html = Html + '<button class="nav-button-table "><i class="fas fa-chevron-left"></i></button><button class="nav-button-table ">'
-    Html = Html + '<i class="fas fa-chevron-right"></i></button><button class="nav-button-table "><i class="fas fa-angle-double-right"></i></button></td></tr></tfoot></table>'
+    Html = Html + '</tbody></table>'
     return Html                
-                        
-                   
-  #Html = "<select id="+select+"  multiple name="+sample+">"
-  #for data in resposta: 
-   # Html = Html+"<option value="+ str(data['nome']) + ">" + str(data['nome']) +  "</option>"
-  #Html = Html + "<input type=submit value=Import id="+importar+">"
-  #Html = Html+"</select>"
-  #return Html
 
 #Função para salvar um cafeicultor no BD
 def cadastrarCafeicultor(c):
@@ -63,15 +54,12 @@ def deletarCafeicultor(login):
     collection.delete_one({ 'login': login })
 
 #Função para retornar as sacas de cafe de um cafeicultor salvas no BD
-def buscarSacasDeCafe():
+def buscarSacasDeCafe(login):
     collection = db["SacasDeCafe"] #nome da coleção
-    resposta = collection.find({'identificador':'saca60Kg'}) #Busca-se no BD e exibe a lista em html
+    resposta = collection.find({'login':login}) #Busca-se no BD e exibe a lista em html
     Html = '<table class="table"><thead><tr><th scope="col">Tipo</th><th scope="col">Bebida</th><th scope="col">Valor* [R$]</th><th scope="col">Quantidade</th><th scope="col"></th><th scope="col"></th><th scope="col"></th></tr></thead><tbody>'
     
     for data in resposta:
-        print(data)
-        #sacas = CadastroCafe(data["qtd"],data["tipo"],data["classsificacao_bebida"])
-        #lista.append(sacas)
         Html = Html + '<tr>'
         Html = Html + '<th scope="row">'+str(data["tipo"])+'</th>'
         Html = Html + '<td>'+str(data["classificacao_bebida"])+'</td>'
@@ -82,18 +70,14 @@ def buscarSacasDeCafe():
         Html = Html + '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExcluir">Excluir</button></td>'
         Html = Html + '</tr>'
 
-    Html = Html + '</tbody><tfoot><tr><td></td><td></td><td></td>'
-    Html = Html + ' <td>Pagina 1 de 5</td>'                
-    Html = Html + '<td><button class="nav-button-table "><i class="fas fa-angle-double-left"></i></button>'
-    Html = Html + '<button class="nav-button-table "><i class="fas fa-chevron-left"></i></button><button class="nav-button-table ">'
-    Html = Html + '<i class="fas fa-chevron-right"></i></button><button class="nav-button-table "><i class="fas fa-angle-double-right"></i></button></td></tr></tfoot></table>'   
+    Html = Html + '</tbody></table>'   
  
     return Html
 
 #Função para salvar uma saca de café no BDa
-def cadastrarSacasDeCafe(s,valor,data):
+def cadastrarSacasDeCafe(s,login,valor,data):
     collection = db["SacasDeCafe"] 
-    dados = {"identificador":"saca60Kg","qtd":s.getSacas(),"tipo": s.getTipo(), "classificacao_bebida" : s.getCBebida(),
+    dados = {"login":login,"qtd":s.getSacas(),"tipo": s.getTipo(), "classificacao_bebida" : s.getCBebida(),
     "valor" : valor,"data":data}
     collection.insert_one(dados)
 
@@ -103,9 +87,8 @@ def deletarSacaDeCafe(id):
     collection.delete_one({ 'id': id })
 
 #Função para salvar um cafeicultor no BD
-def alterarDadosDoCafeicultor(login,nome,senha,telefone,cidade, endereco,nome_do_banco, agencia_bancaria,numero_da_conta):
+def alterarDadosDoCafeicultor(login,nome,telefone,cidade, endereco,nome_do_banco, agencia_bancaria,numero_da_conta):
     collection = db["Usuarios"] #nome da coleção
-    #receber hash da senha!!!!! 
-    collection.update_one({'login': login},{'$set': {"nome": nome, "senha": senha, "telefone":telefone, 
+    collection.update_one({'login': login},{'$set': {"nome": nome, "telefone":telefone, 
     "cidade":cidade, "endereco":endereco,"nome_do_banco":nome_do_banco,
     "agencia_bancaria":agencia_bancaria,"numero_da_conta":numero_da_conta} })
