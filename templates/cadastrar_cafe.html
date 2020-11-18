@@ -17,7 +17,7 @@
             position: relative;
             top:-7px;
             width: 1010px;
-            height: 420px;
+            height: 450px;
         }
         #formControlQtd {
             width: 100px;
@@ -53,6 +53,14 @@
             font-size: 20px;
         }
 
+        #mensagemErro
+        {
+            color: rgb(250, 8, 8);
+            margin-right: 200px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
         #calcular{
             position: absolute;
             top: 50%;
@@ -68,7 +76,7 @@
         .modal-footer{
             width: 1010px;
             position: fixed;
-            top: 80%;
+            top: 70%;
             right: -510px;
         }
     </style>
@@ -156,6 +164,7 @@
                             </select>
                         </div>
                         <div class="modal-footer">
+                            <p style="visibility: hidden;" id="mensagemErro">Tipo e classificacao nao encontrados!</p>
                             <p style="display: none;" id="mensagem">Seu cafe foi cadastrado com sucesso!</p>
                             <button type="submit" vale=Upload class="btn btn-primary" id=buttonS data-dismiss="modal">Salvar</button>
                             <button type="button" class="btn btn-secondary btn-footer" data-dismiss="modal"

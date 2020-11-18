@@ -22,6 +22,9 @@ class Cafeicultor(Usuario):
     def nomeGet(self):
         return super().getNome()
     
+    def nomeSet(self,nome):
+        super().setNome(nome)
+    
     def loginGet(self):
         return super().getLogin()
     
@@ -30,24 +33,52 @@ class Cafeicultor(Usuario):
     
     def telefoneGet(self):
         return self.__telefone
+    
+    def telefoneSet(self,telefone):
+        self.__telefone = telefone
 
     def cpfGet(self):
         return self.__cpf
 
     def cidadeGet(self):
         return self.__cidade
+    
+    def cidadeSet(self,cidade):
+        self.__cidade = cidade
 
     def enderecoGet(self):
         return self.__endereco
     
+    def enderecoSet(self,endereco):
+        self.__endereco = endereco
+    
     def agenciaGet(self):
         return self.__agencia_bancaria
+    
+    def agenciaSet(self,agencia):
+        self.__agencia_bancaria = agencia
 
     def contaGet(self):
         return self.__numero_da_conta
+
+    def contaSet(self,conta):
+        self.__numero_da_conta = conta
     
     def bancoGet(self):
         return self.__nome_do_banco
+    
+    def bancoSet(self,banco):
+        self.__nome_do_banco = banco
+
+    def atualizaCafeicultor(self,nome:str,telefone:str,endereco:str,cidade:str,banco:str,agencia:str,conta:str):
+        self.nomeSet(nome)
+        self.telefoneSet(telefone)
+        self.enderecoSet(endereco)
+        self.cidadeSet(cidade)
+        self.bancoSet(banco)
+        self.agenciaSet(agencia)
+        self.contaSet(conta)
+
 
     def cadastrarVenda(self):
         print('cadastra venda')

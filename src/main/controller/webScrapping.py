@@ -11,6 +11,7 @@ class WebScrapping(object):
         tabela = soup.find('table', attrs={'class':'tabela-resultados'})
         linhas = tabela.find_all('td')
         achou = False
+        preco = 0
         for i in linhas:
             if achou==True:
                 preco=i.text

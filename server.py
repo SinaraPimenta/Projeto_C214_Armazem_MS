@@ -6,7 +6,7 @@ from flask import render_template
 from datetime import date
 from src.main.controller import bancoDeDados
 from src.main.model.cafeicultor import Cafeicultor
-from src.main.model.cadastroCafe import  CadastroCafe
+from src.main.model.sacaCafe import SacaCafe
 from src.main.controller.webScrapping import WebScrapping
 
 def generate_hash(string_hash: str)->str:
@@ -57,7 +57,7 @@ def verCafeicultor():
         html= substituirHTML(cafeicultor.contaGet(),"Numero da Conta",html)
     if request.method == 'POST': #Se houve uma requisição do tipo Post, verificar:
         bancoDeDados.deletarCafeicultor(cafeicultor.loginGet())
-        bancoDeDados.removerDaLista(int(indice))
+        bancoDeDados.removerDalistaCafeicultor(int(indice))
         html = html.replace("eneable","disabled")
         html=html.replace("none","block") #habilita a exibição da mensagem
     return html  
@@ -101,7 +101,6 @@ def editaCafeicultor():
         html= substituirHTML(cafeicultor.agenciaGet(),"Agencia Bancaria",html)
         html= substituirHTML(cafeicultor.contaGet(),"Numero da Conta",html)
     if request.method == 'POST': #Se houve uma requisição do tipo Post, verificar:
-        print('post')
         nome = request.form["nome"]
         telefone = request.form["telefone"]
         endereco = request.form["endereco"]
@@ -124,7 +123,10 @@ def editaCafeicultor():
         if conta == '':
             conta = cafeicultor.contaGet()
         bancoDeDados.alterarDadosDoCafeicultor(cafeicultor.loginGet(),nome,telefone,cidade,endereco,banco,agencia,conta)
+        cafeicultor.atualizaCafeicultor(nome,telefone,endereco,cidade,banco,agencia,conta)
+        bancoDeDados.substituiCafeicultor(int(indice),cafeicultor)
         html=html.replace("none","block") #habilita a exibição da mensagem
+        return redirect("/admin/edicaoCafeicultor/?id="+indice)
     return html
 
 #Páginas do cafeicultor:
@@ -145,7 +147,7 @@ def cafeicultorDadosPessoais():
 
 @app.route('/cafeicultor/vendaCafe')
 def cafeicultorVender():
-    html_file= open("templates/vender.html", "r") 
+    html_file= open("templates/vender_cafe.html", "r") 
     html = html_file.read() 
     return html  
 
@@ -154,7 +156,6 @@ def cadastrarCafe():
     flag = False
     html_file= open("templates/cadastrar_cafe.html", "r") 
     html = html_file.read() 
-    print(request)
     if request.method == 'POST': #Se houve uma requisição do tipo Post, verificar:
         if "formControlQtd" in request.form:
             qtd = request.form["formControlQtd"]
@@ -162,14 +163,55 @@ def cadastrarCafe():
             classificacao_bebida = request.form["formControlBebida"]
             webS = WebScrapping()
             valor = webS.cotacaoCafe(tipo,classificacao_bebida) * int(qtd)
-            html=html.replace("Valor do cafe",str(valor)) 
-            data = str(date.today())
-            if qtd != '':
-                flag=True
-                html=html.replace("none","block") #habilita a exibição da mensagem
-                login = 'fulano_de_tal123@hotmail.com'
-                cafe = CadastroCafe(qtd,tipo,classificacao_bebida)
-                bancoDeDados.cadastrarSacasDeCafe(cafe,login,valor,data)
+            if valor==0:
+                html=html.replace("block","none")
+                html=html.replace("hidden","visible") #habilita a exibição da mensagem
+            else:
+                html=html.replace("Valor do cafe",str(valor)) 
+                data = date.today()
+                data = data.strftime("%d/%m/%Y")
+                if qtd != '':
+                    flag=True
+                    html=html.replace("visible","hidden")
+                    html=html.replace("none","block") #habilita a exibição da mensagem
+                    login = 'fulano_de_tal123@hotmail.com' #PEGAR O LOGIN DA PESSOAAAAAA
+                    cafe = SacaCafe(tipo,classificacao_bebida,qtd,0.0,'',login)
+                    bancoDeDados.cadastrarSacasDeCafe(cafe,valor,data)
+    return html
+
+@app.route('/cafeicultor/edicaoCafe/', methods=['GET','POST'])
+def editarCafe():
+    html_file = open("templates/editar_cafe.html","r")
+    html = html_file.read()
+    indice = str(request.args.get('id' , "" )) 
+    cafe = bancoDeDados.getCafe(int(indice))
+    if(cafe):
+        html= substituirHTML(cafe.tipoGet(),"Tipo",html)
+        html= substituirHTML(cafe.classificacaoGet(),"Bebida",html)
+        html= substituirHTML(cafe.quantidadeGet(),"Qtd atual",html)
+    if request.method == 'POST': #Se houve uma requisição do tipo Post, verificar:
+        tipo = request.form["tipo"]
+        bebida = request.form["bebida"]
+        qtd = request.form["qtd"]
+        if tipo == '':
+            tipo = cafe.tipoGet()
+        if bebida == '':
+            bebida = cafe.classificacaoGet()
+        if qtd == '':
+            qtd = cafe.quantidadeGet()
+        webS = WebScrapping()
+        valor = webS.cotacaoCafe(tipo,bebida) * int(qtd)
+        data = date.today()
+        data = data.strftime("%d/%m/%Y")
+        #if valor==0:
+            #html=html.replace("block","none")
+            #html=html.replace("hidden","visible") #habilita a exibição da mensagem
+        #else:
+        bancoDeDados.alterarSacaDeCafe(cafe,valor,data)
+        cafe.atualizaCafe(tipo,bebida,qtd,valor,data)
+        bancoDeDados.substituiCafe(int(indice),cafe)
+        html=html.replace("none","block") #habilita a exibição da mensagem
+        return redirect("/cafeicultor/edicaoCafe/?id="+indice)
     return html
 
 if __name__ == '__main__':

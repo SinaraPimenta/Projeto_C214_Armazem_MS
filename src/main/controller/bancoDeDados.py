@@ -1,8 +1,10 @@
 import pymongo
 from src.main.model.cafeicultor import Cafeicultor
-from src.main.model.cadastroCafe import CadastroCafe
+from src.main.model.sacaCafe import SacaCafe
+from src.main.model.cafeicultor import Cafeicultor
 
-lista = []
+listaCafeicultor = []
+listaCafe = []
 
 #Conexão com o BD
 cliente = pymongo.MongoClient("mongodb+srv://admin:armazemMS@clusterc214.wv3t7.mongodb.net/ArmazemMS?retryWrites=true&w=majority")
@@ -15,20 +17,32 @@ def buscarUsuarioParaLogar(login,senha):
     return resposta
 
 def getCafeicultor(indice):
-    return lista[indice]
+    return listaCafeicultor[indice]
 
-def removerDaLista(indice):
-    return lista.pop(indice)
+def substituiCafeicultor(indice,cafeicultor):
+    listaCafeicultor[indice] = cafeicultor
+
+def removerDalistaCafeicultor(indice):
+    return listaCafeicultor.pop(indice)
+
+def getCafe(indice):
+    return listaCafe[indice]
+
+def substituiCafe(indice,cafe):
+    listaCafe[indice] = cafe
+
+def removerDalistaCafe(indice):
+    return listaCafe.pop(indice)
 
 #Função para retornar os cafeicultores salvos no BD
 def buscarCafeicultores():
     indice = 0
     collection = db["Usuarios"] #nome da coleção
-    resposta = collection.find({'tipo':'Cafeicultor'}) #Busca-se no BD e exibe a lista em html
+    resposta = collection.find({'tipo':'Cafeicultor'}) #Busca-se no BD e exibe a listaCafeicultor em html
     Html = '<table class="table" id="tabela"><thead><tr><th scope="col">#</th><th scope="col">Cafeicultor</th><th scope="col">Telefone</th><th scope="col"></th><th scope="col"></th></tr></thead><tbody>'
     for data in resposta:
         cafeicultor = Cafeicultor(data['nome'],data['login'],data['senha'],data['telefone'],data['cpf'],data['cidade'],data['endereco'],data['nome_do_banco'],data['agencia_bancaria'],data['numero_da_conta'])
-        lista.append(cafeicultor)
+        listaCafeicultor.append(cafeicultor)
         Html= Html + '<tr>'
         Html= Html + '<th scope="row">'+str(indice)+'</th>'
         Html = Html + '<td class="nome">' + str(data['nome']) +'</td>'
@@ -56,30 +70,38 @@ def deletarCafeicultor(login):
 #Função para retornar as sacas de cafe de um cafeicultor salvas no BD
 def buscarSacasDeCafe(login):
     collection = db["SacasDeCafe"] #nome da coleção
-    resposta = collection.find({'login':login}) #Busca-se no BD e exibe a lista em html
-    Html = '<table class="table"><thead><tr><th scope="col">Tipo</th><th scope="col">Bebida</th><th scope="col">Valor* [R$]</th><th scope="col">Quantidade</th><th scope="col"></th><th scope="col"></th><th scope="col"></th></tr></thead><tbody>'
-    
+    resposta = collection.find({'login':login}) #Busca-se no BD e exibe a listaCafeicultor em html
+    Html = '<table class="table"><thead><tr><th scope="col">#</th><th scope="col">Tipo</th><th scope="col">Bebida</th><th scope="col">Valor* [R$]</th><th scope="col">Quantidade</th><th scope="col">Data do cadastro</th><th scope="col"></th><th scope="col"></th></tr></thead><tbody>'
+    indice = 0
     for data in resposta:
+        cafe = SacaCafe(data['tipo'],data['classificacao_bebida'],data['qtd'],data['valor'],data['data'],data['login'],str(data['_id']))
+        listaCafe.append(cafe)
         Html = Html + '<tr>'
+        Html= Html + '<th scope="row">'+str(indice)+'</th>'
         Html = Html + '<th scope="row">'+str(data["tipo"])+'</th>'
         Html = Html + '<td>'+str(data["classificacao_bebida"])+'</td>'
         Html = Html + '<td>'+str(data['valor'])+'</td>'
         Html = Html + '<td>'+str(data['qtd'])+'</td>'
+        Html = Html + '<td>'+str(data['data'])+'</td>'
         Html = Html + '<td><button class="btn btn-primary">Vender</button></td>'
-        Html = Html + '<td><button class="btn btn-primary">Editar</button></td>'
-        Html = Html + '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExcluir">Excluir</button></td>'
+        Html = Html +  '<td><button type="button" class="btn btn-primary" id="editarCafe" onclick="editarCafe('+str(indice)+')">Editar</button></td>'
         Html = Html + '</tr>'
-
+        indice+=1
     Html = Html + '</tbody></table>'   
- 
     return Html
 
-#Função para salvar uma saca de café no BDa
-def cadastrarSacasDeCafe(s,login,valor,data):
+#Função para salvar uma saca de café no BD
+def cadastrarSacasDeCafe(s,valor,data):
     collection = db["SacasDeCafe"] 
-    dados = {"login":login,"qtd":s.getSacas(),"tipo": s.getTipo(), "classificacao_bebida" : s.getCBebida(),
+    dados = {"login":s.loginGet(),"qtd":s.quantidadeGet(),"tipo": s.tipoGet(), "classificacao_bebida" : s.classificacaoGet(),
     "valor" : valor,"data":data}
     collection.insert_one(dados)
+
+#Função para atualizar uma saca de café no BD
+def alterarSacaDeCafe(s,valor,data):
+    collection = db["SacasDeCafe"] 
+    collection.update_one({'_id': s.idGet()},{'$set': {"tipo":s.tipoGet(), "classificacao_bebida":s.classificacaoGet(),
+    "qtd":s.quantidadeGet(),"valor":valor,"data":data} })
 
 #Função para deletar uma saca de café no BD
 def deletarSacaDeCafe(id):
