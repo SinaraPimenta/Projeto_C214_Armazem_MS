@@ -4,7 +4,7 @@ class SacaCafe(object):
     __tipo:str
     __classificacaoBebida:int
     __quantidade:int
-    __valor:float
+    __valor: float
     __data:str
 
     def __init__(self,tipo,classificacaoBebida,quantidade,valor=0.0,data="",login="",id=""):
@@ -24,6 +24,9 @@ class SacaCafe(object):
 
     def tipoGet(self):
         return self.__tipo
+    
+    def valorGet(self):
+        return self.__valor
 
     def tipoSet(self,tipo):
         self.__tipo = tipo
@@ -41,10 +44,10 @@ class SacaCafe(object):
         self.__quantidade = qtd
 
     def valorSet(self,valor):
-        self.__quantidade = valor
+        self.__valor = valor
 
     def dataSet(self,data):
-        self.__quantidade = data
+        self.__data = data
 
     def atualizaCafe(self,tipo:str,classificacao:str,quantidade:int,valor:float,data:str):
         self.tipoSet(tipo)

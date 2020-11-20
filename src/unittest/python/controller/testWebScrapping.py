@@ -8,7 +8,7 @@ class WebScrappingTest(TestCase):
     #def setUp(self): 
 
     def test_cotacaoCafe(self):
-        esperado = 'B/C, tipo 6, bebida dura, 20/21 (livre de impostos)'
+        esperado = 549
         obtido = WebScrapping.cotacaoCafe(self,'6','dura')  
         self.assertEqual(esperado,obtido)
 

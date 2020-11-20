@@ -55,17 +55,18 @@
         }
 
         .table {
-            height: 400px;
-            width: 100%;
             background-color: white;
-            padding: 10px;
             text-align: center;
             position: fixed;
             top: 65%;
             left: 50%;
             margin-right: -50%;
             transform: translate(-40%, -50%);
-            border: none
+            border: none;
+            display:table-cell;
+            height: 400px;
+            overflow-y: auto ;
+            width: 850px;
         }
 
         thead {
@@ -213,8 +214,46 @@
         <div class="search-div">
             <i class="fas fa-search search-icon" aria-hidden="true"></i>
             <input class="form-control search-bar" type="text" placeholder="Buscar saca de cafe ..."
-                aria-label="Search">
+                id="buscar" aria-label="Search" onkeyup="buscarCafe()">
         </div>
+        <script type="text/javascript">
+            function buscarCafe() {
+                var input, filtro, ul, li, a, i, txtValue,achouTipo,achouBebida;
+                input = document.getElementById('buscar');
+                filtro = input.value.toUpperCase();
+                tabela = document.getElementById("tabela");
+                tr = tabela.getElementsByTagName('tr');
+                
+                for (i = 1; i < tr.length; i++) {
+                    achouTipo = false;
+                    achouBebida = false;
+                    td = tr[i].getElementsByTagName("td")[0];
+                    td2 = tr[i].getElementsByTagName("td")[1];
+                    if(td)
+                    {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filtro) > -1) 
+                        {
+                            tr[i].style.display = "";
+                            achouTipo = true;
+                        } 
+                    }  
+                    if(td2)
+                    {
+                        txtValue = td2.textContent || td2.innerText;
+                        if (txtValue.toUpperCase().indexOf(filtro) > -1) 
+                        {
+                            tr[i].style.display = "";
+                            achouBebida = true;
+                        }
+                    }
+                    if (achouTipo==false && achouBebida==false) {
+                        tr[i].style.display = "none";
+                    }
+                    
+                }
+            };
+        </script>
         <div class="conteudo">
             table_placeholder <!-- Aqui será inserido a lista de cafeicultores-->
             <button type="button" class="btn btn-primary cadastrar" id="cadastrar">Cadastrar Saca de Cafe</button>
@@ -224,6 +263,9 @@
                 };
                 function editarCafe(id) {
                     location.href = "/cafeicultor/edicaoCafe/?id="+id;
+                };
+                function venderCafe(id) {
+                    location.href = "/cafeicultor/vendaCafe/?id="+id;
                 };
             </script>
         </div>

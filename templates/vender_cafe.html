@@ -149,7 +149,7 @@
         }
 
         #cotacao {
-            width: 200px;
+            width: 300px;
             position: fixed;
             left: 52%;
             float: left;
@@ -189,6 +189,7 @@
         }
 
         #qtd {
+            width: 270px;
             margin-left: 30px;
             margin-right: 30px;
             height: 35px;
@@ -196,7 +197,7 @@
 
         #qtd-icon {
             position: absolute;
-            top: 60%;
+            top: 67%;
             float: left;
             left: 2%;
         }
@@ -204,16 +205,17 @@
         #valor-total {
             width: 200px;
             position: absolute;
-            left: 52%;
+            left: 100%;
             float: left;
             margin-left: 20px;
+            top: -170%;
         }
 
         #valor-total-bar {
             width: 200px;
             position: absolute;
-            top: 35%;
-            left: 52%;
+            top: -75%;
+            left: 100%;
             float: left;
             margin-left: 17px;
         }
@@ -223,6 +225,31 @@
             top: 60%;
             float: left;
             margin-left: 70px;
+        }
+        #btn-cotacao{
+            width: 200px;
+            position: absolute;
+            top: 46%;
+            left: 55%;
+            float: left;
+            margin-left: 17px;
+        }
+
+        #mensagem
+        {
+            position: fixed;
+            color: rgb(76, 185, 49);
+            right: 450px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        #mensagemErro
+        {
+            color: rgb(250, 8, 8);
+            margin-right: 200px;
+            font-weight: bold;
+            font-size: 20px;
         }
     </style>
 </head>
@@ -261,52 +288,54 @@
     <div class="mymodal container-fluid " id="modalVer" tabindex="-1" role="dialog" aria-labelledby="verModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
+            <form method="post">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="verModalLabel">
                         Vender saca de cafe</h5>
                 </div>
                 <div class="modal-body">
-                    <form>
+                   
                         <div class="form-row">
                             <div class="form-group col-md-1">
                                 <label for="tipo">Classificacao</label>
                                 <i class="fas fa-mug-hot" id="classificacao-icon"></i>
-                                <input disabled class="form-control" id="tipo" placeholder="Tipo">
+                                <input disabled class="form-control" name="tipo" id="tipo" placeholder="Tipo">
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="bebida"></label>
-                                <input disabled class="form-control" id="bebida" placeholder="Bebida">
+                                <input disabled class="form-control" name="bebida" id="bebida" placeholder="Bebida">
                             </div>
                             <div class="form-group col-md-2 ">
-                                <label for="valor-unid-bar" id="cotacao">Cotacao</label>
+                                <label for="valor-unid-bar" id="cotacao">Valor da venda:</label>
                                 <i class="fas fa-dollar-sign" id="valor-unid-icon"></i>
-                                <input disabled class="form-control" id="valor-unid-bar" placeholder="Valor unitario">
+                                <input disabled class="form-control" id="valor-unid-bar" placeholder="Valor do cafe">
                             </div>
                         </div>
+                        <label for="qtd">Quantidade</label>
                         <div class="form-row">
-                            <div class="form-group col-md-5">
-                                <label for="qtd">Selecione a quantidade</label>
+                                
                                 <i class="fas fa-sort-numeric-down" id="qtd-icon"></i>
                                 <div class="form-select">
-                                    <select class="form-control" id="qtd">
-                                      <option>1</option>
-                                      <option>2</option>
-                                      <option>3</option>
-                                      <option>4</option>
-                                      <option>5</option>
+                                    <select  class="form-control" id="qtd"  name="qtd" placeholder="Quantidade">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
                                     </select>
                                 </div>
+                                <div class="form-group col-md-2 ">
+                                    <label for="valor-total-bar" id="valor-total">Quantidade atual:</label>
+                                    <input disabled class="form-control" id="valor-total-bar" placeholder="Qtd atual">
+                                </div>
                             </div>
-                            <div class="form-group col-md-2 ">
-                                <label for="valor-total-bar" id="valor-total">Valor total</label>
-                                <i class="fas fa-dollar-sign" id="valor-total-icon"></i>
-                                <input disabled class="form-control" id="valor-total-bar" placeholder="Valor total">
-                            </div>
-                    </form>
+                    
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-footer" data-dismiss="modal">Confirmar</button>
+                    <p style="visibility: hidden;" id="mensagemErro">Tipo e classificacao nao correspondentes!</p>
+                    <p style="display: none;" id="mensagem">Saca de cafe vendida com sucesso!</p>
+                    <button eneable type="submit" class="btn btn-primary btn-footer" data-dismiss="modal">Vender</button>
                     <button type="button" class="btn btn-secondary btn-footer" data-dismiss="modal"
                     id="cancelar">Cancelar</button>
                     <script type="text/javascript">
@@ -316,6 +345,7 @@
                     </script>
                 </div>
             </div>
+        </form>
         </div>
     </div>
     </div>

@@ -1,4 +1,5 @@
 import pymongo
+from bson.objectid import ObjectId
 from src.main.model.cafeicultor import Cafeicultor
 from src.main.model.sacaCafe import SacaCafe
 from src.main.model.cafeicultor import Cafeicultor
@@ -71,19 +72,19 @@ def deletarCafeicultor(login):
 def buscarSacasDeCafe(login):
     collection = db["SacasDeCafe"] #nome da coleção
     resposta = collection.find({'login':login}) #Busca-se no BD e exibe a listaCafeicultor em html
-    Html = '<table class="table"><thead><tr><th scope="col">#</th><th scope="col">Tipo</th><th scope="col">Bebida</th><th scope="col">Valor* [R$]</th><th scope="col">Quantidade</th><th scope="col">Data do cadastro</th><th scope="col"></th><th scope="col"></th></tr></thead><tbody>'
+    Html = '<table id="tabela" class="table"><thead><tr><th scope="col">#</th><th scope="col">Tipo</th><th scope="col">Bebida</th><th scope="col">Valor* [R$]</th><th scope="col">Quantidade</th><th scope="col">Data do cadastro</th><th scope="col"></th><th scope="col"></th></tr></thead><tbody>'
     indice = 0
     for data in resposta:
         cafe = SacaCafe(data['tipo'],data['classificacao_bebida'],data['qtd'],data['valor'],data['data'],data['login'],str(data['_id']))
         listaCafe.append(cafe)
         Html = Html + '<tr>'
         Html= Html + '<th scope="row">'+str(indice)+'</th>'
-        Html = Html + '<th scope="row">'+str(data["tipo"])+'</th>'
+        Html = Html + '<td>'+str(data["tipo"])+'</td>'
         Html = Html + '<td>'+str(data["classificacao_bebida"])+'</td>'
         Html = Html + '<td>'+str(data['valor'])+'</td>'
         Html = Html + '<td>'+str(data['qtd'])+'</td>'
         Html = Html + '<td>'+str(data['data'])+'</td>'
-        Html = Html + '<td><button class="btn btn-primary">Vender</button></td>'
+        Html = Html +  '<td><button type="button" class="btn btn-primary" id="editarCafe" onclick="venderCafe('+str(indice)+')">Vender</button></td>'
         Html = Html +  '<td><button type="button" class="btn btn-primary" id="editarCafe" onclick="editarCafe('+str(indice)+')">Editar</button></td>'
         Html = Html + '</tr>'
         indice+=1
@@ -100,13 +101,18 @@ def cadastrarSacasDeCafe(s,valor,data):
 #Função para atualizar uma saca de café no BD
 def alterarSacaDeCafe(s,valor,data):
     collection = db["SacasDeCafe"] 
-    collection.update_one({'_id': s.idGet()},{'$set': {"tipo":s.tipoGet(), "classificacao_bebida":s.classificacaoGet(),
+    collection.update_one({'_id': ObjectId(s.idGet())},{'$set': {"tipo":s.tipoGet(), "classificacao_bebida":s.classificacaoGet(),
     "qtd":s.quantidadeGet(),"valor":valor,"data":data} })
+
+#Função para atualizar uma saca de café no BD
+def venderSacaDeCafe(s,valor,data):
+    collection = db["SacasDeCafe"] 
+    collection.update_one({'_id': ObjectId(s.idGet())},{'$set': {"qtd":s.quantidadeGet(),"valor":valor,"data":data} })
 
 #Função para deletar uma saca de café no BD
 def deletarSacaDeCafe(id):
     collection = db["SacasDeCafe"] #nome da coleção
-    collection.delete_one({ 'id': id })
+    collection.delete_one({'_id': ObjectId(id)})
 
 #Função para salvar um cafeicultor no BD
 def alterarDadosDoCafeicultor(login,nome,telefone,cidade, endereco,nome_do_banco, agencia_bancaria,numero_da_conta):

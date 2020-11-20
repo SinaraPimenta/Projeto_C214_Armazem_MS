@@ -79,12 +79,22 @@ class Cafeicultor(Usuario):
         self.agenciaSet(agencia)
         self.contaSet(conta)
 
+    def buscarCafe(self):
+        print('busca cafe')
 
     def cadastrarVenda(self):
         print('cadastra venda')
+
+    def editarCafe(self):
+        print('editar o café')
+
+    def excluirCafe(self):
+        print('excluir o café')
     
     def venderCafe(self):
         print('vende o café')
+
+    
     
     #def solicitarDados(self):
         #print('solicita dados')

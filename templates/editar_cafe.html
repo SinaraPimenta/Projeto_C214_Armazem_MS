@@ -197,7 +197,7 @@
 
         #qtd-icon {
             position: absolute;
-            top: 70%;
+            top: 67%;
             float: left;
             left: 2%;
         }
@@ -237,10 +237,25 @@
 
         #mensagem
         {
+            position: fixed;
             color: rgb(76, 185, 49);
+            right: 450px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        #mensagemErro
+        {
+            color: rgb(250, 8, 8);
             margin-right: 200px;
             font-weight: bold;
             font-size: 20px;
+        }
+
+        #mensagemQtd
+        {
+            color: rgb(250, 8, 8);
+            font-size: 11px;
         }
     </style>
 </head>
@@ -303,12 +318,13 @@
                                 <input disabled class="form-control" id="valor-unid-bar" placeholder="Valor do cafe">
                             </div>
                         </div>
-                        <label for="qtd">Quantidade</label>
+                        <label for="qtd">Quantidade*</label>
                         <div class="form-row">
                                 
                                 <i class="fas fa-sort-numeric-down" id="qtd-icon"></i>
                                 <div class="form-select">
                                     <select  class="form-control" id="qtd"  name="qtd" placeholder="Quantidade">
+                                        <option>0</option>
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
@@ -321,9 +337,11 @@
                                     <input disabled class="form-control" id="valor-total-bar" placeholder="Qtd atual">
                                 </div>
                             </div>
+                            <p id="mensagemQtd">*Se a quantidade for zero, a saca de cafe sera excluida!</p>
                     
                 </div>
                 <div class="modal-footer">
+                    <p style="visibility: hidden;" id="mensagemErro">Tipo e classificacao nao correspondentes!</p>
                     <p style="display: none;" id="mensagem">Saca de cafe editada com sucesso!</p>
                     <button type="submit" class="btn btn-primary btn-footer" data-dismiss="modal">Salvar</button>
                     <button type="button" class="btn btn-secondary btn-footer" data-dismiss="modal"
