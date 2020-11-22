@@ -30,6 +30,9 @@ class BancoDeDados(object):
     def removerDalistaCafeicultor(self,indice):
         listaCafeicultor.pop(indice)
 
+    def adicionarNalistaCafeicultor(self,cafeicultor):
+        listaCafeicultor.append(cafeicultor)
+
     def getCafe(self,indice):
         return listaCafe[indice]
 
@@ -119,8 +122,8 @@ class BancoDeDados(object):
         collection.delete_one({'_id': ObjectId(id)})
 
     #Função para salvar um cafeicultor no BD
-    def alterarDadosDoCafeicultor(self,login,nome,telefone,cidade, endereco,nome_do_banco, agencia_bancaria,numero_da_conta):
+    def alterarDadosDoCafeicultor(self,c):
         collection = self.__db["Usuarios"] #nome da coleção
-        collection.update_one({'login': login},{'$set': {"nome": nome, "telefone":telefone, 
-        "cidade":cidade, "endereco":endereco,"nome_do_banco":nome_do_banco,
-        "agencia_bancaria":agencia_bancaria,"numero_da_conta":numero_da_conta} })
+        collection.update_one({'login': c.loginGet()},{'$set': {"nome": c.nomeGet(), "telefone":c.telefoneGet(), 
+        "cidade":c.cidadeGet(), "endereco":c.enderecoGet(),"nome_do_banco":c.bancoGet(),
+        "agencia_bancaria":c.agenciaGet(),"numero_da_conta":c.contaGet()} })

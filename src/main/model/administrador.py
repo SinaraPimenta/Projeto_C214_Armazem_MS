@@ -1,18 +1,26 @@
-from usuario import Usuario
- 
+from src.main.model.usuario import Usuario
+from src.main.controller.bancoDeDados import BancoDeDados
+
 class Administrador(Usuario):
-
-    def __init__(self,  nome="",login="", senha=""):
-        Usuario.__init__(self, nome, login,senha)
-
-    def buscarCafeicultor(self):
-        print('buscarCafeicultor')
+    bd = BancoDeDados()
     
-    def cadastrarCafeicultor(self):
-        print('cadastrarCafeicultor')
+    def __init__(self,  nome="",login="", senha=""):
+        super().__init__(nome, login,senha)
 
-    def editarCafeicultor(self):
-        print('editarCafeicultor')
+    def buscarCafeicultores(self):
+        return self.bd.buscarCafeicultores()
+    
+    def cadastrarCafeicultor(self,cafeicultor):
+        self.bd.cadastrarCafeicultor(cafeicultor)
+        self.bd.adicionarNalistaCafeicultor(cafeicultor)
 
-    def excluirCafeicultor(self):
-        print('excluirCafeicultor')
+    def editarCafeicultor(self,cafeicultor,indice):
+        self.bd.alterarDadosDoCafeicultor(cafeicultor)
+        self.bd.substituiCafeicultor(indice,cafeicultor)
+
+    def excluirCafeicultor(self,login,indice):
+        self.bd.deletarCafeicultor(login)
+        self.bd.removerDalistaCafeicultor(indice)
+
+    def getCafeicultor(self,indice):
+        return self.bd.getCafeicultor(indice)

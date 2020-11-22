@@ -4,15 +4,16 @@ import hashlib
 from flask import  flash,  redirect, url_for
 from flask import render_template
 from datetime import date
-#from src.main.controller import bancoDeDados
 from src.main.controller.bancoDeDados import BancoDeDados
 from src.main.model.cafeicultor import Cafeicultor
 from src.main.model.sacaCafe import SacaCafe
+from src.main.model.administrador import Administrador
 from src.main.controller.webScrapping import WebScrapping
 
 flag= False
 flagErro = False
 valor_venda = 0
+administrador = Administrador()
 
 def generate_hash(string_hash: str)->str:
     hash_object = hashlib.sha1(string_hash.encode('utf-8'))
@@ -38,20 +39,18 @@ def login():
 #Páginas do admin:
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
-    bd = BancoDeDados()
     html_file= open("templates/admin.html", "r") 
     html = html_file.read()
-    tabela = bd.buscarCafeicultores()
+    tabela = administrador.buscarCafeicultores()
     html=html.replace("table_placeholder",tabela) 
     return html 
 
 @app.route('/admin/dadosCafeicultor/', methods=['GET', 'POST'])
 def verCafeicultor():
-    bd = BancoDeDados()
     html_file= open("templates/ver_cafeicultor.html", "r") 
     html = html_file.read()
     indice = str(request.args.get('id' , "" )) 
-    cafeicultor = bd.getCafeicultor(int(indice))
+    cafeicultor = administrador.getCafeicultor(int(indice))
     if(cafeicultor):
         html = html.replace("NomeCafeilcutor",cafeicultor.nomeGet())
         html = html.replace("CPF",cafeicultor.cpfGet())
@@ -63,15 +62,13 @@ def verCafeicultor():
         html= substituirHTML(cafeicultor.agenciaGet(),"Agencia Bancaria",html)
         html= substituirHTML(cafeicultor.contaGet(),"Numero da Conta",html)
     if request.method == 'POST': #Se houve uma requisição do tipo Post, verificar:
-        bd.deletarCafeicultor(cafeicultor.loginGet())
-        bd.removerDalistaCafeicultor(int(indice))
+        administrador.excluirCafeicultor(cafeicultor.loginGet(),int(indice))
         html = html.replace("eneable","disabled")
         html=html.replace("none","block") #habilita a exibição da mensagem
     return html  
 
 @app.route('/admin/cadastroCafeicultor', methods=['GET', 'POST'])
 def cadastrarCafeicultor():
-    bd = BancoDeDados()
     html_file= open("templates/cadastrar_cafeicultor.html", "r") 
     html = html_file.read() 
     if request.method == 'POST': #Se houve uma requisição do tipo Post, verificar:
@@ -89,13 +86,12 @@ def cadastrarCafeicultor():
         senha = generate_hash(senha)
         if nome!= '':
             cafeicultor = Cafeicultor(nome,email,senha,telefone,cpf,cidade,endereco,banco,agencia,conta)
-            bd.cadastrarCafeicultor(cafeicultor)
+            administrador.cadastrarCafeicultor(cafeicultor)
     return html 
 
 @app.route('/admin/edicaoCafeicultor/', methods=['GET', 'POST'])
 def editaCafeicultor():
     cafeicultor = Cafeicultor()
-    bd = BancoDeDados()
     html_file= open("templates/editar_cafeicultor.html", "r") 
     html = html_file.read() 
     global flag
@@ -103,7 +99,7 @@ def editaCafeicultor():
         html=html.replace("none","block") #habilita a exibição da mensagem
         flag = False
     indice = str(request.args.get('id' , "" )) 
-    cafeicultor = bd.getCafeicultor(int(indice))
+    cafeicultor = administrador.getCafeicultor(int(indice))
     if(cafeicultor):
         html = html.replace("Nome do Cafeicultor",cafeicultor.nomeGet())
         html = html.replace("CPF",cafeicultor.cpfGet())
@@ -135,9 +131,8 @@ def editaCafeicultor():
             agencia = cafeicultor.agenciaGet()
         if conta == '':
             conta = cafeicultor.contaGet()
-        bd.alterarDadosDoCafeicultor(cafeicultor.loginGet(),nome,telefone,cidade,endereco,banco,agencia,conta)
         cafeicultor.atualizaCafeicultor(nome,telefone,endereco,cidade,banco,agencia,conta)
-        bd.substituiCafeicultor(int(indice),cafeicultor)
+        administrador.editarCafeicultor(cafeicultor,int(indice))
         flag = True
         return redirect("/admin/edicaoCafeicultor/?id="+indice)
     return html
