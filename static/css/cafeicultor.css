@@ -1,0 +1,171 @@
+nav {
+    background-color: #524235;
+    height: 45px;
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    color: white;
+    margin-left: 20px;
+    left: 0;
+}
+
+body {
+    background-color: #7eb17e;
+    background: url("https://s1.1zoom.me/b5050/497/Coffee_Grain_545482_1920x1080.jpg");
+    background-size: 100%;
+    background-size: cover;
+}
+
+.nav-button-table {
+    background: none;
+    border: none;
+    color: #524235;
+    margin-left: 5px;
+    left: 0;
+}
+
+.btn-primary {
+    width: 100px;
+    background-color: #524235 !important;
+    border-color: #524235;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+    background-color: #694629 !important;
+    border-color: #694629;
+    border-radius: 5px;
+}
+
+input {
+    width: 350px;
+    margin: 10px;
+
+}
+
+.table {
+    background-color: white;
+    text-align: center;
+    position: fixed;
+    top: 65%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-40%, -50%);
+    border: none;
+    display:table-cell;
+    height: 400px;
+    overflow-y: auto ;
+    width: 850px;
+}
+
+thead {
+    background-color: #524235;
+    color: white
+}
+
+.conteudo {
+    width: 1000px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.search-div {
+    width: 1000px;
+    margin-bottom: 50px;
+    position: fixed;
+    top: 12%;
+    left: 56%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.search-bar {
+    float: right;
+    width: 90%;
+}
+
+.search-icon {
+    color: white;
+    position: absolute;
+    left: 5%;
+    margin-right: 10px;
+    top: 15px;
+}
+
+.cadastrar {
+    width: 300px;
+    position: fixed;
+    top: 240px;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-15%, -50%)
+}
+
+#sidebar-wrapper {
+    width: 250px;
+    position: fixed;
+    top: 7%;
+    left: 0%;
+    height: 800px;
+    background-color: white;
+
+}
+.mymodal {
+position: fixed;
+margin-top: 0%;
+}
+
+#modE {
+    width: 550px;
+    height: 250px;
+    left: 0%;
+}
+
+.rodape {
+    color: white;
+    position: fixed;
+    top: 650px;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-15%, -50%)
+}
+
+.page {
+    width: 1000px;
+}
+
+.nome {
+    width: 500px;
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    color: white;
+    margin-left: 20px;
+    left: 0;
+}
+
+.nav-link {
+    background: none;
+    border: none;
+    color: white;
+    margin-left: 20px;
+    left: 0;
+    width: 200px;
+}
+
+.space {
+    margin-left: 700px;
+    margin-right: 40px;
+}
+
+.fas {
+    margin-right: 5px;
+}
+

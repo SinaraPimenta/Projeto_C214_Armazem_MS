@@ -1,0 +1,147 @@
+nav {
+  background-color: #524235;
+  height: 45px;
+}
+
+.nav-button {
+  background: none;
+  border: none;
+  color: white;
+  margin-left: 20px;
+  left: 0;
+}
+
+body {
+  background-color: #7eb17e;
+  background: url("https://s1.1zoom.me/b5050/497/Coffee_Grain_545482_1920x1080.jpg");
+  background-size: 100%;
+  background-size: cover;
+}
+
+.btn-primary {
+  width: 100px;
+  background-color: #524235 !important;
+  border-color: #524235;
+  border-radius: 5px;
+}
+
+.btn-primary:hover {
+  background-color: #694629 !important;
+  border-color: #694629;
+  border-radius: 5px;
+}
+
+input {
+  width: 350px;
+  margin: 10px;
+}
+
+#sidebar-wrapper {
+  width: 250px;
+  position: fixed;
+  top: 7%;
+  left: 0%;
+  height: 800px;
+  background-color: white;
+}
+
+.rodape {
+  color: white;
+  position: fixed;
+  top: 650px;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-15%, -50%)
+}
+
+.fas {
+  margin-right: 5px;
+}
+
+.mymodal {
+  position: fixed;
+  top: 52%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-80%, -50%);
+}
+
+.nav-button {
+  background: none;
+  border: none;
+  color: white;
+  margin-left: 20px;
+  left: 0;
+}
+
+.modal-content {
+  position: relative;
+  top:-7px;
+  width: 1010px;
+  height: 450px;
+}
+
+#formControlQtd {
+  width: 100px;
+}
+
+#formControlTipo, #formControlBebida {
+  width: 250px;
+}
+
+#valor-unid-bar {
+  width: 100px;
+  position: absolute;
+  top: 35.4%;
+  float: left;
+}
+
+#valor-unid-icon {
+  position: absolute;
+  top: 60%;
+  float: left;
+  left:-5%;
+}
+
+#mensagem
+{
+  position: fixed;
+  color: rgb(76, 185, 49);
+  right: -100px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#mensagemErro
+{
+  color: rgb(250, 8, 8);
+  margin-right: 200px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#calcular{
+  position: absolute;
+  top: 50%;
+}
+
+#valor-unid-input {
+  width: 200px;
+  position: absolute;
+  top: 35.4%;
+  float: left;
+  font-weight: bold;
+}
+
+.modal-footer{
+  width: 1010px;
+  position: fixed;
+  top: 75%;
+  right: -510px;
+}
+
+.space {
+  margin-left: 700px;
+  margin-right: 40px;
+}
+

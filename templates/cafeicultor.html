@@ -1,6 +1,5 @@
 <!doctype html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,173 +12,9 @@
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <script src="/static/bootstrap/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
     <script src="/static/bootstrap/bootstrap.bundle.min.js"></script>
-    <script>$('#modalExcluir').modal('show');</script>
-    <style>
-        nav {
-            background-color: #524235;
-            height: 45px;
-        }
-
-        body {
-            background-color: #7eb17e;
-            background: url("https://s1.1zoom.me/b5050/497/Coffee_Grain_545482_1920x1080.jpg");
-            background-size: 100%;
-            background-size: cover;
-        }
-
-        .nav-button-table {
-            background: none;
-            border: none;
-            color: #524235;
-            margin-left: 5px;
-            left: 0;
-        }
-
-        .btn-primary {
-            width: 100px;
-            background-color: #524235 !important;
-            border-color: #524235;
-            border-radius: 5px;
-        }
-
-        .btn-primary:hover {
-            background-color: #694629 !important;
-            border-color: #694629;
-            border-radius: 5px;
-        }
-
-        input {
-            width: 350px;
-            margin: 10px;
-
-        }
-
-        .table {
-            background-color: white;
-            text-align: center;
-            position: fixed;
-            top: 65%;
-            left: 50%;
-            margin-right: -50%;
-            transform: translate(-40%, -50%);
-            border: none;
-            display:table-cell;
-            height: 400px;
-            overflow-y: auto ;
-            width: 850px;
-        }
-
-        thead {
-            background-color: #524235;
-            color: white
-        }
-
-        .conteudo {
-            width: 1000px;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            margin-right: -50%;
-            transform: translate(-50%, -50%)
-        }
-
-        .search-div {
-            width: 1000px;
-            margin-bottom: 50px;
-            position: fixed;
-            top: 12%;
-            left: 56%;
-            margin-right: -50%;
-            transform: translate(-50%, -50%)
-        }
-
-        .search-bar {
-            float: right;
-            width: 90%;
-        }
-
-        .search-icon {
-            color: white;
-            position: absolute;
-            left: 5%;
-            margin-right: 10px;
-            top: 15px;
-        }
-
-        .cadastrar {
-            width: 300px;
-            position: fixed;
-            top: 240px;
-            left: 50%;
-            margin-right: -50%;
-            transform: translate(-15%, -50%)
-        }
-
-        #sidebar-wrapper {
-            width: 250px;
-            position: fixed;
-            top: 7%;
-            left: 0%;
-            height: 800px;
-            background-color: white;
-
-        }
-        .mymodal {
-        position: fixed;
-        margin-top: 0%;
-        }
-
-        #modE {
-            width: 550px;
-            height: 250px;
-            left: 0%;
-        }
-
-        .rodape {
-            color: white;
-            position: fixed;
-            top: 650px;
-            left: 50%;
-            margin-right: -50%;
-            transform: translate(-15%, -50%)
-        }
-
-        .page {
-            width: 1000px;
-        }
-
-        .nome {
-            width: 500px;
-        }
-
-        .nav-button {
-            background: none;
-            border: none;
-            color: white;
-            margin-left: 20px;
-            left: 0;
-        }
-
-        .nav-link {
-            background: none;
-            border: none;
-            color: white;
-            margin-left: 20px;
-            left: 0;
-            width: 200px;
-        }
-
-        .space {
-            margin-left: 700px;
-            margin-right: 40px;
-        }
-
-        .fas {
-            margin-right: 5px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/static/css/cafeicultor.css">
+    <script src="/static/js/cafeicultor.js"></script>
 </head>
-
 <body>
     <nav class="navbar navbar-expand-md  fixed-top">
         <a class="nav-link" href="/cafeicultor">
@@ -199,8 +34,7 @@
                 location.href = "/";
             };
         </script>
-    </nav>
-    <!-- Conteúdo da página -->
+    </nav>    
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
         <div class="list-group list-group-flush">
@@ -209,91 +43,24 @@
             <a href="http://cccmg.com.br/cotacao-do-cafe/" class="list-group-item list-group-item-action ">Cotacao do cafe</a>
         </div>
     </div>
-    <!-- /#sidebar-wrapper -->
+    <!-- Conteúdo da página -->
     <div class="page">
         <div class="search-div">
             <i class="fas fa-search search-icon" aria-hidden="true"></i>
             <input class="form-control search-bar" type="text" placeholder="Buscar saca de cafe ..."
                 id="buscar" aria-label="Search" onkeyup="buscarCafe()">
         </div>
-        <script type="text/javascript">
-            function buscarCafe() {
-                var input, filtro, ul, li, a, i, txtValue,achouTipo,achouBebida;
-                input = document.getElementById('buscar');
-                filtro = input.value.toUpperCase();
-                tabela = document.getElementById("tabela");
-                tr = tabela.getElementsByTagName('tr');
-                
-                for (i = 1; i < tr.length; i++) {
-                    achouTipo = false;
-                    achouBebida = false;
-                    td = tr[i].getElementsByTagName("td")[0];
-                    td2 = tr[i].getElementsByTagName("td")[1];
-                    if(td)
-                    {
-                        txtValue = td.textContent || td.innerText;
-                        if (txtValue.toUpperCase().indexOf(filtro) > -1) 
-                        {
-                            tr[i].style.display = "";
-                            achouTipo = true;
-                        } 
-                    }  
-                    if(td2)
-                    {
-                        txtValue = td2.textContent || td2.innerText;
-                        if (txtValue.toUpperCase().indexOf(filtro) > -1) 
-                        {
-                            tr[i].style.display = "";
-                            achouBebida = true;
-                        }
-                    }
-                    if (achouTipo==false && achouBebida==false) {
-                        tr[i].style.display = "none";
-                    }
-                    
-                }
-            };
-        </script>
         <div class="conteudo">
-            table_placeholder <!-- Aqui será inserido a lista de cafeicultores-->
+            table_placeholder <!-- Aqui será inserido a lista de cafes-->
             <button type="button" class="btn btn-primary cadastrar" id="cadastrar">Cadastrar Saca de Cafe</button>
             <script type="text/javascript">
                 document.getElementById("cadastrar").onclick = function () {
                     location.href = "/cafeicultor/cadastroCafe";
                 };
-                function editarCafe(id) {
-                    location.href = "/cafeicultor/edicaoCafe/?id="+id;
-                };
-                function venderCafe(id) {
-                    location.href = "/cafeicultor/vendaCafe/?id="+id;
-                };
             </script>
         </div>
-        <div class="modal fade mymodal container-fluid " id="modalExcluir" tabindex="-1" role="dialog"
-            aria-labelledby="verModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content" id=modE>
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Excluir Cafe</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    <div class="modal-body">
-                    <p>Voce tem certeza que deseja excluir o cafe do sistema?</p>
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Confirmar</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button> 
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        
     </div>
     <footer class="rodape">
         <p class="text-center">&copy; Armazem-MS (Build 20201110 - 2300)</p>
     </footer>
-
 </html>
