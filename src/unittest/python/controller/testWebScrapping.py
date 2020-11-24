@@ -1,4 +1,4 @@
-from main.python.controller.webScrapping import WebScrapping 
+from src.main.controller.webScrapping import WebScrapping 
 
 import unittest
 from unittest import TestCase
