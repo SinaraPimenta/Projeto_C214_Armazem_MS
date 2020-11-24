@@ -8,6 +8,7 @@ from src.main.model.cafeicultor import Cafeicultor
 from src.main.model.sacaCafe import SacaCafe
 from src.main.model.administrador import Administrador
 from src.main.controller.webScrapping import WebScrapping
+from src.main.controller.bancoDeDadosLogin import BancoDeDadosLogin
 
 flag= False
 flagErro = False
@@ -30,10 +31,43 @@ def substituirHTML(var,value,html):
     return html
 
 #Página de Login
-@app.route('/')
+@app.route('/',methods=['GET', 'POST'])
 def login():
+    global usuarioLogado 
     html_file = open("templates/login.html","r")
     html = html_file.read()
+    if request.method == 'POST':
+        email = request.form["email"]
+        senha = request.form["senha"]
+        senha = generate_hash(senha)
+        bd = BancoDeDadosLogin()
+        resposta = bd.buscarUsuarioParaLogar(email,senha)
+        if resposta == None:
+            html = html.replace("Entre com seu email","Email/senha incorretos, entre com seu email")
+            html = html.replace("Entre com sua senha","Email/senha incorretos, entre com sua senha")
+        elif resposta['tipo'] == 'Cafeicultor':
+            usuarioLogado = email
+            return redirect("/cafeicultor")
+        elif resposta['tipo'] == 'Administrador':
+            usuarioLogado = email
+            return redirect("/admin")
+    return html
+
+#Pagina de Trocar a Senha
+@app.route('/novaSenha',methods=['GET', 'POST'])
+def novaSenha():
+    html_file = open("templates/trocar_senha.html","r")
+    html = html_file.read()
+    if request.method == 'POST':
+        email = request.form["email"]
+        novaSenha = request.form["senha"]
+        novaSenha = generate_hash(novaSenha)
+        bd = BancoDeDadosLogin()
+        resposta = bd.buscarUsuarioParaTrocarSenha(email,novaSenha)
+        if resposta == None:
+            html = html.replace("Entre com seu email","Email incorreto, entre com seu email")
+        else:
+            return redirect("/")
     return html
 
 #Páginas do admin:
@@ -41,6 +75,8 @@ def login():
 def admin():
     html_file= open("templates/admin.html", "r") 
     html = html_file.read()
+    global usuarioLogado
+    html = html.replace("login do usuario", usuarioLogado)
     tabela = administrador.buscarCafeicultores("Usuarios")
     html=html.replace("table_placeholder",tabela) 
     return html 
@@ -49,6 +85,8 @@ def admin():
 def verCafeicultor():
     html_file= open("templates/ver_cafeicultor.html", "r") 
     html = html_file.read()
+    global usuarioLogado
+    html = html.replace("login do usuario", usuarioLogado)
     indice = str(request.args.get('id' , "" )) 
     cafeicultor = administrador.getCafeicultor(int(indice))
     if(cafeicultor):
@@ -71,6 +109,8 @@ def verCafeicultor():
 def cadastrarCafeicultor():
     html_file= open("templates/cadastrar_cafeicultor.html", "r") 
     html = html_file.read() 
+    global usuarioLogado
+    html = html.replace("login do usuario", usuarioLogado)
     if request.method == 'POST': #Se houve uma requisição do tipo Post, verificar:
         html=html.replace("none","block") #habilita a exibição da mensagem
         nome = request.form["nome"]
@@ -94,6 +134,8 @@ def editaCafeicultor():
     cafeicultor = Cafeicultor()
     html_file= open("templates/editar_cafeicultor.html", "r") 
     html = html_file.read() 
+    global usuarioLogado
+    html = html.replace("login do usuario", usuarioLogado)
     global flag
     if(flag):
         html=html.replace("none","block") #habilita a exibição da mensagem
@@ -142,22 +184,40 @@ def editaCafeicultor():
 def cafeicultor():
     html_file= open("templates/cafeicultor.html", "r") 
     html = html_file.read() 
-    login = 'fulano_de_tal123@hotmail.com'
-    tabela = cafeicultorSacas.buscarCafe(login,"SacasDeCafe")
+    global usuarioLogado
+    html = html.replace("login do usuario", usuarioLogado)
+    tabela = cafeicultorSacas.buscarCafe(usuarioLogado,"SacasDeCafe")
     html=html.replace("table_placeholder",tabela)
     return html
 
-#@app.route('/cafeicultor/dadosPessoais')
-#def cafeicultorDadosPessoais():
- #   html_file= open("templates/dados_pessoais.html", "r") 
-  #  html = html_file.read() 
-   # return html  
+@app.route('/cafeicultor/dadosPessoais')
+def cafeicultorDadosPessoais():
+    html_file= open("templates/dados_cafeicultor.html", "r") 
+    html = html_file.read()
+    global usuarioLogado
+    html = html.replace("login do usuario", usuarioLogado)
+    bd = BancoDeDadosLogin()
+    cafeicultor = bd.getCafeicultorBD(usuarioLogado)
+    print(cafeicultor.nomeGet())
+    if(cafeicultor):
+        html = html.replace("NomeCafeilcutor",cafeicultor.nomeGet())
+        html = html.replace("CPF",cafeicultor.cpfGet())
+        html= substituirHTML(cafeicultor.telefoneGet(),"Telefone",html)
+        html= substituirHTML(cafeicultor.loginGet(),"Email",html)
+        html= substituirHTML(cafeicultor.enderecoGet(),"Rua, numero",html)
+        html= substituirHTML(cafeicultor.cidadeGet(),"Cidade",html)
+        html= substituirHTML(cafeicultor.bancoGet(),"Banco",html)
+        html= substituirHTML(cafeicultor.agenciaGet(),"Agencia Bancaria",html)
+        html= substituirHTML(cafeicultor.contaGet(),"Numero da Conta",html)
+    return html
 
 @app.route('/cafeicultor/vendaCafe/', methods=['GET', 'POST'])
 def cafeicultorVender():
     global flag,flagErro,valor_venda
     html_file= open("templates/vender_cafe.html", "r") 
     html = html_file.read()
+    global usuarioLogado
+    html = html.replace("login do usuario", usuarioLogado)
     indice = str(request.args.get('id' , "" )) 
     cafe = cafeicultorSacas.getCafe(int(indice))
     if(flag):
@@ -193,9 +253,10 @@ def cafeicultorVender():
 
 @app.route('/cafeicultor/cadastroCafe', methods=['GET', 'POST'])
 def cadastrarCafe():
-    flag = False
     html_file= open("templates/cadastrar_cafe.html", "r") 
     html = html_file.read() 
+    global usuarioLogado
+    html = html.replace("login do usuario", usuarioLogado)
     if request.method == 'POST': #Se houve uma requisição do tipo Post, verificar:
         if "formControlQtd" in request.form:
             qtd = int(request.form["formControlQtd"])
@@ -224,6 +285,8 @@ def editarCafe():
     global flag,flagErro
     html_file = open("templates/editar_cafe.html","r")
     html = html_file.read()
+    global usuarioLogado
+    html = html.replace("login do usuario", usuarioLogado)
     indice = str(request.args.get('id' , "" )) 
     cafe = cafeicultorSacas.getCafe(int(indice))
     if(flag):
