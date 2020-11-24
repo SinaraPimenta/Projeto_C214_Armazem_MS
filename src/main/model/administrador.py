@@ -1,8 +1,8 @@
 from src.main.model.usuario import Usuario
-from src.main.controller.bancoDeDados import BancoDeDados
+from src.main.controller.bancoDeDadosAdmin import BancoDeDadosAdmin
 
 class Administrador(Usuario):
-    bd = BancoDeDados()
+    bd = BancoDeDadosAdmin()
     
     def __init__(self,  nome="",login="", senha=""):
         super().__init__(nome, login,senha)

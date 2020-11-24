@@ -1,8 +1,8 @@
 from src.main.model.usuario import Usuario
-from src.main.controller.bancoDeDados import BancoDeDados
+from src.main.controller.bancoDeDadosCafeicultor import BancoDeDadosCafeicultor
 
 class Cafeicultor(Usuario):
-    bd = BancoDeDados()
+    bd = BancoDeDadosCafeicultor()
     __telefone: str
     __cpf: str
     __cidade: str
@@ -96,7 +96,7 @@ class Cafeicultor(Usuario):
         self.bd.deletarSacaDeCafe(id)
         self.bd.removerDalistaCafe(indice)
     
-    def venderCafe(self,cafe,valor_novo_data,indice):
+    def venderCafe(self,cafe,valor_novo,data,indice):
         self.bd.venderSacaDeCafe(cafe,valor_novo,data)
         self.bd.substituiCafe(indice,cafe) 
     
