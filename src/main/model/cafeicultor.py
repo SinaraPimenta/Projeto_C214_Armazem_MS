@@ -1,6 +1,8 @@
 from src.main.model.usuario import Usuario
+from src.main.controller.bancoDeDados import BancoDeDados
 
 class Cafeicultor(Usuario):
+    bd = BancoDeDados()
     __telefone: str
     __cpf: str
     __cidade: str
@@ -79,20 +81,27 @@ class Cafeicultor(Usuario):
         self.agenciaSet(agencia)
         self.contaSet(conta)
 
-    def buscarCafe(self):
-        print('busca cafe')
+    def buscarCafe(self,login):
+        return self.bd.buscarSacasDeCafe(login)
 
-    def cadastrarVenda(self):
-        print('cadastra venda')
+    def cadastrarCafe(self,cafe,valor,data):
+        self.bd.cadastrarSacasDeCafe(cafe,valor,data)
+        self.bd.adicionarNalistaCafe(cafe)
 
-    def editarCafe(self):
-        print('editar o café')
+    def editarCafe(self,cafe,valor,data,indice):
+        self.bd.alterarSacaDeCafe(cafe,valor,data)
+        self.bd.substituiCafe(indice,cafe)
 
-    def excluirCafe(self):
-        print('excluir o café')
+    def excluirCafe(self,id,indice):
+        self.bd.deletarSacaDeCafe(id)
+        self.bd.removerDalistaCafe(indice)
     
-    def venderCafe(self):
-        print('vende o café')
+    def venderCafe(self,cafe,valor_novo_data,indice):
+        self.bd.venderSacaDeCafe(cafe,valor_novo,data)
+        self.bd.substituiCafe(indice,cafe) 
+    
+    def getCafe(self,indice):
+        return self.bd.getCafe(indice)
 
     
     

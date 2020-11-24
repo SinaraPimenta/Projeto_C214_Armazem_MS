@@ -1,6 +1,5 @@
 import pymongo
 from bson.objectid import ObjectId
-from src.main.model.cafeicultor import Cafeicultor
 from src.main.model.sacaCafe import SacaCafe
 from src.main.model.cafeicultor import Cafeicultor
 
@@ -41,6 +40,9 @@ class BancoDeDados(object):
 
     def removerDalistaCafe(self,indice):
         listaCafe.pop(indice)
+
+    def adicionarNalistaCafe(self,cafe):
+        listaCafe.append(cafe)
 
     #Função para retornar os cafeicultores salvos no BD
     def buscarCafeicultores(self):
