@@ -1,8 +1,14 @@
-from src.main.model.usuario import Usuario
-from src.main.controller.bancoDeDadosCafeicultor import BancoDeDadosCafeicultor
+import sys
+sys.path.append('src/main/model')
+import usuario
+sys.path.append('src/main/controller')
+import bancoDeDadosCafeicultor
 
-class Cafeicultor(Usuario):
-    bd = BancoDeDadosCafeicultor()
+#from src.main.model.usuario import Usuario
+#from src.main.controller.bancoDeDadosCafeicultor import BancoDeDadosCafeicultor
+
+class Cafeicultor(usuario.Usuario):
+    bd = bancoDeDadosCafeicultor.BancoDeDadosCafeicultor()
     __telefone: str
     __cpf: str
     __cidade: str
@@ -81,23 +87,23 @@ class Cafeicultor(Usuario):
         self.agenciaSet(agencia)
         self.contaSet(conta)
 
-    def buscarCafe(self,login):
-        return self.bd.buscarSacasDeCafe(login)
+    def buscarCafe(self,login,colecao):
+        return self.bd.buscarSacasDeCafe(login,colecao)
 
-    def cadastrarCafe(self,cafe,valor,data):
-        self.bd.cadastrarSacasDeCafe(cafe,valor,data)
+    def cadastrarCafe(self,cafe,valor,data,colecao):
+        self.bd.cadastrarSacasDeCafe(cafe,valor,data,colecao)
         self.bd.adicionarNalistaCafe(cafe)
 
-    def editarCafe(self,cafe,valor,data,indice):
-        self.bd.alterarSacaDeCafe(cafe,valor,data)
+    def editarCafe(self,cafe,valor,data,indice,colecao):
+        self.bd.alterarSacaDeCafe(cafe,valor,data,colecao)
         self.bd.substituiCafe(indice,cafe)
 
-    def excluirCafe(self,id,indice):
-        self.bd.deletarSacaDeCafe(id)
+    def excluirCafe(self,id,indice,colecao):
+        self.bd.deletarSacaDeCafe(id,colecao)
         self.bd.removerDalistaCafe(indice)
     
-    def venderCafe(self,cafe,valor_novo,data,indice):
-        self.bd.venderSacaDeCafe(cafe,valor_novo,data)
+    def venderCafe(self,cafe,valor_novo,data,indice,colecao):
+        self.bd.venderSacaDeCafe(cafe,valor_novo,data,colecao)
         self.bd.substituiCafe(indice,cafe) 
     
     def getCafe(self,indice):

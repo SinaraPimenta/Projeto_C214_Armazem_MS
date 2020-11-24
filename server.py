@@ -41,7 +41,7 @@ def login():
 def admin():
     html_file= open("templates/admin.html", "r") 
     html = html_file.read()
-    tabela = administrador.buscarCafeicultores()
+    tabela = administrador.buscarCafeicultores("Usuarios")
     html=html.replace("table_placeholder",tabela) 
     return html 
 
@@ -62,7 +62,7 @@ def verCafeicultor():
         html= substituirHTML(cafeicultor.agenciaGet(),"Agencia Bancaria",html)
         html= substituirHTML(cafeicultor.contaGet(),"Numero da Conta",html)
     if request.method == 'POST': #Se houve uma requisição do tipo Post, verificar:
-        administrador.excluirCafeicultor(cafeicultor.loginGet(),int(indice))
+        administrador.excluirCafeicultor(cafeicultor.loginGet(),int(indice),"Usuarios")
         html = html.replace("eneable","disabled")
         html=html.replace("none","block") #habilita a exibição da mensagem
     return html  
@@ -86,7 +86,7 @@ def cadastrarCafeicultor():
         senha = generate_hash(senha)
         if nome!= '':
             cafeicultor = Cafeicultor(nome,email,senha,telefone,cpf,cidade,endereco,banco,agencia,conta)
-            administrador.cadastrarCafeicultor(cafeicultor)
+            administrador.cadastrarCafeicultor(cafeicultor,"Usuarios")
     return html 
 
 @app.route('/admin/edicaoCafeicultor/', methods=['GET', 'POST'])
@@ -132,7 +132,7 @@ def editaCafeicultor():
         if conta == '':
             conta = cafeicultor.contaGet()
         cafeicultor.atualizaCafeicultor(nome,telefone,endereco,cidade,banco,agencia,conta)
-        administrador.editarCafeicultor(cafeicultor,int(indice))
+        administrador.editarCafeicultor(cafeicultor,int(indice),"Usuarios")
         flag = True
         return redirect("/admin/edicaoCafeicultor/?id="+indice)
     return html
@@ -143,15 +143,15 @@ def cafeicultor():
     html_file= open("templates/cafeicultor.html", "r") 
     html = html_file.read() 
     login = 'fulano_de_tal123@hotmail.com'
-    tabela = cafeicultorSacas.buscarCafe(login)
+    tabela = cafeicultorSacas.buscarCafe(login,"SacasDeCafe")
     html=html.replace("table_placeholder",tabela)
     return html
 
-@app.route('/cafeicultor/dadosPessoais')
-def cafeicultorDadosPessoais():
-    html_file= open("templates/dados_pessoais.html", "r") 
-    html = html_file.read() 
-    return html  
+#@app.route('/cafeicultor/dadosPessoais')
+#def cafeicultorDadosPessoais():
+ #   html_file= open("templates/dados_pessoais.html", "r") 
+  #  html = html_file.read() 
+   # return html  
 
 @app.route('/cafeicultor/vendaCafe/', methods=['GET', 'POST'])
 def cafeicultorVender():
@@ -181,12 +181,12 @@ def cafeicultorVender():
         data = data.strftime("%d/%m/%Y")
         qtd_nova = cafe.quantidadeGet() - qtd_venda
         if qtd_nova==0:
-            cafeicultorSacas.excluirCafe(cafe.idGet(),int(indice))
+            cafeicultorSacas.excluirCafe(cafe.idGet(),int(indice),"SacasDeCafe")
             flagErro = True
         else:
             valor_novo = webS.cotacaoCafe(cafe.tipoGet(),cafe.classificacaoGet()) * qtd_nova
             cafe.atualizaCafe(cafe.tipoGet(),cafe.classificacaoGet(),qtd_nova,valor_novo,data)
-            cafeicultorSacas.venderCafe(cafe,valor_novo_data,int(indice)) 
+            cafeicultorSacas.venderCafe(cafe,valor_novo,data,int(indice),"SacasDeCafe") 
             flag = True   
         return redirect("/cafeicultor/vendaCafe/?id="+indice)
     return html
@@ -216,7 +216,7 @@ def cadastrarCafe():
                     html=html.replace("none","block") #habilita a exibição da mensagem
                     login = 'fulano_de_tal123@hotmail.com' #PEGAR O LOGIN DA PESSOAAAAAA
                     cafe = SacaCafe(tipo,classificacao_bebida,qtd,0.0,'',login)
-                    cafeicultorSacas.cadastrarCafe(cafe,valor,data)
+                    cafeicultorSacas.cadastrarCafe(cafe,valor,data,"SacasDeCafe")
     return html
 
 @app.route('/cafeicultor/edicaoCafe/', methods=['GET','POST'])
@@ -255,13 +255,13 @@ def editarCafe():
         data = data.strftime("%d/%m/%Y")
         if valor==0:
             if qtd==0:
-                cafeicultorSacas.excluirCafe(cafe.idGet(),int(indice))
+                cafeicultorSacas.excluirCafe(cafe.idGet(),int(indice),"SacasDeCafe")
                 return redirect("/cafeicultor")
             else:
                 flagErro = True
         else:            
             cafe.atualizaCafe(tipo,bebida,qtd,valor,data)
-            cafeicultorSacas.editarCafe(cafe,valor,data,int(indice))
+            cafeicultorSacas.editarCafe(cafe,valor,data,int(indice),"SacasDeCafe")
             flag = True   
         return redirect("/cafeicultor/edicaoCafe/?id="+indice)
     return html
