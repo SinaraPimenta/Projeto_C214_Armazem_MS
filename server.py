@@ -4,7 +4,6 @@ import hashlib
 from flask import  flash,  redirect, url_for
 from flask import render_template
 from datetime import date
-from src.main.controller.bancoDeDados import BancoDeDados
 from src.main.model.cafeicultor import Cafeicultor
 from src.main.model.sacaCafe import SacaCafe
 from src.main.model.administrador import Administrador
@@ -14,6 +13,7 @@ flag= False
 flagErro = False
 valor_venda = 0
 administrador = Administrador()
+cafeicultorSacas = Cafeicultor()
 
 def generate_hash(string_hash: str)->str:
     hash_object = hashlib.sha1(string_hash.encode('utf-8'))
@@ -140,11 +140,10 @@ def editaCafeicultor():
 #Páginas do cafeicultor:
 @app.route('/cafeicultor')
 def cafeicultor():
-    bd = BancoDeDados()
     html_file= open("templates/cafeicultor.html", "r") 
     html = html_file.read() 
     login = 'fulano_de_tal123@hotmail.com'
-    tabela = bd.buscarSacasDeCafe(login)
+    tabela = cafeicultorSacas.buscarCafe(login)
     html=html.replace("table_placeholder",tabela)
     return html
 
@@ -157,11 +156,10 @@ def cafeicultorDadosPessoais():
 @app.route('/cafeicultor/vendaCafe/', methods=['GET', 'POST'])
 def cafeicultorVender():
     global flag,flagErro,valor_venda
-    bd = BancoDeDados()
     html_file= open("templates/vender_cafe.html", "r") 
     html = html_file.read()
     indice = str(request.args.get('id' , "" )) 
-    cafe = bd.getCafe(int(indice))
+    cafe = cafeicultorSacas.getCafe(int(indice))
     if(flag):
         html=html.replace("none","block") #habilita a exibição da mensagem
         html=html.replace("Valor do cafe",str(cafe.valorGet())) 
@@ -183,13 +181,12 @@ def cafeicultorVender():
         data = data.strftime("%d/%m/%Y")
         qtd_nova = cafe.quantidadeGet() - qtd_venda
         if qtd_nova==0:
-            bd.deletarSacaDeCafe(cafe.idGet())
+            cafeicultorSacas.excluirCafe(cafe.idGet(),int(indice))
             flagErro = True
         else:
             valor_novo = webS.cotacaoCafe(cafe.tipoGet(),cafe.classificacaoGet()) * qtd_nova
             cafe.atualizaCafe(cafe.tipoGet(),cafe.classificacaoGet(),qtd_nova,valor_novo,data)
-            bd.venderSacaDeCafe(cafe,valor_novo,data)
-            bd.substituiCafe(int(indice),cafe)  
+            cafeicultorSacas.venderCafe(cafe,valor_novo_data,int(indice)) 
             flag = True   
         return redirect("/cafeicultor/vendaCafe/?id="+indice)
     return html
@@ -197,7 +194,6 @@ def cafeicultorVender():
 @app.route('/cafeicultor/cadastroCafe', methods=['GET', 'POST'])
 def cadastrarCafe():
     flag = False
-    bd = BancoDeDados()
     html_file= open("templates/cadastrar_cafe.html", "r") 
     html = html_file.read() 
     if request.method == 'POST': #Se houve uma requisição do tipo Post, verificar:
@@ -220,17 +216,16 @@ def cadastrarCafe():
                     html=html.replace("none","block") #habilita a exibição da mensagem
                     login = 'fulano_de_tal123@hotmail.com' #PEGAR O LOGIN DA PESSOAAAAAA
                     cafe = SacaCafe(tipo,classificacao_bebida,qtd,0.0,'',login)
-                    bd.cadastrarSacasDeCafe(cafe,valor,data)
+                    cafeicultorSacas.cadastrarCafe(cafe,valor,data)
     return html
 
 @app.route('/cafeicultor/edicaoCafe/', methods=['GET','POST'])
 def editarCafe():
     global flag,flagErro
-    bd = BancoDeDados()
     html_file = open("templates/editar_cafe.html","r")
     html = html_file.read()
     indice = str(request.args.get('id' , "" )) 
-    cafe = bd.getCafe(int(indice))
+    cafe = cafeicultorSacas.getCafe(int(indice))
     if(flag):
         html=html.replace("none","block") #habilita a exibição da mensagem
         html=html.replace("visible","hidden") #habilita a exibição da mensagem
@@ -260,14 +255,13 @@ def editarCafe():
         data = data.strftime("%d/%m/%Y")
         if valor==0:
             if qtd==0:
-                bd.deletarSacaDeCafe(cafe.idGet())
+                cafeicultorSacas.excluirCafe(cafe.idGet(),int(indice))
                 return redirect("/cafeicultor")
             else:
                 flagErro = True
         else:            
             cafe.atualizaCafe(tipo,bebida,qtd,valor,data)
-            bd.alterarSacaDeCafe(cafe,valor,data)
-            bd.substituiCafe(int(indice),cafe)  
+            cafeicultorSacas.editarCafe(cafe,valor,data,int(indice))
             flag = True   
         return redirect("/cafeicultor/edicaoCafe/?id="+indice)
     return html
