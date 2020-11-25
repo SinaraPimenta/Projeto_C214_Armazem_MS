@@ -26,10 +26,14 @@ class BancoDeDadosCafeicultor(object):
     def adicionarNalistaCafe(self,cafe):
         listaCafe.append(cafe)       
 
-    #Função para retornar as sacas de cafe de um cafeicultor salvas no BD
-    def buscarSacasDeCafe(self,login,colecao):
+    def buscaNoBD(self,login,colecao):
         collection = self.__db[colecao] #nome da coleção
         resposta = collection.find({'login':login}) #Busca-se no BD e exibe a listaCafe em html
+        return resposta
+
+    #Função para retornar as sacas de cafe de um cafeicultor salvas no BD
+    def buscarSacasDeCafe(self,login,colecao):
+        resposta = self.buscaNoBD(login,colecao) #Busca-se no BD e exibe a listaCafe em html
         Html = '<table id="tabela" class="table"><thead><tr><th scope="col">#</th><th scope="col">Tipo</th><th scope="col">Bebida</th><th scope="col">Valor* [R$]</th><th scope="col">Quantidade</th><th scope="col">Data do cadastro</th><th scope="col"></th><th scope="col"></th></tr></thead><tbody>'
         indice = 0
         for data in resposta:

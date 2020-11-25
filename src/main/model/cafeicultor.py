@@ -109,6 +109,9 @@ class Cafeicultor(usuario.Usuario):
     def getCafe(self,indice):
         return self.bd.getCafe(indice)
 
+    def consultaBd(self,login,colecao):
+        retorno = self.bd.buscaNoBD(login,colecao)
+        return retorno
     
     
     #def solicitarDados(self):
