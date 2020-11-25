@@ -15,12 +15,6 @@ class BancoDeDadosAdmin(object):
     __db = __cliente["ArmazemMS"] #nome do banco
     __listaCafeicultor = []
 
-    #Função para verificar credencias no BD e retornar 1 usuário
-    def buscarUsuarioParaLogar(self,login,senha):
-        collection = self.__db["Usuarios"]#nome da coleção
-        resposta = collection.find_one({'login':login, 'senha':senha})
-        return print('oi')
-
     def getCafeicultor(self,indice):
         return listaCafeicultor[indice]
 

@@ -33,7 +33,7 @@ input {
   padding: 10px;
   text-align: center;
   border-radius: 5%;
-  height: 320px;
+  height: 340px;
   width: 400px;
   position: fixed;
   top: 55%;
@@ -58,4 +58,7 @@ input {
   margin-right: -50%;
   transform: translate(-50%, -50%);
 
+}
+#link-senha{
+  color: #502e13;
 }
