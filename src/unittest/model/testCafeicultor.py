@@ -37,7 +37,7 @@ class AdministradorTest(TestCase):
         
         self.c.excluirCafe(ObjectId(idC),0,self.colecao)
     
-    def test_cadastrarCafeicultor(self):
+    def test_cadastrarCafe(self):
         self.c.cadastrarCafe(self.s,1200,"25/11/2020",self.colecao) 
         cafe = self.c.consultaBd(self.s.loginGet(),self.colecao)
         for data in cafe:
@@ -55,7 +55,7 @@ class AdministradorTest(TestCase):
         self.c.excluirCafe(ObjectId(idC),0,self.colecao) 
     
     
-    def test_editarCafeicultor(self):
+    def test_editarCafe(self):
         self.c.cadastrarCafe(self.s ,1200,'25/11/2020',self.colecao) 
         cafe = self.c.consultaBd(self.s.loginGet(),self.colecao)
         for data in cafe:
@@ -74,7 +74,7 @@ class AdministradorTest(TestCase):
         
         self.c.excluirCafe(idC,0,self.colecao) 
     
-    def test_excluirCafeicultor(self):
+    def test_excluirCafe(self):
         self.c.cadastrarCafe(self.s,1200,"25/11/2020",self.colecao) 
         cafe = self.c.consultaBd(self.s.loginGet(),self.colecao)
         for data in cafe:
