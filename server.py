@@ -8,13 +8,15 @@ from src.main.model.cafeicultor import Cafeicultor
 from src.main.model.sacaCafe import SacaCafe
 from src.main.model.administrador import Administrador
 from src.main.controller.webScrapping import WebScrapping
-from src.main.controller.bancoDeDadosLogin import BancoDeDadosLogin
+from src.main.controller.mediador import MediadorDoCafeicultor
+from src.main.controller.bancoDeDadosCafeicultor import BancoDeDados
 
 flag= False
 flagErro = False
 valor_venda = 0
 administrador = Administrador()
 cafeicultorSacas = Cafeicultor()
+bd = BancoDeDados()
 
 def generate_hash(string_hash: str)->str:
     hash_object = hashlib.sha1(string_hash.encode('utf-8'))
@@ -40,7 +42,7 @@ def login():
         email = request.form["email"]
         senha = request.form["senha"]
         senha = generate_hash(senha)
-        bd = BancoDeDadosLogin()
+        bd = BancoDeDados()
         resposta = bd.buscarUsuarioParaLogar(email,senha)
         if resposta == None:
             html = html.replace("Entre com seu email","Email/senha incorretos, entre com seu email")
@@ -62,7 +64,7 @@ def novaSenha():
         email = request.form["email"]
         novaSenha = request.form["senha"]
         novaSenha = generate_hash(novaSenha)
-        bd = BancoDeDadosLogin()
+        bd = BancoDeDados()
         resposta = bd.buscarUsuarioParaTrocarSenha(email,novaSenha)
         if resposta == None:
             html = html.replace("Entre com seu email","Email incorreto, entre com seu email")
@@ -186,7 +188,8 @@ def cafeicultor():
     html = html_file.read() 
     global usuarioLogado
     html = html.replace("login do usuario", usuarioLogado)
-    tabela = cafeicultorSacas.buscarCafe(usuarioLogado,"SacasDeCafe")
+    mediador = MediadorDoCafeicultor("SacasDeCafe",bd,login=usuarioLogado)
+    tabela = cafeicultorSacas.buscarCafe(mediador)
     html=html.replace("table_placeholder",tabela)
     return html
 
@@ -219,10 +222,11 @@ def cafeicultorVender():
     global usuarioLogado
     html = html.replace("login do usuario", usuarioLogado)
     indice = str(request.args.get('id' , "" )) 
-    cafe = cafeicultorSacas.getCafe(int(indice))
+    mediador = MediadorDoCafeicultor("SacasDeCafe",bd,indice=int(indice))
+    cafe = cafeicultorSacas.getCafe(mediador)
     if(flag):
         html=html.replace("none","block") #habilita a exibição da mensagem
-        html=html.replace("Valor do cafe",str(cafe.valorGet())) 
+        #html=html.replace("Valor do cafe",str(cafe.valorGet())) 
         html=html.replace("Valor do cafe",str(valor_venda)) 
         flag = False
     if(flagErro):
@@ -241,12 +245,14 @@ def cafeicultorVender():
         data = data.strftime("%d/%m/%Y")
         qtd_nova = cafe.quantidadeGet() - qtd_venda
         if qtd_nova==0:
-            cafeicultorSacas.excluirCafe(cafe.idGet(),int(indice),"SacasDeCafe")
+            mediador = MediadorDoCafeicultor("SacasDeCafe",bd,cafe,indice=int(indice))
+            cafeicultorSacas.excluirCafe(mediador)
             flagErro = True
         else:
             valor_novo = webS.cotacaoCafe(cafe.tipoGet(),cafe.classificacaoGet()) * qtd_nova
-            cafe.atualizaCafe(cafe.tipoGet(),cafe.classificacaoGet(),qtd_nova,valor_novo,data)
-            cafeicultorSacas.venderCafe(cafe,valor_novo,data,int(indice),"SacasDeCafe") 
+            cafe.atualizaCafe(cafe.tipoGet(),cafe.classificacaoGet(),qtd_nova,valor_novo,data,int(indice))
+            mediador = MediadorDoCafeicultor("SacasDeCafe",bd,cafe)
+            cafeicultorSacas.venderCafe(mediador) 
             flag = True   
         return redirect("/cafeicultor/vendaCafe/?id="+indice)
     return html
@@ -277,7 +283,11 @@ def cadastrarCafe():
                     html=html.replace("none","block") #habilita a exibição da mensagem
                     login = 'fulano_de_tal123@hotmail.com' #PEGAR O LOGIN DA PESSOAAAAAA
                     cafe = SacaCafe(tipo,classificacao_bebida,qtd,0.0,'',login)
-                    cafeicultorSacas.cadastrarCafe(cafe,valor,data,"SacasDeCafe")
+                    cafe.valorSet(valor)
+                    cafe.dataSet(data)
+                    cafe.loginSet(usuarioLogado)
+                    mediador = MediadorDoCafeicultor("SacasDeCafe",bd,cafe)
+                    cafeicultorSacas.cadastrarCafe(mediador)
     return html
 
 @app.route('/cafeicultor/edicaoCafe/', methods=['GET','POST'])
@@ -288,7 +298,8 @@ def editarCafe():
     global usuarioLogado
     html = html.replace("login do usuario", usuarioLogado)
     indice = str(request.args.get('id' , "" )) 
-    cafe = cafeicultorSacas.getCafe(int(indice))
+    mediador = MediadorDoCafeicultor("SacasDeCafe",bd,indice=int(indice))
+    cafe = cafeicultorSacas.getCafe(mediador)
     if(flag):
         html=html.replace("none","block") #habilita a exibição da mensagem
         html=html.replace("visible","hidden") #habilita a exibição da mensagem
@@ -318,13 +329,15 @@ def editarCafe():
         data = data.strftime("%d/%m/%Y")
         if valor==0:
             if qtd==0:
-                cafeicultorSacas.excluirCafe(cafe.idGet(),int(indice),"SacasDeCafe")
+                mediador = MediadorDoCafeicultor("SacasDeCafe",bd,cafe)
+                cafeicultorSacas.excluirCafe(mediador)
                 return redirect("/cafeicultor")
             else:
                 flagErro = True
         else:            
-            cafe.atualizaCafe(tipo,bebida,qtd,valor,data)
-            cafeicultorSacas.editarCafe(cafe,valor,data,int(indice),"SacasDeCafe")
+            cafe.atualizaCafe(tipo,bebida,qtd,valor,data,int(indice))
+            mediador = MediadorDoCafeicultor("SacasDeCafe",bd,cafe)
+            cafeicultorSacas.editarCafe(mediador)
             flag = True   
         return redirect("/cafeicultor/edicaoCafe/?id="+indice)
     return html

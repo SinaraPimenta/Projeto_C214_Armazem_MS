@@ -1,14 +1,8 @@
 import sys
 sys.path.append('src/main/model')
 import usuario
-sys.path.append('src/main/controller')
-import bancoDeDadosCafeicultor
-
-#from src.main.model.usuario import Usuario
-#from src.main.controller.bancoDeDadosCafeicultor import BancoDeDadosCafeicultor
 
 class Cafeicultor(usuario.Usuario):
-    bd = bancoDeDadosCafeicultor.BancoDeDadosCafeicultor()
     __telefone: str
     __cpf: str
     __cidade: str
@@ -87,33 +81,24 @@ class Cafeicultor(usuario.Usuario):
         self.agenciaSet(agencia)
         self.contaSet(conta)
 
-    def buscarCafe(self,login,colecao):
-        return self.bd.buscarSacasDeCafe(login,colecao)
+    def buscarCafe(self,mediador):
+        return mediador.notify(self, "Buscar")
 
-    def cadastrarCafe(self,cafe,valor,data,colecao):
-        self.bd.cadastrarSacasDeCafe(cafe,valor,data,colecao)
-        self.bd.adicionarNalistaCafe(cafe)
+    def cadastrarCafe(self,mediador):
+        mediador.notify(self, "Cadastrar")
 
-    def editarCafe(self,cafe,valor,data,indice,colecao):
-        self.bd.alterarSacaDeCafe(cafe,valor,data,colecao)
-        self.bd.substituiCafe(indice,cafe)
+    def editarCafe(self,mediador):
+        mediador.notify(self,"Editar")
 
-    def excluirCafe(self,id,indice,colecao):
-        self.bd.deletarSacaDeCafe(id,colecao)
-        self.bd.removerDalistaCafe(indice)
+    def excluirCafe(self,mediador):
+        mediador.notify(self,"Excluir")
     
-    def venderCafe(self,cafe,valor_novo,data,indice,colecao):
-        self.bd.venderSacaDeCafe(cafe,valor_novo,data,colecao)
-        self.bd.substituiCafe(indice,cafe) 
+    def venderCafe(self,mediador):
+        mediador.notify(self,"Vender")
     
-    def getCafe(self,indice):
-        return self.bd.getCafe(indice)
+    def getCafe(self,mediador):
+        return mediador.notify(self, "Get")
 
-    def consultaBd(self,login,colecao):
-        retorno = self.bd.buscaNoBD(login,colecao)
-        return retorno
-    
-    
-    #def solicitarDados(self):
-        #print('solicita dados')
+    def consultaBd(self,mediador):
+        return mediador.notify(self, "Consultar")
     
