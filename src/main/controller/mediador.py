@@ -37,8 +37,10 @@ class MediadorDoCafeicultor(MediadorInterface):
             self._bd.alterarSacaDeCafe(self._cafe,self._colecao)
             self._bd.substituiCafe(self._cafe)
         elif event == "Excluir":
-            self._bd.deletarSacaDeCafe(self._cafe.idGet(),self._colecao)
-            self._bd.removerDalistaCafe(self._cafe.indiceGet())
+            id = self._cafe.idGet()
+            indice = self._cafe.indiceGet()
+            self._bd.deletarSacaDeCafe(id,self._colecao)
+            self._bd.removerDalistaCafe(indice)
         elif event == "Vender":
             self._bd.venderSacaDeCafe(self._cafe,self._colecao)
             self._bd.substituiCafe(self._cafe) 

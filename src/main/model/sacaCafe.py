@@ -21,6 +21,9 @@ class SacaCafe(object):
     def idGet(self):
         return self.__id
 
+    def idSet(self,id):
+        self.__id = id
+
     def indiceSet(self,indice):
         self.__indice = indice
     

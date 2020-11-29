@@ -9,7 +9,7 @@ from src.main.model.sacaCafe import SacaCafe
 from src.main.model.administrador import Administrador
 from src.main.controller.webScrapping import WebScrapping
 from src.main.controller.mediador import MediadorDoCafeicultor
-from src.main.controller.bancoDeDadosCafeicultor import BancoDeDados
+from src.main.controller.bancoDeDados import BancoDeDados
 
 flag= False
 flagErro = False
@@ -42,7 +42,6 @@ def login():
         email = request.form["email"]
         senha = request.form["senha"]
         senha = generate_hash(senha)
-        bd = BancoDeDados()
         resposta = bd.buscarUsuarioParaLogar(email,senha)
         if resposta == None:
             html = html.replace("Entre com seu email","Email/senha incorretos, entre com seu email")
@@ -64,7 +63,6 @@ def novaSenha():
         email = request.form["email"]
         novaSenha = request.form["senha"]
         novaSenha = generate_hash(novaSenha)
-        bd = BancoDeDados()
         resposta = bd.buscarUsuarioParaTrocarSenha(email,novaSenha)
         if resposta == None:
             html = html.replace("Entre com seu email","Email incorreto, entre com seu email")
@@ -199,7 +197,6 @@ def cafeicultorDadosPessoais():
     html = html_file.read()
     global usuarioLogado
     html = html.replace("login do usuario", usuarioLogado)
-    bd = BancoDeDadosLogin()
     cafeicultor = bd.getCafeicultorBD(usuarioLogado)
     print(cafeicultor.nomeGet())
     if(cafeicultor):
@@ -237,6 +234,7 @@ def cafeicultorVender():
         html= substituirHTML(cafe.tipoGet(),"Tipo",html)
         html= substituirHTML(cafe.classificacaoGet(),"Bebida",html)
         html= substituirHTML(cafe.quantidadeGet(),"Qtd atual",html)
+        cafe.indiceSet(int(indice))
     if request.method == 'POST': #Se houve uma requisição do tipo Post, verificar:
         qtd_venda = int(request.form["qtd"])
         webS = WebScrapping()
@@ -245,7 +243,7 @@ def cafeicultorVender():
         data = data.strftime("%d/%m/%Y")
         qtd_nova = cafe.quantidadeGet() - qtd_venda
         if qtd_nova==0:
-            mediador = MediadorDoCafeicultor("SacasDeCafe",bd,cafe,indice=int(indice))
+            mediador = MediadorDoCafeicultor("SacasDeCafe",bd,cafe)
             cafeicultorSacas.excluirCafe(mediador)
             flagErro = True
         else:
@@ -278,7 +276,6 @@ def cadastrarCafe():
                 data = date.today()
                 data = data.strftime("%d/%m/%Y")
                 if qtd != '':
-                    flag=True
                     html=html.replace("visible","hidden")
                     html=html.replace("none","block") #habilita a exibição da mensagem
                     login = 'fulano_de_tal123@hotmail.com' #PEGAR O LOGIN DA PESSOAAAAAA

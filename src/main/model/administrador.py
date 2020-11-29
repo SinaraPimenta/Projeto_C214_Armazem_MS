@@ -2,12 +2,12 @@ import sys
 sys.path.append('src/main/model')
 import usuario
 sys.path.append('src/main/controller')
-import bancoDeDadosAdmin
+import bancoDeDados
 #from src.main.model.usuario import Usuario
 #from src.main.controller.bancoDeDadosAdmin import BancoDeDadosAdmin
 
 class Administrador(usuario.Usuario):
-    bd = bancoDeDadosAdmin.BancoDeDadosAdmin()
+    bd = bancoDeDados.BancoDeDados()
     
     def __init__(self,  nome="",login="", senha=""):
         super().__init__(nome, login,senha)
