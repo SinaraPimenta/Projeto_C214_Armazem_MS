@@ -8,11 +8,8 @@ from src.main.model.cafeicultor import Cafeicultor
 from src.main.model.sacaCafe import SacaCafe
 from src.main.model.administrador import Administrador
 from src.main.controller.webScrapping import WebScrapping
-<<<<<<< HEAD
 from src.main.controller.mediador import MediadorDoCafeicultor
-=======
-from src.main.controller.mediador import MediadorDoCafeicultor,MediadorDoAdministrador
->>>>>>> cef1df5bbb26ae7b80fc9a5240d1bb2c09d44be1
+from src.main.controller.mediador import MediadorDoAdministrador
 from src.main.controller.bancoDeDados import BancoDeDados
 
 flag= False

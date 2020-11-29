@@ -51,7 +51,7 @@ class MediadorDoCafeicultor(MediadorInterface):
             return self._bd.buscaNoBD(self._login,self._colecao)
 
 class MediadorDoAdministrador(MediadorInterface):
-    def __init__(self,colecao:str, bd: bancoDeDados.BancoDeDados, cafeicultor: cafeicultor.Cafeicultor = None,indice="",login="")->None:
+    def __init__(self,colecao:str, bd: bancoDeDados.BancoDeDados, cafeicultor: cafeicultor.Cafeicultor = None,indice="")->None:
         self._bd = bd
         self._bd.mediator = self
         self._cafeicultor = cafeicultor
@@ -59,10 +59,6 @@ class MediadorDoAdministrador(MediadorInterface):
             self._cafeicultor.mediator = self
         self._colecao = colecao
         self._indice = indice
-        self._login = login
-
-    def getColecao(self):
-        return self._colecao
 
     def notify(self, sender: object, event: str) -> None:
         if event == "Buscar":
