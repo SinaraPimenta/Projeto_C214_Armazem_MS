@@ -160,7 +160,7 @@ Exemplo:
 
 
 ### 📌 Versão
-Nós usamos SemVer para controle de versão. Para as versões disponíveis, observe as tags neste repositório.
+O GitHub foi usado para controle de versão. Para as versões disponíveis, observe as [tags neste repositório](https://github.com/SinaraPimenta/Projeto_C214_Armazem_MS/tags).
 
 ## ✒️ Autores
 
