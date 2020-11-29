@@ -1,10 +1,7 @@
-function gerarOpcao()
-{
-    inicio = 1
-    fim = 100
-    selector = document.getElementById("formControlQtd");
-    var i;
-    for (i=inicio;i<=fim;i++){
+function gerarOpcao(selector)
+{   var i;
+    for (i=1;i<=100;i++){
     selector.options[i-1] = new Option(i,i);
     }
+    
 };

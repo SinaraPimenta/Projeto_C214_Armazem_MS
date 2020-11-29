@@ -53,16 +53,16 @@ input {
     left: 50%;
     margin-right: -50%;
     transform: translate(-40%, -50%);
-    border: none;
+    padding-left: 4px;
     display:table-cell;
     height: 400px;
     overflow-y: auto ;
-    width: 850px;
+    width: 840px;
 }
 
 thead {
     background-color: #524235;
-    color: white
+    color: white;
 }
 
 .conteudo {

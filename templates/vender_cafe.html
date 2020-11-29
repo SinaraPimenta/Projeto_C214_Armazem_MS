@@ -33,8 +33,8 @@
             };
         </script>
     </nav>
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper">
+     <!-- Sidebar -->
+     <div id="sidebar-wrapper">
         <div class="list-group list-group-flush">
             <a href="/cafeicultor/dadosPessoais" class="list-group-item list-group-item-action ">Dados Pessoais</a>
             <a href="http://cccmg.com.br/cotacao-do-cafe/" class="list-group-item list-group-item-action ">Cotacao do cafe</a>
@@ -80,12 +80,15 @@
                                     <option>3</option>
                                     <option>4</option>
                                     <option>5</option>
-                                    </select>                                        
+                                    </select>                                      
                                 </div>
                                 <div class="form-group col-md-2 ">
                                     <label for="valor-total-bar" id="valor-total">Quantidade atual:</label>
                                     <input disabled class="form-control" id="valor-total-bar" placeholder="Qtd atual">
                                 </div>
+                                <script>
+                                    gerarOpcao(document.getElementById("qtd"),document.getElementById("valor-total-bar"));                                
+                                </script>  
                             </div>                    
                 </div>
                 <div class="modal-footer">

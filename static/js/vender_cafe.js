@@ -1,12 +1,7 @@
-function gerarOpcao()
-{
-    inicio = 1
-    fim = parseInt(document.getElementById("valor-total-bar").placeholder);
-    document.getElementById("qtd").innerHTML="";   
-    selector = document.getElementById("qtd");
-    var i;
-    for (i=inicio;i<=fim;i++){
-        selector.options[i] = new Option(i,i);
+function gerarOpcao(selector,qtd_atual)
+{   var i;
+    const fim = parseInt(qtd_atual.placeholder);
+    for (i=1;i<=fim;i++){
+    selector.options[i-1] = new Option(i,i);
     }
 };
-

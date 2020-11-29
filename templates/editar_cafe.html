@@ -34,9 +34,11 @@
         </script>
     </nav>
     <!-- Sidebar -->
-    <div class="list-group list-group-flush">
-        <a href="/cafeicultor/dadosCafeicultor/" class="list-group-item list-group-item-action ">Dados Pessoais</a>
-        <a href="http://cccmg.com.br/cotacao-do-cafe/" class="list-group-item list-group-item-action ">Cotacao do cafe</a>
+    <div id="sidebar-wrapper">
+        <div class="list-group list-group-flush">
+            <a href="/cafeicultor/dadosPessoais" class="list-group-item list-group-item-action ">Dados Pessoais</a>
+            <a href="http://cccmg.com.br/cotacao-do-cafe/" class="list-group-item list-group-item-action ">Cotacao do cafe</a>
+        </div>
     </div>
     <!-- Conteúdo da página -->
     <div class="mymodal container-fluid " id="modalVer" tabindex="-1" role="dialog" aria-labelledby="verModalLabel"
@@ -78,6 +80,9 @@
                                     <option>4</option>
                                     <option>5</option>
                                     </select>
+                                    <script>
+                                        gerarOpcao(document.getElementById("qtd"));                                
+                                    </script>
                                 </div>
                                 <div class="form-group col-md-2 ">
                                     <label for="valor-total-bar" id="valor-total">Quantidade atual:</label>
