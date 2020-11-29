@@ -233,7 +233,7 @@ def cafeicultorVender():
     if(cafe):
         html= substituirHTML(cafe.tipoGet(),"Tipo",html)
         html= substituirHTML(cafe.classificacaoGet(),"Bebida",html)
-        html= substituirHTML(cafe.quantidadeGet(),"Qtd atual",html)
+        html= substituirHTML(cafe.quantidadeGet(),"Qtd atual",html)    
         cafe.indiceSet(int(indice))
     if request.method == 'POST': #Se houve uma requisição do tipo Post, verificar:
         qtd_venda = int(request.form["qtd"])

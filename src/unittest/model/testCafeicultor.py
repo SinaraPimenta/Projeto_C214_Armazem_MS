@@ -40,15 +40,7 @@ class AdministradorTest(TestCase):
         #Buscar café/Resposta:
         m1 = mediador.MediadorDoCafeicultor(self.colecao,self.b,login=self.c.loginGet())
         resposta = self.c.buscarCafe(m1)
-        #Obter _id gerado pelo MongoDB: 
-        m2 = mediador.MediadorDoCafeicultor(self.colecao,self.b,login=self.c.loginGet())
-        cafe = self.c.consultaBd(m2)
-        for data in cafe:
-            idC = data['_id']
-        self.s.idSet(idC)
-        #Excluir café:
-        m3 = mediador.MediadorDoCafeicultor(self.colecao,self.b,self.s)
-        self.c.excluirCafe(m3)
+        #Valor esperado: 
         esperado='<table id="tabela" class="table"><thead><tr><th scope="col">#</th><th scope="col">Tipo</th><th scope="col">Bebida</th><th scope="col">Valor* [R$]</th><th scope="col">Quantidade</th><th scope="col">Data do cadastro</th><th scope="col"></th><th scope="col"></th></tr></thead><tbody><tr><th scope="row">0</th><td>tipo 6</td><td>bebida riada</td><td>1200</td><td>3</td><td>25/11/2020</td><td><button type="button" class="btn btn-primary" id="editarCafe" onclick="venderCafe(0)">Vender</button></td><td><button type="button" class="btn btn-primary" id="editarCafe" onclick="editarCafe(0)">Editar</button></td></tr></tbody></table>'
         #Comparação:
         self.assertEqual(esperado,resposta)
@@ -66,30 +58,31 @@ class AdministradorTest(TestCase):
         #Cadastrar café:
         m = mediador.MediadorDoCafeicultor(self.colecao,self.b,self.s)
         self.c.cadastrarCafe(m) 
+        #Obter _id gerado pelo MongoDB: 
+        m1 = mediador.MediadorDoCafeicultor(self.colecao,self.b,login=self.c.loginGet())
+        cafe = self.c.consultaBd(m1)
+        for data in cafe:
+            idC = data['_id']
         #Obter café/Resposta:
         m2 = mediador.MediadorDoCafeicultor(self.colecao,self.b,indice=0)
         resposta = self.c.getCafe(m2)
         #Comparações:
-        self.assertEqual("joao123@gmail.com",resposta.loginGet())
+        self.assertTrue(idC) #verifica se foi salvo no BD(existe um id gerado pelo mongo)
+        self.assertEqual("joao123@gmail.com",resposta.loginGet()) #verifica se foi salvo localmente na listaCafe
         self.assertEqual(3,resposta.quantidadeGet())
         self.assertEqual("tipo 6",resposta.tipoGet())
         self.assertEqual("bebida riada",resposta.classificacaoGet())
         self.assertEqual(1200,resposta.valorGet())
         self.assertEqual('25/11/2020',resposta.dataGet())
-        #Obter _id gerado pelo MongoDB: 
-        m3 = mediador.MediadorDoCafeicultor(self.colecao,self.b,login=self.c.loginGet())
-        cafe = self.c.consultaBd(m3)
-        for data in cafe:
-            idC = data['_id']
-        self.s.idSet(idC)
         #Excluir café:
+        self.s.idSet(idC)
         m4 = mediador.MediadorDoCafeicultor(self.colecao,self.b,self.s)
         self.c.excluirCafe(m4)
 
     def test_editarCafe(self):
         #Cadastrar café:
         m = mediador.MediadorDoCafeicultor(self.colecao,self.b,self.s)
-        self.c.cadastrarCafe(m)
+        self.c.cadastrarCafe(m) 
         #Obter _id gerado pelo MongoDB: 
         m2 = mediador.MediadorDoCafeicultor(self.colecao,self.b,login=self.c.loginGet())
         cafe = self.c.consultaBd(m2)

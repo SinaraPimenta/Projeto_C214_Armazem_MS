@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/static/css/editar_cafe.css">
+    <script src="/static/js/editar_cafe.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-md  fixed-top">
@@ -68,13 +69,14 @@
                         <div class="form-row">                                
                                 <i class="fas fa-sort-numeric-down" id="qtd-icon"></i>
                                 <div class="form-select">
-                                    <select  class="form-control" id="qtd"  name="qtd" placeholder="Quantidade">
-                                        <option>0</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                    <select  class="form-control" id="qtd"  name="qtd" placeholder="Quantidade" 
+                                    onclick="gerarOpcao()">
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-2 ">
