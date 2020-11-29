@@ -8,7 +8,11 @@ from src.main.model.cafeicultor import Cafeicultor
 from src.main.model.sacaCafe import SacaCafe
 from src.main.model.administrador import Administrador
 from src.main.controller.webScrapping import WebScrapping
+<<<<<<< HEAD
 from src.main.controller.mediador import MediadorDoCafeicultor
+=======
+from src.main.controller.mediador import MediadorDoCafeicultor,MediadorDoAdministrador
+>>>>>>> cef1df5bbb26ae7b80fc9a5240d1bb2c09d44be1
 from src.main.controller.bancoDeDados import BancoDeDados
 
 flag= False
@@ -77,7 +81,8 @@ def admin():
     html = html_file.read()
     global usuarioLogado
     html = html.replace("login do usuario", usuarioLogado)
-    tabela = administrador.buscarCafeicultores("Usuarios")
+    mediador = MediadorDoAdministrador("Usuarios",bd)
+    tabela = administrador.buscarCafeicultores(mediador)
     html=html.replace("table_placeholder",tabela) 
     return html 
 
@@ -88,7 +93,8 @@ def verCafeicultor():
     global usuarioLogado
     html = html.replace("login do usuario", usuarioLogado)
     indice = str(request.args.get('id' , "" )) 
-    cafeicultor = administrador.getCafeicultor(int(indice))
+    mediador = MediadorDoAdministrador("Usuarios",bd,indice=int(indice))
+    cafeicultor = administrador.getCafeicultor(mediador)
     if(cafeicultor):
         html = html.replace("NomeCafeilcutor",cafeicultor.nomeGet())
         html = html.replace("CPF",cafeicultor.cpfGet())
@@ -100,7 +106,8 @@ def verCafeicultor():
         html= substituirHTML(cafeicultor.agenciaGet(),"Agencia Bancaria",html)
         html= substituirHTML(cafeicultor.contaGet(),"Numero da Conta",html)
     if request.method == 'POST': #Se houve uma requisição do tipo Post, verificar:
-        administrador.excluirCafeicultor(cafeicultor.loginGet(),int(indice),"Usuarios")
+        mediador = MediadorDoAdministrador("Usuarios",bd,cafeicultor,indice=int(indice))
+        administrador.excluirCafeicultor(mediador)
         html = html.replace("eneable","disabled")
         html=html.replace("none","block") #habilita a exibição da mensagem
     return html  
@@ -126,7 +133,8 @@ def cadastrarCafeicultor():
         senha = generate_hash(senha)
         if nome!= '':
             cafeicultor = Cafeicultor(nome,email,senha,telefone,cpf,cidade,endereco,banco,agencia,conta)
-            administrador.cadastrarCafeicultor(cafeicultor,"Usuarios")
+            mediador = MediadorDoAdministrador("Usuarios",bd,cafeicultor)
+            administrador.cadastrarCafeicultor(mediador)
     return html 
 
 @app.route('/admin/edicaoCafeicultor/', methods=['GET', 'POST'])
@@ -141,7 +149,8 @@ def editaCafeicultor():
         html=html.replace("none","block") #habilita a exibição da mensagem
         flag = False
     indice = str(request.args.get('id' , "" )) 
-    cafeicultor = administrador.getCafeicultor(int(indice))
+    mediador = MediadorDoAdministrador("Usuarios",bd,indice=int(indice))
+    cafeicultor = administrador.getCafeicultor(mediador)
     if(cafeicultor):
         html = html.replace("Nome do Cafeicultor",cafeicultor.nomeGet())
         html = html.replace("CPF",cafeicultor.cpfGet())
@@ -174,7 +183,8 @@ def editaCafeicultor():
         if conta == '':
             conta = cafeicultor.contaGet()
         cafeicultor.atualizaCafeicultor(nome,telefone,endereco,cidade,banco,agencia,conta)
-        administrador.editarCafeicultor(cafeicultor,int(indice),"Usuarios")
+        mediador = MediadorDoAdministrador("Usuarios",bd,cafeicultor,indice=int(indice))
+        administrador.editarCafeicultor(mediador)
         flag = True
         return redirect("/admin/edicaoCafeicultor/?id="+indice)
     return html
@@ -198,7 +208,6 @@ def cafeicultorDadosPessoais():
     global usuarioLogado
     html = html.replace("login do usuario", usuarioLogado)
     cafeicultor = bd.getCafeicultorBD(usuarioLogado)
-    print(cafeicultor.nomeGet())
     if(cafeicultor):
         html = html.replace("NomeCafeilcutor",cafeicultor.nomeGet())
         html = html.replace("CPF",cafeicultor.cpfGet())

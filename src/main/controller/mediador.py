@@ -3,6 +3,7 @@ from abc import ABC
 import sys
 sys.path.append('src/main/model')
 import sacaCafe
+import cafeicultor
 sys.path.append('src/main/controller')
 import bancoDeDados
 
@@ -49,7 +50,34 @@ class MediadorDoCafeicultor(MediadorInterface):
         elif event == "Consultar":
             return self._bd.buscaNoBD(self._login,self._colecao)
 
+class MediadorDoAdministrador(MediadorInterface):
+    def __init__(self,colecao:str, bd: bancoDeDados.BancoDeDados, cafeicultor: cafeicultor.Cafeicultor = None,indice="",login="")->None:
+        self._bd = bd
+        self._bd.mediator = self
+        self._cafeicultor = cafeicultor
+        if cafeicultor:
+            self._cafeicultor.mediator = self
+        self._colecao = colecao
+        self._indice = indice
+        self._login = login
 
+    def getColecao(self):
+        return self._colecao
+
+    def notify(self, sender: object, event: str) -> None:
+        if event == "Buscar":
+            return self._bd.buscarCafeicultores(self._colecao)
+        elif event == "Cadastrar":
+            self._bd.cadastrarCafeicultor(self._cafeicultor,self._colecao)
+            self._bd.adicionarNalistaCafeicultor(self._cafeicultor)
+        elif event == "Editar":
+            self._bd.alterarDadosDoCafeicultor(self._cafeicultor,self._colecao)
+            self._bd.substituiCafeicultor(self._indice,self._cafeicultor)
+        elif event == "Excluir":
+            self._bd.deletarCafeicultor(self._cafeicultor.loginGet(),self._colecao)
+            self._bd.removerDalistaCafeicultor(self._indice)
+        elif event == "Get":
+            return self._bd.getCafeicultor(self._indice)
         
         
 

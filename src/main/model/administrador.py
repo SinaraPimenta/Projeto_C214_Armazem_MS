@@ -3,29 +3,32 @@ sys.path.append('src/main/model')
 import usuario
 sys.path.append('src/main/controller')
 import bancoDeDados
-#from src.main.model.usuario import Usuario
-#from src.main.controller.bancoDeDadosAdmin import BancoDeDadosAdmin
 
 class Administrador(usuario.Usuario):
-    bd = bancoDeDados.BancoDeDados()
+    __indice:int
     
-    def __init__(self,  nome="",login="", senha=""):
+    def __init__(self,  nome="",login="", senha="", indice=-1):
         super().__init__(nome, login,senha)
-
-    def buscarCafeicultores(self,colecao):
-        return self.bd.buscarCafeicultores(colecao)
+        self.__indice = indice
     
-    def cadastrarCafeicultor(self,cafeicultor,colecao):
-        self.bd.cadastrarCafeicultor(cafeicultor,colecao)
-        self.bd.adicionarNalistaCafeicultor(cafeicultor)
+    def indiceSet(self,indice):
+        self.__indice = indice
+    
+    def indiceGet(self):
+        return self.__indice
 
-    def editarCafeicultor(self,cafeicultor,indice,colecao):
-        self.bd.alterarDadosDoCafeicultor(cafeicultor,colecao)
-        self.bd.substituiCafeicultor(indice,cafeicultor)
-
-    def excluirCafeicultor(self,login,indice,colecao):
-        self.bd.deletarCafeicultor(login,colecao)
-        self.bd.removerDalistaCafeicultor(indice)
-
-    def getCafeicultor(self,indice):
-        return self.bd.getCafeicultor(indice)
+    def buscarCafeicultores(self,mediador):
+        return mediador.notify(self, "Buscar")
+    
+    def cadastrarCafeicultor(self,mediador):
+        mediador.notify(self,"Cadastrar")
+    
+    def editarCafeicultor(self,mediador):
+        mediador.notify(self,"Editar")
+    
+    def excluirCafeicultor(self,mediador):
+        mediador.notify(self,"Excluir")
+    
+    def getCafeicultor(self,mediador):
+        return mediador.notify(self,"Get")
+    
