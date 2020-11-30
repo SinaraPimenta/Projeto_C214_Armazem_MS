@@ -4,12 +4,14 @@ import sys
 sys.path.append('src/main/model')
 import sacaCafe
 import cafeicultor
+sys.path.append('src/main/controller')
+import singleton
 #from src.main.model.sacaCafe import SacaCafe
 
 listaCafe = []
 listaCafeicultor = []
 
-class BancoDeDados(object):
+class BancoDeDados(metaclass=singleton.SingletonMeta):
     
     #Conexão com o BD
     __cliente = pymongo.MongoClient("mongodb+srv://admin:armazemMS@clusterc214.wv3t7.mongodb.net/ArmazemMS?retryWrites=true&w=majority")
