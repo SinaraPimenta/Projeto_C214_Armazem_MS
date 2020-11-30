@@ -1,18 +1,33 @@
-# Projeto_C214_Armazem_MS
+# Armazem MS
 
 <p align="center">
 <img src="https://github.com/SinaraPimenta/Projeto_C214_Armazem_MS/blob/main/static/images/logo.PNG" height="300" width="300" >
 </p>
-<p align="center">Figura 1 - Logo do projeto (Fonte: Refactoring Guru)</p>
+<p align="center">Figura 1 - Logo do projeto</p>
 
 
-☕  Um parágrafo da descrição do projeto vai aqui
+<p>☕  Armazém MS é uma aplicação web capaz de oferecer suporte a donos de armazéns de café com o objetivo de auxiliar na administração e no contato com cafeicultores.</p>
+
+<p>O projeto foi desenvolvido para a disciplina de Engenharia de Software-C214 com a finalidade de colocar em prática os conceitos que nos foram apresentados durante o curso. </p>
+
+### ❗ Requisitos do projeto
+
+- [x] Linguagem Orientada a Objetos (Python)
+- [x] Realizar um CRUD completo
+- [x] Permanência de dados (MongoDB Atlas - NoSQL)
+- [x] Ferramenta de controle de versão (Github)
+- [ ] Gerenciador de dependências
+- [x] Testes de unidade
+- [x] Testes Mock
+- [ ] Continuous Integration
+- [x] 2 Padrões de projeto (Mediator e Singleton)
+- [x] Arquitetura MVC (adaptada)
 
 ### 🚀 Começando
 Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
 Consulte Implantação para saber como implantar o projeto.
 
-### 📋 Pré-requisitos
+### 📋 Pré-requisitos para execução
 De que coisas você precisa para instalar o software e como instalá-lo?
 Dar exemplos
 
@@ -118,14 +133,21 @@ Exemplo:
       📂templates/
           arquivos.html
   
-  O front-end da aplicação foi feito em Html, utilizando do Bootstrap e CSS para estilização e do Javascript para implementação de algumas funcionalidades. O back-end foi desenvolvido em Python, sendo aplicado o [design pattern Mediator](https://refactoring.guru/pt-br/design-patterns/mediator). Este foi aplicado para diminuir o acoplamento das classes, permitindo também evitar o problema de importação circular.
+  O front-end da aplicação foi feito em Html, utilizando do Bootstrap e CSS para estilização e do Javascript para implementação de algumas funcionalidades. O back-end foi desenvolvido em Python, sendo aplicado o [design pattern Mediator](https://refactoring.guru/pt-br/design-patterns/mediator) e o [design pattern Singleton](https://refactoring.guru/pt-br/design-patterns/singleton). O primeiro foi aplicado para diminuir o acoplamento das classes, permitindo também evitar o problema de importação circular. Já o segundo padrão foi implementado a fim de que uma classe específica (classe bancoDeDados) tenha apenas uma instância disponível para todos seus clientes.
   
   O Mediator é um padrão de projeto comportamental que traz a ideia de utilizar um objeto mediador para reduzir o acoplamento entre classes, facilitar as modificações de código, reutilização e extensão. A imagem a seguir ilustra a ideia desse padrão:
   
   <p align="center">
   <img src="https://refactoring.guru/images/patterns/diagrams/mediator/structure.png" height="500">
   </p>
-	 <p align="center">Figura 2 - Lógicad do Mediator (Fonte: Refactoring Guru)</p>
+	 <p align="center">Figura 2 - Lógica do Mediator (Fonte: Refactoring Guru)</p>
+
+  Já o Singleton é um padrão de projeto criacional que tem como objetivo garantir que uma classe tenha apenas uma instância, enquanto provê um meio de acesso global para essa instância a fim de que ela possa ser utilizada por outros. A imagem a seguir ilustra a ideia desse padrão:
+
+ <p align="center">
+  <img src="https://refactoring.guru/images/patterns/diagrams/singleton/structure-pt-br.png" height="300">
+  </p>
+	 <p align="center">Figura 3 - Lógica do Singleton (Fonte: Refactoring Guru)</p>
 
   Por fim, os testes de unidade foram desenvolvidos para o back-end apenas.
 
@@ -142,7 +164,7 @@ Exemplo:
 
 **Framework de teste**: [Unittest](https://docs.python.org/3/library/unittest.html)
 
-**Integração Contínua**: [Travis](https://travis-ci.org/)
+**Integração Contínua**: [GitHub Actions](https://github.com/features/actions)
 
 **Armazenamento de dados**: [MongoDB Atlas](https://www.mongodb.com/)
 
