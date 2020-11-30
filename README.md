@@ -160,16 +160,14 @@ Exemplo:
 
 
 ### 📌 Versão
-Nós usamos SemVer para controle de versão. Para as versões disponíveis, observe as tags neste repositório.
+O GitHub foi usado para controle de versão. Para as versões disponíveis, observe as [tags neste repositório](https://github.com/SinaraPimenta/Projeto_C214_Armazem_MS/tags).
 
 ## ✒️ Autores
-
 
 * **Mariana Helena Inês Moreira** - [Mariana](https://github.com/Mariana-Helena)
 * **Sinara Pimenta Medeiros** - [Sinara](https://github.com/SinaraPimenta)
 
-
 ### 📄 Licença
-Este projeto está sob a licença (sua licença) - veja o arquivo LICENSE.md para detalhes.
+Este projeto está sob a licença MIT - veja o arquivo [LICENSE.txt](https://github.com/SinaraPimenta/Projeto_C214_Armazem_MS/blob/main/LICENSE.txt) para detalhes.
 
 ⌨️ com ❤️ por Mariana e Sinara 😊
