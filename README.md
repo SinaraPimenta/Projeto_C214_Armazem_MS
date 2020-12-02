@@ -94,11 +94,7 @@ Exemplo:
 
 
 ### 📦 Desenvolvimento
-  O projeto foi criado com o PyBuilder, com o comando:
-  ```
-  pyb --start-project
-  ```
-  A estrutura de pastas foi modificada para atender ao modelo MVC (Model, View e Controller). Porém, com o uso do Flask para o desenvolvimeto de uma interface web, a estrutura da interface foi colocada na raiz do projeto de modo a atender o formato esperado por essa ferramenta (arquivos estáticos na pasta Static e arquivos html em Templates).
+  A estrutura de pastas foi criada para atender ao modelo MVC (Model, View e Controller). Porém, com o uso do Flask para o desenvolvimeto de uma interface web, a estrutura da interface foi colocada na raiz do projeto de modo a atender o formato esperado por essa ferramenta (arquivos estáticos na pasta Static e arquivos html em Templates).
   Abaixo segue um esboço da estrutura usada:
   
   📂ArmazemMS/
@@ -158,7 +154,7 @@ Exemplo:
 
 **Linguagens**: [Python](https://www.python.org/), [Html, CSS e Javascript](https://www.devmedia.com.br/primeiros-passos-no-html5-javascript-e-css3/25647)
 
-**Automatização da Build / Gerenciamento de dependências**: [PyBuilder](https://pybuilder.io/)
+**Gerenciamento de dependências**: [Pipenv](https://pipenv-fork.readthedocs.io/en/latest/basics.html)
 
 **Controle de versões**: [GitHub](https://github.com/)
 
