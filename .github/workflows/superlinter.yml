@@ -22,6 +22,5 @@ jobs:
         pipenv install
     - name: Test with unittest
       run: |
-        python -m unittest src/unittest/controller/testWebScrapping.py
         python -m unittest src/unittest/model/testAdministrador.py
         python -m unittest src/unittest/model/testCafeicultor.py
