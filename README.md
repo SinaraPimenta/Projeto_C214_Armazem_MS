@@ -1,3 +1,4 @@
+![Python build](https://github.com/SinaraPimenta/Projeto_C214_Armazem_MS/workflows/Python%20build/badge.svg)
 # Armazem MS
 
 <p align="center">
