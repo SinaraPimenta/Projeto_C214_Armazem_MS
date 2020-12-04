@@ -19,7 +19,6 @@ jobs:
       run: |
         pip install pipenv
         pipenv install
-        pipenv shell
     - name: Test with unittest
       run: |
         pipenv python3 -m unittest src/unittest/controller/testWebScrapping.py
