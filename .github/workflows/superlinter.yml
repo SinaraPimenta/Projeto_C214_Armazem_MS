@@ -19,12 +19,9 @@ jobs:
       run: |
         pip install pipenv
         pipenv install
-        pip install beautifulsoup4
-        pip install flask
-        pip install pymongo
-        pip install requests
+        pipenv shell
     - name: Test with unittest
       run: |
-        python -m unittest src/unittest/controller/testWebScrapping.py
-        python -m unittest src/unittest/model/testAdministrador.py
-        python -m unittest src/unittest/model/testCafeicultor.py
+        pipenv python3 -m unittest src/unittest/controller/testWebScrapping.py
+        pipenv python3 -m unittest src/unittest/model/testAdministrador.py
+        pipenv python3 -m unittest src/unittest/model/testCafeicultor.py
