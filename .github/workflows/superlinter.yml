@@ -18,7 +18,9 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        pip uninstall pipenv
         pip install pipenv
+        pipenv uninstall --all
         pipenv install
     - name: Test with unittest
       run: |
