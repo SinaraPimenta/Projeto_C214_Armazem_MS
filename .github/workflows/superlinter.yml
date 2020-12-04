@@ -8,15 +8,19 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.5, 3.6, 3.7, 3.8]
-
+        python-version: [3.6, 3.7, 3.8]
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - name: Install dependecies
+      uses: Projeto_C214_Armazem_MS/action-pipenv@v2.0.1
+      with:
+        command: install -d # Install all dependencies, including development ones
     - name: Test with unittest
       run: |
+        python -m unittest src/unittest/controller/testWebScrapping.py
         python -m unittest src/unittest/model/testAdministrador.py
         python -m unittest src/unittest/model/testCafeicultor.py
