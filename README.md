@@ -190,6 +190,7 @@ O GitHub foi usado para controle de versão. Para as versões disponíveis, obse
 
 ### 📄 Licença
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Este projeto está sob a licença MIT - veja o arquivo [LICENSE.txt](https://github.com/SinaraPimenta/Projeto_C214_Armazem_MS/blob/main/LICENSE.txt) para detalhes.
 
 ⌨️ com ❤️ por Mariana e Sinara 😊
