@@ -29,8 +29,6 @@ Para obter uma cópia do projeto a fim de operá-lo/testá-lo de sua máquina,cl
 ```
 $ git clone https://github.com/SinaraPimenta/Projeto_C214_Armazem_MS.git
 ```
-Consulte Implantação para saber como implantar o projeto.
-
 ### 📋 Pré-requisitos para execução
 - IDE para execução de códigos Python (ex: Visual Studio Code)
 - Python 3.7 ou 3.8
@@ -191,6 +189,7 @@ O GitHub foi usado para controle de versão. Para as versões disponíveis, obse
 * **Sinara Pimenta Medeiros** - [Sinara](https://github.com/SinaraPimenta)
 
 ### 📄 Licença
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 Este projeto está sob a licença MIT - veja o arquivo [LICENSE.txt](https://github.com/SinaraPimenta/Projeto_C214_Armazem_MS/blob/main/LICENSE.txt) para detalhes.
 
 ⌨️ com ❤️ por Mariana e Sinara 😊
