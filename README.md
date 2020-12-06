@@ -189,7 +189,7 @@ O GitHub foi usado para controle de versão. Para as versões disponíveis, obse
 * **Sinara Pimenta Medeiros** - [Sinara](https://github.com/SinaraPimenta)
 
 ### 📄 Licença
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://badges.mit-license.org/)
 
 Este projeto está sob a licença MIT - veja o arquivo [LICENSE.txt](https://github.com/SinaraPimenta/Projeto_C214_Armazem_MS/blob/main/LICENSE.txt) para detalhes.
 
