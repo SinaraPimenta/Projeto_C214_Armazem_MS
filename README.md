@@ -17,22 +17,26 @@
 - [x] Realizar um CRUD completo
 - [x] Permanência de dados (MongoDB Atlas - NoSQL)
 - [x] Ferramenta de controle de versão (Github)
-- [ ] Gerenciador de dependências
+- [x] Gerenciamento de dependências (pipenv)
 - [x] Testes de unidade
 - [x] Testes Mock
-- [ ] Continuous Integration
+- [x] CI (Github Actions)
 - [x] 2 Padrões de projeto (Mediator e Singleton)
 - [x] Arquitetura MVC (adaptada)
 
 ### 🚀 Começando
-Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
+Para obter uma cópia do projeto a fim de operá-lo/testá-lo de sua máquina,clone o repositório em uma pasta na sua máquina:
+```
+$ git clone https://github.com/SinaraPimenta/Projeto_C214_Armazem_MS.git
+```
 Consulte Implantação para saber como implantar o projeto.
 
 ### 📋 Pré-requisitos para execução
-De que coisas você precisa para instalar o software e como instalá-lo?
-Dar exemplos
+- IDE para execução de códigos Python (ex: Visual Studio Code)
+- Python 3.7 ou 3.8
+- pipenv 
 
-### 🔧 Instalação
+### 🔧 Instalação e execução
 Uma série de exemplos passo-a-passo que informam o que você deve executar para ter um ambiente de desenvolvimento em execução.
 
 Diga como essa etapa será:
