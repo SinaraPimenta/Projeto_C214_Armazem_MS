@@ -1,5 +1,5 @@
 ![Python build](https://github.com/SinaraPimenta/Projeto_C214_Armazem_MS/workflows/Python%20build/badge.svg)
-# Armazem MS
+# Armazem MS - EM DESENVOLVIMENTO ⚠️
 
 <p align="center">
 <img src="https://github.com/SinaraPimenta/Projeto_C214_Armazem_MS/blob/main/static/images/logo.PNG" height="300" width="300" >
