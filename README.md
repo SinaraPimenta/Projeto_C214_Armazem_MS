@@ -35,15 +35,7 @@ $ git clone https://github.com/SinaraPimenta/Projeto_C214_Armazem_MS.git
 - pipenv 
 
 ### 🔧 Instalação e execução
-Uma série de exemplos passo-a-passo que informam o que você deve executar para ter um ambiente de desenvolvimento em execução.
-
-Diga como essa etapa será:
-
-Dar exemplos
-E repita:
-
-Até finalizar
-Termine com um exemplo de como obter dados do sistema ou como usá-los para uma pequena demonstração.
+(A formular)
 
 ### ⚙️ Executando os testes
 A implementação dos testes de unidade  foi feita utilizando o framework de teste para Python chamado Unittest e foram implementadas os seguintes casos de teste: AdministradorTest, CafeicultorTest e  WebScrappingTest.
