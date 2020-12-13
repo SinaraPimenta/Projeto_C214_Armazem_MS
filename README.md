@@ -22,7 +22,7 @@
 - [x] Testes Mock
 - [x] CI (Github Actions)
 - [x] 2 Padrões de projeto (Mediator e Singleton)
-- [x] Arquitetura MVC (adaptada)
+- [x] Arquitetura MVC (adaptada devido o FLASK não seguir exatamente o modelo MVC)
 
 ### 🚀 Começando
 Para obter uma cópia do projeto a fim de operá-lo/testá-lo de sua máquina,clone o repositório em uma pasta na sua máquina:
@@ -35,7 +35,34 @@ $ git clone https://github.com/SinaraPimenta/Projeto_C214_Armazem_MS.git
 - pipenv 
 
 ### 🔧 Instalação e execução
-(A formular)
+- [Instale pipenv](https://pypi.org/project/pipenv/) :
+```
+pip install pipenv
+```
+- Ativação do gerenciamento de dependências:
+<p>Após a instalação, garanta que o terminal esteja no diretório da pasta principal do projeto. Para utilizar as bibliotecas empregadas no projeto e gerenciadas pelo pipenv é necessário ativá-lo:</p>
+
+```
+pipenv shell
+```
+<p>Com a ativação as dependências serão automaticamente carregadas e o projeto poderá ser executado sem a necessidade de instalaçao de cada uma.Todavia, é possível executar os comandos dentro do virtualenv sem a necessidade de ativá-lo mas ainda utilizando as suas dependências gerenciadas:</p>
+
+```
+pipenv run <comando>
+```
+- Execução:
+<p>Para execução do servidor do projeto e acesso a API: </p>
+
+```
+#se estiver dentro do virtual env
+python3 server.py
+```
+
+```
+#se não estiver dentro do virtualenv
+pipenv run python3 server.py
+```
+<p>Agora basta apenas acessar seu localhost na porta 5000 e ter sua experiância com a aplicação!</p>
 
 ### ⚙️ Executando os testes
 A implementação dos testes de unidade  foi feita utilizando o framework de teste para Python chamado Unittest e foram implementadas os seguintes casos de teste: AdministradorTest, CafeicultorTest e  WebScrappingTest.
@@ -46,11 +73,17 @@ A implementação dos testes de unidade  foi feita utilizando o framework de tes
 
 **1°)** Garanta que o terminal esteja aberto na pasta do projeto;
 
-**2°)** Execute o comando a seguir especificando o caminho até o arquivo contendo os testes: python -m unittest path/../../nomeArquivo.py
+**2°)** Execute o comando a seguir especificando o caminho até os diretórios contendo os testes os testes: python -m unittest discover -s path/../../
 
-Exemplo: 
+Exemplo:
+ ```
+  #se estiver dentro do virtual env para executer todos os testes de entidades
+ python -m unittest discover -s src/unittest/entidades
   ```
-  python -m unittest src/unittest/model/testAdministrador.py
+
+  ```
+  #se estiver dentro do virtual env para executer todos os testes de classes
+  python -m unittest discover -s src/unittest/classes
   ```
   
 ### Lista de testes implementados com seus respectivos objetivos:
@@ -97,19 +130,19 @@ Exemplo:
       server.py
       📂src/
           📂main/
-              📂controller/
+              📂entidades/
                   bancoDeDados.py
                   mediador.py
                   webScrapping.py
-              📂model/
+              📂classes/
                   administrador.py
                   cafeicultor.py
                   sacaCafe.py
                   usuario.py
           📂unittest/
-              📂controller/
+              📂entidades/
                   testWebScrapping.py
-              📂model/
+              📂classes/
                   testAdministrador.py
                   testCafeicultor.py
       📂static/
