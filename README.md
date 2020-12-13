@@ -1,5 +1,5 @@
 ![Python build](https://github.com/SinaraPimenta/Projeto_C214_Armazem_MS/workflows/Python%20build/badge.svg)
-# Armazem MS - EM DESENVOLVIMENTO ⚠️
+# Armazem MS 
 
 <p align="center">
 <img src="https://github.com/SinaraPimenta/Projeto_C214_Armazem_MS/blob/main/static/images/logo.PNG" height="300" width="300" >
@@ -40,12 +40,12 @@ $ git clone https://github.com/SinaraPimenta/Projeto_C214_Armazem_MS.git
 pip install pipenv
 ```
 - Ativação do gerenciamento de dependências:
-<p>Após a instalação, garanta que o terminal esteja no diretório da pasta principal do projeto. Para utilizar as bibliotecas empregadas no projeto e gerenciadas pelo pipenv é necessário ativá-lo:</p>
+<p>Após a instalação, garanta que o terminal esteja no diretório da pasta principal do projeto. Para instalar as bibliotecas empregadas no projeto é necessário inserir o comando:</p>
 
 ```
-pipenv shell
+pipenv install
 ```
-<p>Com a ativação as dependências serão automaticamente carregadas e o projeto poderá ser executado sem a necessidade de instalaçao de cada uma.Todavia, é possível executar os comandos dentro do virtualenv sem a necessidade de ativá-lo mas ainda utilizando as suas dependências gerenciadas:</p>
+<p>Assim as dependências serão automaticamente carregadas e o projeto poderá ser executado sem a necessidade de instalaçao de cada uma de forma individual. Para executar os comandos dentro do virtualenv não há necessidade de ativá-lo, basta seguir a estrutura:</p>
 
 ```
 pipenv run <comando>
@@ -77,12 +77,12 @@ A implementação dos testes de unidade  foi feita utilizando o framework de tes
 
 Exemplo:
  ```
-  #se estiver dentro do virtual env para executer todos os testes de entidades
+  #se estiver dentro do virtual env para executar todos os testes de entidades
  python -m unittest discover -s src/unittest/entidades
   ```
 
   ```
-  #se estiver dentro do virtual env para executer todos os testes de classes
+  #se estiver dentro do virtual env para executar todos os testes de classes
   python -m unittest discover -s src/unittest/classes
   ```
   
@@ -122,7 +122,7 @@ Exemplo:
 
 
 ### 📦 Desenvolvimento
-  A estrutura de pastas foi criada para atender ao modelo MVC (Model, View e Controller). Porém, com o uso do Flask para o desenvolvimeto de uma interface web, a estrutura da interface foi colocada na raiz do projeto de modo a atender o formato esperado por essa ferramenta (arquivos estáticos na pasta Static e arquivos html em Templates).
+  A estrutura de pastas foi feita para atender ao formato esperado pelo Flask, assim, a estrutura da interface foi colocada na raiz do projeto (arquivos estáticos na pasta Static e arquivos html em Templates). Os demais arquivos foram organizados conforme seu tipo (main e test).
   Abaixo segue um esboço da estrutura usada:
   
   📂ArmazemMS/
