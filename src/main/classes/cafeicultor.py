@@ -1,5 +1,5 @@
 import sys
-sys.path.append('src/main/model')
+sys.path.append('src/main/classes')
 import usuario
 
 class Cafeicultor(usuario.Usuario):

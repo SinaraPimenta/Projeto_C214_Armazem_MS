@@ -4,13 +4,13 @@ import hashlib
 from flask import  flash,  redirect, url_for
 from flask import render_template
 from datetime import date
-from src.main.model.cafeicultor import Cafeicultor
-from src.main.model.sacaCafe import SacaCafe
-from src.main.model.administrador import Administrador
-from src.main.controller.webScrapping import WebScrapping
-from src.main.controller.mediador import MediadorDoCafeicultor
-from src.main.controller.mediador import MediadorDoAdministrador
-from src.main.controller.bancoDeDados import BancoDeDados
+from src.main.classes.cafeicultor import Cafeicultor
+from src.main.classes.sacaCafe import SacaCafe
+from src.main.classes.administrador import Administrador
+from src.main.entidades.webScrapping import WebScrapping
+from src.main.entidades.mediador import MediadorDoCafeicultor
+from src.main.entidades.mediador import MediadorDoAdministrador
+from src.main.entidades.bancoDeDados import BancoDeDados
 
 flag= False
 flagErro = False

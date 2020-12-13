@@ -1,7 +1,7 @@
 import sys
-sys.path.append('src/main/model')
+sys.path.append('src/main/classes')
 import usuario
-sys.path.append('src/main/controller')
+sys.path.append('src/main/entidades')
 import bancoDeDados
 
 class Administrador(usuario.Usuario):

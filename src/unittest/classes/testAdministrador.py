@@ -1,11 +1,11 @@
 import sys
-sys.path.append('src/main/model')
+sys.path.append('src/main/classes')
 import administrador 
 import cafeicultor 
 import unittest
 from unittest import TestCase
 import pymongo
-sys.path.append('src/main/controller')
+sys.path.append('src/main/entidades')
 import mediador
 import bancoDeDados
 

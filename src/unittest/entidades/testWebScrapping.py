@@ -1,8 +1,8 @@
 #from src.main.controller.webScrapping import WebScrapping 
 import sys
-sys.path.append('src/main/controller/exception')
+sys.path.append('src/main/entidades/exception')
 import exception
-sys.path.append('src/main/controller')
+sys.path.append('src/main/entidades')
 import webScrapping
 import unittest
 import requests
