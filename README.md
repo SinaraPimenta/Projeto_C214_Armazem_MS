@@ -1,4 +1,5 @@
-# Armazem MS
+![Python build](https://github.com/SinaraPimenta/Projeto_C214_Armazem_MS/workflows/Python%20build/badge.svg)
+# Armazem MS - EM DESENVOLVIMENTO ⚠️
 
 <p align="center">
 <img src="https://github.com/SinaraPimenta/Projeto_C214_Armazem_MS/blob/main/static/images/logo.PNG" height="300" width="300" >
@@ -16,31 +17,52 @@
 - [x] Realizar um CRUD completo
 - [x] Permanência de dados (MongoDB Atlas - NoSQL)
 - [x] Ferramenta de controle de versão (Github)
-- [ ] Gerenciador de dependências
+- [x] Gerenciamento de dependências (pipenv)
 - [x] Testes de unidade
 - [x] Testes Mock
-- [ ] Continuous Integration
+- [x] CI (Github Actions)
 - [x] 2 Padrões de projeto (Mediator e Singleton)
-- [x] Arquitetura MVC (adaptada)
+- [x] Arquitetura MVC (adaptada devido o FLASK não seguir exatamente o modelo MVC)
 
 ### 🚀 Começando
-Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
-Consulte Implantação para saber como implantar o projeto.
-
+Para obter uma cópia do projeto a fim de operá-lo/testá-lo de sua máquina,clone o repositório em uma pasta na sua máquina:
+```
+$ git clone https://github.com/SinaraPimenta/Projeto_C214_Armazem_MS.git
+```
 ### 📋 Pré-requisitos para execução
-De que coisas você precisa para instalar o software e como instalá-lo?
-Dar exemplos
+- IDE para execução de códigos Python (ex: Visual Studio Code)
+- Python 3.7 ou 3.8
+- pipenv 
 
-### 🔧 Instalação
-Uma série de exemplos passo-a-passo que informam o que você deve executar para ter um ambiente de desenvolvimento em execução.
+### 🔧 Instalação e execução
+- [Instale pipenv](https://pypi.org/project/pipenv/) :
+```
+pip install pipenv
+```
+- Ativação do gerenciamento de dependências:
+<p>Após a instalação, garanta que o terminal esteja no diretório da pasta principal do projeto. Para utilizar as bibliotecas empregadas no projeto e gerenciadas pelo pipenv é necessário ativá-lo:</p>
 
-Diga como essa etapa será:
+```
+pipenv shell
+```
+<p>Com a ativação as dependências serão automaticamente carregadas e o projeto poderá ser executado sem a necessidade de instalaçao de cada uma.Todavia, é possível executar os comandos dentro do virtualenv sem a necessidade de ativá-lo mas ainda utilizando as suas dependências gerenciadas:</p>
 
-Dar exemplos
-E repita:
+```
+pipenv run <comando>
+```
+- Execução:
+<p>Para execução do servidor do projeto e acesso a API: </p>
 
-Até finalizar
-Termine com um exemplo de como obter dados do sistema ou como usá-los para uma pequena demonstração.
+```
+#se estiver dentro do virtual env
+python3 server.py
+```
+
+```
+#se não estiver dentro do virtualenv
+pipenv run python3 server.py
+```
+<p>Agora basta apenas acessar seu localhost na porta 5000 e ter sua experiância com a aplicação!</p>
 
 ### ⚙️ Executando os testes
 A implementação dos testes de unidade  foi feita utilizando o framework de teste para Python chamado Unittest e foram implementadas os seguintes casos de teste: AdministradorTest, CafeicultorTest e  WebScrappingTest.
@@ -51,11 +73,17 @@ A implementação dos testes de unidade  foi feita utilizando o framework de tes
 
 **1°)** Garanta que o terminal esteja aberto na pasta do projeto;
 
-**2°)** Execute o comando a seguir especificando o caminho até o arquivo contendo os testes: python -m unittest path/../../nomeArquivo.py
+**2°)** Execute o comando a seguir especificando o caminho até os diretórios contendo os testes os testes: python -m unittest discover -s path/../../
 
-Exemplo: 
+Exemplo:
+ ```
+  #se estiver dentro do virtual env para executer todos os testes de entidades
+ python -m unittest discover -s src/unittest/entidades
   ```
-  python -m unittest src/unittest/model/testAdministrador.py
+
+  ```
+  #se estiver dentro do virtual env para executer todos os testes de classes
+  python -m unittest discover -s src/unittest/classes
   ```
   
 ### Lista de testes implementados com seus respectivos objetivos:
@@ -102,19 +130,19 @@ Exemplo:
       server.py
       📂src/
           📂main/
-              📂controller/
+              📂entidades/
                   bancoDeDados.py
                   mediador.py
                   webScrapping.py
-              📂model/
+              📂classes/
                   administrador.py
                   cafeicultor.py
                   sacaCafe.py
                   usuario.py
           📂unittest/
-              📂controller/
+              📂entidades/
                   testWebScrapping.py
-              📂model/
+              📂classes/
                   testAdministrador.py
                   testCafeicultor.py
       📂static/
@@ -186,6 +214,8 @@ O GitHub foi usado para controle de versão. Para as versões disponíveis, obse
 * **Sinara Pimenta Medeiros** - [Sinara](https://github.com/SinaraPimenta)
 
 ### 📄 Licença
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://badges.mit-license.org/)
+
 Este projeto está sob a licença MIT - veja o arquivo [LICENSE.txt](https://github.com/SinaraPimenta/Projeto_C214_Armazem_MS/blob/main/LICENSE.txt) para detalhes.
 
 ⌨️ com ❤️ por Mariana e Sinara 😊
