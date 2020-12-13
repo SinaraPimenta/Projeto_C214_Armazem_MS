@@ -21,6 +21,5 @@ jobs:
         pipenv install
     - name: Test with unittest
       run: |
-        pipenv run python3 -m unittest src/unittest/controller/testWebScrapping.py
-        pipenv run python3 -m unittest src/unittest/model/testAdministrador.py
-        pipenv run python3 -m unittest src/unittest/model/testCafeicultor.py
+        pipenv run python3 -m unittest discover -s src/unittest/entidades
+        pipenv run python3 -m unittest discover -s src/unittest/classes
