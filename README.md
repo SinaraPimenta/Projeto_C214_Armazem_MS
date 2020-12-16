@@ -22,7 +22,7 @@
 - [x] Testes Mock
 - [x] CI (Github Actions)
 - [x] 2 Padrões de projeto (Mediator e Singleton)
-- [x] Arquitetura MVC (adaptada devido o FLASK não seguir exatamente o modelo MVC)
+- [x] Arquitetura (Adaptada para uso do Flask)
 
 ### 🚀 Começando
 Para obter uma cópia do projeto a fim de operá-lo/testá-lo de sua máquina,clone o repositório em uma pasta na sua máquina:
