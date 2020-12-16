@@ -24,6 +24,19 @@
 - [x] 2 Padrões de projeto (Mediator e Singleton)
 - [x] Arquitetura (Adaptada para uso do Flask)
 
+### 💻 Funcionalidades
+#### Administrador:
+- Cadastrar cafeicultor
+- Buscar cafeicultor
+- Editar cafeicultor
+- Excluir cafeicultor
+
+#### Cafeicultor:
+- Cadastrar seu café
+- Buscar seu café
+- Editar seu café
+- Vender seu café
+
 ### 🚀 Começando
 Para obter uma cópia do projeto a fim de operá-lo/testá-lo de sua máquina,clone o repositório em uma pasta na sua máquina:
 ```
